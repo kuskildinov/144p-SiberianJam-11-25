@@ -33,15 +33,22 @@ public class PlayerMovment : MonoBehaviour
 
     private Player _player;
     private Vector3 _moveDirection = Vector3.zero;
+    private Vector3 _targetDirection = Vector3.zero;
     private float _rotationX = 0;
     private float _currentSpeed;
     private bool _isGrounded = true;
     private bool _isJumping = false;
     private bool _jumpRequested = false;
     private bool _isRunning = false;
+    private bool _isMouseActive = true;
+    private bool _isUnderControl = false;
 
     private float _defaultCameraY;
     private float _shakeTimer = 0;   
+
+    public bool IsMouseActive { get => _isMouseActive; set => _isMouseActive = value; }
+    public bool IsUnderControl { get => _isUnderControl; set => _isUnderControl = value; }
+    public Vector3 TargetDirection { get => _targetDirection; set => _targetDirection = value; }
 
     public void initialize(Player player)
     {
@@ -62,18 +69,34 @@ public class PlayerMovment : MonoBehaviour
         HandleHeadShake();
         HandleRunning();
         CheckGroundHandle();
+        if (_isUnderControl)
+            LockCameraToTarget();       
     }
 
-    private void FixedUpdate()
+    public void OnLostControl(Transform secureCam)
     {
-        if (_player.IsActive == false)
-            return;
+        _targetDirection = secureCam.position;
+        _isMouseActive = false;
+        _isUnderControl = true;
+    }
 
-       
+    public void OnReturnControl()
+    {
+        _isMouseActive = true;
+        _isUnderControl = false;
+    }
+
+    private void LockCameraToTarget()
+    {
+        Quaternion targetRotation = Quaternion.LookRotation(_targetDirection - _camera.transform.position);
+        _camera.transform.rotation = Quaternion.Slerp(_camera.transform.rotation, targetRotation, 2f * Time.deltaTime);    
     }
 
     private void HandleMouseLook()
-    {      
+    {
+        if (_isMouseActive == false)
+            return;
+
         float mouseX = Input.GetAxis(MouseX) * _mouseSensitivity;
         _player.transform.Rotate(0, mouseX, 0);
                

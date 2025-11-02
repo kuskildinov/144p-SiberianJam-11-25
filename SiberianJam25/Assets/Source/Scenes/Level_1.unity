@@ -4528,6 +4528,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8150274520399890665, guid: d000ae5cb8005934abe8e116f093dce5,
         type: 3}
+      propertyPath: minFOV
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8150274520399890665, guid: d000ae5cb8005934abe8e116f093dce5,
+        type: 3}
       propertyPath: _camera
       value: 
       objectReference: {fileID: 561858921}
@@ -8503,6 +8508,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336935001744202009, guid: 9af28a5b24033554ba72758e0d976d8f,
+        type: 3}
+      propertyPath: _isActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7733753469968381152, guid: 9af28a5b24033554ba72758e0d976d8f,
         type: 3}

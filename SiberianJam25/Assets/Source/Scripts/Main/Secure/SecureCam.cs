@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SecureCam : MonoBehaviour
 {
+    [SerializeField] private bool _isActive = true;
     [Header("Movment Settings")]
     [SerializeField] private Transform[] _targets;
     [SerializeField] private float _rotationSpeed = 3f;
@@ -23,10 +24,11 @@ public class SecureCam : MonoBehaviour
 
     private bool _playerInSight = false;
     private Transform _playerTransform;
+    private Player _currentDetectedPlayer;
 
     private void Update()
     {
-        if (_targets == null || _targets.Length == 0) return;
+        if (_targets == null || _targets.Length == 0 || _isActive == false) return;
 
         if (_isLooking && _playerInSight == false)
         {
@@ -108,20 +110,17 @@ public class SecureCam : MonoBehaviour
                 {
                     if (hit.transform.TryGetComponent<Player>(out Player player))
                     {
+                        _currentDetectedPlayer = player;
                         detected = true;
                         _playerTransform = hitCollider.transform;
                         LookAtPlayer(_playerTransform);
                         if (!_playerInSight)
                         {
                             OnPlayerDetected();
-                            player.DetectedBySecure(_eye);
+                            _currentDetectedPlayer.DetectedBySecure(_eye);
                         }
                         break;
-                    }
-                    else
-                    {
-                        player.LostDetectionBySecure();
-                    }
+                    }                   
                 }
             }
         }
@@ -129,6 +128,7 @@ public class SecureCam : MonoBehaviour
         if (!detected && _playerInSight)
         {
             OnPlayerLost();
+            _currentDetectedPlayer.LostDetectionBySecure();
         }
     }
 
