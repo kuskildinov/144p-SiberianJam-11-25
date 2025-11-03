@@ -1592,6 +1592,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 405065942}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &67072543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 67072544}
+  - component: {fileID: 67072545}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &67072544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67072543}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.011, y: 2.57, z: 0.674}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2108147192}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &67072545
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67072543}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.84855896, y: 0.23978442, z: 0.73211473}
+  m_Center: {x: -0.2230303, y: -0.09051584, z: -0.13394769}
 --- !u!1 &69283079
 GameObject:
   m_ObjectHideFlags: 0
@@ -14238,7 +14291,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.4821, z: 0}
-  m_LocalScale: {x: 1, y: -0.04, z: 3.19}
+  m_LocalScale: {x: 1, y: 0.04, z: 3.19}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 572847436}
@@ -17888,21 +17941,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1316487299206186565, guid: ba34010d9d302b94a859b977c03b2e7a,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1316487299206186565, guid: ba34010d9d302b94a859b977c03b2e7a,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1316487299206186565, guid: ba34010d9d302b94a859b977c03b2e7a,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1316487299206186565, guid: ba34010d9d302b94a859b977c03b2e7a,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 78.23001
       objectReference: {fileID: 0}
@@ -17955,11 +17993,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: zabor_v1 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2420217994672845548, guid: ba34010d9d302b94a859b977c03b2e7a,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 4.06
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21110,7 +21143,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 1863312512}
   _levelRoot: {fileID: 2128056439}
+  _restartPoint: {fileID: 0}
   _glassOnFadeAnimation: {fileID: 1881321407}
+  _glassOffFadeAnimation: {fileID: 0}
+  _cantTakeItemInfo: {fileID: 0}
+  _interactKeyinfo: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -29798,7 +29835,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.4821, z: 0}
-  m_LocalScale: {x: 1, y: -0.04, z: 3.19}
+  m_LocalScale: {x: 1, y: 0.04, z: 3.19}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1121037979}
@@ -41455,7 +41492,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.4821, z: 0}
-  m_LocalScale: {x: 1, y: -0.04, z: 3.19}
+  m_LocalScale: {x: 1, y: 0.04, z: 3.19}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1281860708}
@@ -42510,7 +42547,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2626776611000664659, guid: ec118c4bd79bb844b9f667a785720c00, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4314163730686521707, guid: ec118c4bd79bb844b9f667a785720c00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 67072544}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec118c4bd79bb844b9f667a785720c00, type: 3}
 --- !u!1 &1644171601
@@ -58469,6 +58510,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2106362663}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &2108147192 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4314163730686521707, guid: ec118c4bd79bb844b9f667a785720c00,
+    type: 3}
+  m_PrefabInstance: {fileID: 1637411129}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2109746865
 GameObject:
   m_ObjectHideFlags: 0
@@ -59935,6 +59982,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enviernemtSwitcher: {fileID: 1087579837}
+  _playerRoot: {fileID: 0}
+  _playerRoom: {fileID: 0}
+  _mainDoorIndicator: {fileID: 0}
+  _levers: []
+  _codeGamePuzzle: {fileID: 0}
+  _findObjectPuzzle: {fileID: 0}
+  _gameOverPanel: {fileID: 0}
+  _startFadePanel: {fileID: 0}
+  _switchOffGlassesInfoPanel: {fileID: 0}
 --- !u!4 &2129768701 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2163957820968705636, guid: ec118c4bd79bb844b9f667a785720c00,
