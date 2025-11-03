@@ -155,6 +155,7 @@ public class Player : MonoBehaviour
     #region >>> GLASSES
     private void TryGlassOn()
     {
+        Debug.Log("TEST");
         _glassOn = true;
         _animations.PlayGlassOnAnimation();
         _root.ShowGlassOnFade();       

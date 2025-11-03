@@ -17,6 +17,9 @@ public class LevelRoot : CompositeRoot
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private GameObject _startFadePanel;
     [SerializeField] private GameObject _switchOffGlassesInfoPanel;
+    [Header("PostProcess")]
+    [SerializeField] private GameObject _pinkVolume;
+    [SerializeField] private GameObject _badVolume;
 
     private WorldState _currentWorldState;
 
@@ -29,7 +32,7 @@ public class LevelRoot : CompositeRoot
         _mainDoorIndicator?.Initialize();
         _codeGamePuzzle?.Initialize();
         _findObjectPuzzle?.Initialize();
-        _playerRoom.Initialize(this);
+        _playerRoom?.Initialize(this);
 
         InitializePuzzles();
     }
@@ -55,11 +58,17 @@ public class LevelRoot : CompositeRoot
     public void TryShowPinkWorld()
     {
         _enviernemtSwitcher.ShowPinkWorld();
+
+        _badVolume.gameObject.SetActive(false);
+        _pinkVolume.gameObject.SetActive(true);
     }
 
     public void TryShowBadWorld()
     {
         _enviernemtSwitcher.ShowBadWorld();
+
+        _pinkVolume.gameObject.SetActive(false);
+        _badVolume.gameObject.SetActive(true);
     }
 
     #endregion
