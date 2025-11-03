@@ -7,9 +7,12 @@ public class PlayerRoot : CompositeRoot
 
     [SerializeField] private Player _player;
     [SerializeField] private LevelRoot _levelRoot;
+    [Header("Restart Settings")]
+    [SerializeField] private Transform _restartPoint;
     [Header("UI")]
     [SerializeField] private Animator _glassOnFadeAnimation;
     [SerializeField] private Animator _glassOffFadeAnimation;
+    [SerializeField] private GameObject _cantTakeItemInfo;
    
 
     public override void Compose()
@@ -33,6 +36,19 @@ public class PlayerRoot : CompositeRoot
         ToggleMouse(true);
     }
 
+    public void GameOver()
+    {
+        DeactivatePlayer();
+        _levelRoot.OnGameOver();
+    }
+
+    public void RestartLevel()
+    {
+        _player.transform.position = _restartPoint.position;
+        ActivatePlayer();
+    }
+
+    #region GLASSES
     public void OnGlassesOn()
     {
         _levelRoot.TryShowPinkWorld();
@@ -53,7 +69,23 @@ public class PlayerRoot : CompositeRoot
         _glassOffFadeAnimation.SetTrigger(ShowFadeTrigger);
     }
 
-    
+    #endregion
+
+    #region >>> UI
+
+    public void ShowCantTakeItemMessage()
+    {
+        StartCoroutine(ShowMessageRoutine());
+    }
+
+    private IEnumerator ShowMessageRoutine()
+    {
+        _cantTakeItemInfo.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(2f);
+        _cantTakeItemInfo.gameObject.SetActive(false);
+    }
+
+    #endregion
 
     private void ToggleMouse(bool value)
     {

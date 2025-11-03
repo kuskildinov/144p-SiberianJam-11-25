@@ -44,7 +44,7 @@ public class PlayerInteractions : MonoBehaviour
         {           
             if (Input.GetKeyDown(GlobalVars.InteractionKeyPrimary) || Input.GetKeyDown(GlobalVars.InteractionKeySecondary))
             {               
-                _currentInteractableObject.TryInteract();
+                _currentInteractableObject.TryInteract(_player);
             }
         }
     }

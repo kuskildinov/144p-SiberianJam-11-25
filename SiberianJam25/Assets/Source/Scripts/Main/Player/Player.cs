@@ -14,16 +14,24 @@ public class Player : MonoBehaviour
     [SerializeField] private float minFOV = 40f;
     [SerializeField] private float fovChangeSpeed = 2f;
     [SerializeField] private AnimationCurve fovCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+    [Header("Secure Detection Settings")]
+    [SerializeField] private float _timeBeforeGameOver = 4f;
+    [Header("TakeItemSettings")]
+    [SerializeField] private Transform _takeItemContainer;
 
     private PlayerRoot _root;
     private bool _isActive;
     private bool _canSwitchGlass = true;
     private bool _glassOn = true;
+    private bool _isDetectedBySecure = false;
     private float _targetFOV;
     private float _currentFOV;
+    private float _onDetectionTimer;
     private Coroutine _fovCoroutine;
+    private Item _currentItemOnHand;
 
     public bool IsActive => _isActive;
+    public Item CurrentItemOnHand => _currentItemOnHand;
 
     public void initialize(PlayerRoot root)
     {
@@ -45,21 +53,26 @@ public class Player : MonoBehaviour
 
         HandleCameraView();
 
-        if (!_canSwitchGlass)
-            return;
-
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (_canSwitchGlass)
         {
-            _canSwitchGlass = false;
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                _canSwitchGlass = false;
 
-            if (_glassOn)
-            {
-                TryGlassOff();
+                if (_glassOn)
+                {
+                    TryGlassOff();
+                }
+                else
+                {
+                    TryGlassOn();
+                }
             }
-            else
-            {
-                TryGlassOn();
-            }
+        }
+
+        if(_isDetectedBySecure)
+        {
+            StartUnderSecureTimer();
         }
     }
 
@@ -73,11 +86,33 @@ public class Player : MonoBehaviour
         _isActive = false;
     }
 
+    public void TakeItem(Item item)
+    {
+        if(_currentItemOnHand != null)
+        {
+            _root.ShowCantTakeItemMessage();
+            return;
+        }
+
+        _currentItemOnHand = item;
+
+        item.SetParent(_takeItemContainer);
+    }
+
+    public void DropItem()
+    {
+        _currentItemOnHand = null;
+
+    }
+
+    #region >>> SECURE DETECTION
+
     public void DetectedBySecure(Transform secureCam)
     {
         Debug.Log("Игрок замечен");
         _movment.OnLostControl(secureCam);
         SetFOV(minFOV);
+        _isDetectedBySecure = true;
     }
 
     public void LostDetectionBySecure()
@@ -85,7 +120,23 @@ public class Player : MonoBehaviour
         Debug.Log("Игрок потерян");
         _movment.OnReturnControl();
         SetFOV(defaultFOV);
+        _isDetectedBySecure = false;
+        _onDetectionTimer = 0f;
     }
+
+    private void StartUnderSecureTimer()
+    {
+        _onDetectionTimer += Time.deltaTime;
+
+        if(_onDetectionTimer >= _timeBeforeGameOver)
+        {
+            _root.GameOver();
+            _isDetectedBySecure = false;
+            _onDetectionTimer = 0f;
+        }
+    }
+
+    #endregion
 
     #region >>> GLASSES
     private void TryGlassOn()
@@ -116,7 +167,7 @@ public class Player : MonoBehaviour
 
     #endregion
 
-    #region Camera Settings
+    #region >>> CAMERA SETTINGS
 
     private void HandleCameraView()
     {

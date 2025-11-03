@@ -6,8 +6,8 @@ public class InteractableObject : MonoBehaviour
 
     public bool CanInteract { get => _canInteract; set => _canInteract = value; } 
 
-    public void TryInteract()
+    public virtual void TryInteract(Player player = null)
     {
-        Debug.Log($"Взаимодействие с элементом {gameObject.name}");
+      
     }
 }
