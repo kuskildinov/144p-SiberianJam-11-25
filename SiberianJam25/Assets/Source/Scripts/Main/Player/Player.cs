@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     private PlayerRoot _root;
     private bool _isActive;
-    private bool _canSwitchGlass;
+    [SerializeField] private bool _canSwitchGlass;
     private bool _glassOn = true;
     private bool _isDetectedBySecure = false;
     private float _targetFOV;
@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
 
     #region >>> GLASSES
     private void TryGlassOn()
-    {
+    {       
         _glassOn = true;
         _animations.PlayGlassOnAnimation();
         _root.ShowGlassOnFade();       

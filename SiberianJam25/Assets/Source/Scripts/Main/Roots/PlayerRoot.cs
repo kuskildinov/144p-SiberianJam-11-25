@@ -82,12 +82,12 @@ public class PlayerRoot : CompositeRoot
 
     public void ShowInteractionInfo()
     {
-        _interactKeyinfo.gameObject.SetActive(true);
+        _interactKeyinfo?.gameObject.SetActive(true);
     }
 
     public void HideInteractionInfo()
     {
-        _interactKeyinfo.gameObject.SetActive(false);
+        _interactKeyinfo?.gameObject.SetActive(false);
     }
 
     private IEnumerator ShowMessageRoutine()
