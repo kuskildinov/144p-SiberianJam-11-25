@@ -15,13 +15,13 @@ public class Player : MonoBehaviour
     [SerializeField] private float fovChangeSpeed = 2f;
     [SerializeField] private AnimationCurve fovCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
     [Header("Secure Detection Settings")]
-    [SerializeField] private float _timeBeforeGameOver = 4f;
+    [SerializeField] private float _timeBeforeGameOver = 2.5f;
     [Header("TakeItemSettings")]
     [SerializeField] private Transform _takeItemContainer;
 
     private PlayerRoot _root;
     private bool _isActive;
-    private bool _canSwitchGlass = true;
+    private bool _canSwitchGlass;
     private bool _glassOn = true;
     private bool _isDetectedBySecure = false;
     private float _targetFOV;
@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     private Item _currentItemOnHand;
 
     public bool IsActive => _isActive;
+    public bool CanSwitchGlasses { get => _canSwitchGlass; set => _canSwitchGlass = value; }
     public Item CurrentItemOnHand => _currentItemOnHand;
 
     public void initialize(PlayerRoot root)
@@ -85,6 +86,19 @@ public class Player : MonoBehaviour
     {
         _isActive = false;
     }
+
+    #region >>> UI
+
+    public void ShowInteractionInfo()
+    {
+        _root.ShowInteractionInfo();
+    }
+
+    public void HideInteractionInfo()
+    {
+        _root.HideInteractionInfo();
+    }
+    #endregion
 
     public void TakeItem(Item item)
     {
@@ -216,4 +230,12 @@ public class Player : MonoBehaviour
         _fovCoroutine = null;
     }
     #endregion
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.TryGetComponent<PlayerRoom> (out PlayerRoom playerRoom))
+        {
+            playerRoom.OnPlayerLeft();
+        }
+    }
 }

@@ -16,6 +16,7 @@ public class LevelRoot : CompositeRoot
     [Header("UI")]
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private GameObject _startFadePanel;
+    [SerializeField] private GameObject _switchOffGlassesInfoPanel;
 
     private WorldState _currentWorldState;
 
@@ -28,10 +29,27 @@ public class LevelRoot : CompositeRoot
         _mainDoorIndicator?.Initialize();
         _codeGamePuzzle?.Initialize();
         _findObjectPuzzle?.Initialize();
-        _playerRoom.Initiaalize();
+        _playerRoom.Initialize(this);
 
         InitializePuzzles();
     }
+
+    #region >>> UI
+
+    public void ShowSwitchOffInfoPanel()
+    {
+        _playerRoot.Player.CanSwitchGlasses = true;
+        StartCoroutine(ShowSwitchOffGlassesInfoRoutine());
+    }
+
+    private IEnumerator ShowSwitchOffGlassesInfoRoutine()
+    {
+        _switchOffGlassesInfoPanel.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(5f);
+        _switchOffGlassesInfoPanel.gameObject.SetActive(false);
+    }
+
+    #endregion
 
     #region >>> WORLD SWITCHER
     public void TryShowPinkWorld()

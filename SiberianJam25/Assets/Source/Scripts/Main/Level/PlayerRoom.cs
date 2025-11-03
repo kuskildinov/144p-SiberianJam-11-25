@@ -6,7 +6,10 @@ public class PlayerRoom : MonoBehaviour
 {
     [SerializeField] private PlayableDirector _openDooePlayable;
     [SerializeField] private PhrasePanel _friendPhrasePanel;
+    [SerializeField] private PhrasePanel _policemanPhrasePanel;
     [SerializeField] private Animator _doorAnimator;
+    [Header("Window Settings")]
+    [SerializeField] private Window _window;   
     [Header("Door settings")]
     [SerializeField] private Door _door;
     [SerializeField] private float _timeBeforeKniking = 20f;
@@ -18,12 +21,37 @@ public class PlayerRoom : MonoBehaviour
     [SerializeField] private string _phrase_2;
     [SerializeField] private string _phrase_3;
     [SerializeField] private string _phrase_4;
+    [Header("Outside Scene")]
+    [SerializeField] private GameObject _outsideScene;
 
-    public void Initiaalize()
+    private LevelRoot _root;
+    private bool _needCheckGlassWearing;
+
+    public void Initialize(LevelRoot root)
     {
-        _door.CanInteract = false;
+        _root = root;
 
+        _door.CanInteract = false;
+        _window.CanInteract = false;
         StartCoroutine(StartCutSceneRoutine());
+    }
+
+    private void Update()
+    {
+        if(_needCheckGlassWearing && Input.GetKeyDown(KeyCode.Q))
+        {
+            _outsideScene.gameObject.SetActive(false);
+            _needCheckGlassWearing = false;
+            _window.CanInteract = true;
+
+            PlayPolicemansPhrases();
+        }
+    }
+
+    public void OnPlayerLeft()
+    {
+        StopPolicemanKnockingSound();
+        _policemanPhrasePanel.Hide();
     }
 
     #region >>> DOOR
@@ -33,16 +61,33 @@ public class PlayerRoom : MonoBehaviour
         _openDooePlayable.Play();
         _doorAnimator.SetTrigger("Activate");
         _door.CanInteract = false;
+        StopFriendKnockingSound();
+
     }
 
     private void PlayFriendKnockingSound()
     {
-
+        _doorSource.clip = _friendKnokSound;
+        _doorSource.loop = true;
+        _doorSource.Play();
     }
 
     private void StopFriendKnockingSound()
     {
+        _doorSource.Stop();
+    }
 
+    private void PlayPolicmanKnockingSound()
+    {
+        _doorSource.clip = _policeKnokingSound;
+        _doorSource.playOnAwake = true;
+        _doorSource.loop = true;
+        _doorSource.Play();
+    }
+
+    private void StopPolicemanKnockingSound()
+    {
+        _doorSource.Stop();
     }
 
     private IEnumerator StartCutSceneRoutine()
@@ -76,5 +121,29 @@ public class PlayerRoom : MonoBehaviour
         _friendPhrasePanel.ShowPhrase(_phrase_4);
     }
 
+    public void PlayPolicemansPhrases()
+    {       
+        _policemanPhrasePanel.ShowPhrase("Полиция! Откройте дверь!");
+        PlayPolicmanKnockingSound();
+    }  
+
     #endregion
+
+    #region >>> UI
+
+    public void ShowSwitchOffGlassesInfo()
+    {
+        _outsideScene.gameObject.SetActive(true);
+        StartCoroutine(ShowSwitchOffGlassesRoutine());
+    }
+
+    private IEnumerator ShowSwitchOffGlassesRoutine()
+    {
+        yield return new WaitForSecondsRealtime(5f);
+        _root.ShowSwitchOffInfoPanel();
+        _needCheckGlassWearing = true;
+      
+    }
+
+    #endregion    
 }

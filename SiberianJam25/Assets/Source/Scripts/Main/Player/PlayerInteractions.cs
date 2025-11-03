@@ -32,12 +32,21 @@ public class PlayerInteractions : MonoBehaviour
         {           
             if(hit.collider.gameObject.TryGetComponent<InteractableObject>(out InteractableObject interactableObject))
             {
-                _currentInteractableObject = interactableObject;              
+                _currentInteractableObject = interactableObject;
+                if (_currentInteractableObject.CanInteract)
+                    _player.ShowInteractionInfo();
+                else
+                    _player.HideInteractionInfo();
             }          
             else
             {
                 _currentInteractableObject = null;
+                _player.HideInteractionInfo();
             }
+        }
+        else
+        {
+            _player.HideInteractionInfo();
         }
 
         if(_currentInteractableObject != null && _currentInteractableObject.CanInteract)

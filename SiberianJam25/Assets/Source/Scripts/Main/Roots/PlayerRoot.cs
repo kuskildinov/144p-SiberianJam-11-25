@@ -13,7 +13,9 @@ public class PlayerRoot : CompositeRoot
     [SerializeField] private Animator _glassOnFadeAnimation;
     [SerializeField] private Animator _glassOffFadeAnimation;
     [SerializeField] private GameObject _cantTakeItemInfo;
-   
+    [SerializeField] private GameObject _interactKeyinfo;
+
+    public Player Player => _player;
 
     public override void Compose()
     {
@@ -76,6 +78,16 @@ public class PlayerRoot : CompositeRoot
     public void ShowCantTakeItemMessage()
     {
         StartCoroutine(ShowMessageRoutine());
+    }
+
+    public void ShowInteractionInfo()
+    {
+        _interactKeyinfo.gameObject.SetActive(true);
+    }
+
+    public void HideInteractionInfo()
+    {
+        _interactKeyinfo.gameObject.SetActive(false);
     }
 
     private IEnumerator ShowMessageRoutine()
