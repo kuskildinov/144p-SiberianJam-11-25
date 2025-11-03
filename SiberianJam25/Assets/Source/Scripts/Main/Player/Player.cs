@@ -17,9 +17,11 @@ public class Player : MonoBehaviour
 
     private PlayerRoot _root;
     private bool _isActive;
-    private float targetFOV;
-    private float currentFOV;
-    private Coroutine fovCoroutine;
+    private bool _canSwitchGlass = true;
+    private bool _glassOn = true;
+    private float _targetFOV;
+    private float _currentFOV;
+    private Coroutine _fovCoroutine;
 
     public bool IsActive => _isActive;
 
@@ -30,8 +32,8 @@ public class Player : MonoBehaviour
         _animations?.initialize(this);
         _interactions?.initialize(this);
 
-        currentFOV = _camera.fieldOfView;
-        targetFOV = currentFOV;
+        _currentFOV = _camera.fieldOfView;
+        _targetFOV = _currentFOV;
 
         _isActive = true;
     }
@@ -43,9 +45,21 @@ public class Player : MonoBehaviour
 
         HandleCameraView();
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (!_canSwitchGlass)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            TryGlassOn();
+            _canSwitchGlass = false;
+
+            if (_glassOn)
+            {
+                TryGlassOff();
+            }
+            else
+            {
+                TryGlassOn();
+            }
         }
     }
 
@@ -76,12 +90,14 @@ public class Player : MonoBehaviour
     #region >>> GLASSES
     private void TryGlassOn()
     {
+        _glassOn = true;
         _animations.PlayGlassOnAnimation();
         _root.ShowGlassOnFade();       
     }
 
     private void TryGlassOff()
     {
+        _glassOn = false;
         _animations.PlayGlassOffAnimation();
         _root.ShowGlassOffFade();
     }
@@ -89,11 +105,13 @@ public class Player : MonoBehaviour
     public void OnGlassOnFull()
     {
         _root.OnGlassesOn();
+        _canSwitchGlass = true;
     }
 
     public void OnGlassOffFull()
     {
         _root.OnGlassesOff();
+        _canSwitchGlass = true;
     }
 
     #endregion
@@ -102,11 +120,11 @@ public class Player : MonoBehaviour
 
     private void HandleCameraView()
     {
-        if (Mathf.Abs(_camera.fieldOfView - targetFOV) > 0.1f)
+        if (Mathf.Abs(_camera.fieldOfView - _targetFOV) > 0.1f)
         {
             _camera.fieldOfView = Mathf.Lerp(
                 _camera.fieldOfView,
-                targetFOV,
+                _targetFOV,
                 fovChangeSpeed * Time.deltaTime
             );
         }
@@ -114,13 +132,13 @@ public class Player : MonoBehaviour
 
     public void SetFOV(float newFOV, float duration = -1f)
     {
-        targetFOV = Mathf.Clamp(newFOV, minFOV, maxFOV);
+        _targetFOV = Mathf.Clamp(newFOV, minFOV, maxFOV);
 
         if (duration > 0 && gameObject.activeInHierarchy)
         {
-            if (fovCoroutine != null)
-                StopCoroutine(fovCoroutine);
-            fovCoroutine = StartCoroutine(ChangeFOVCoroutine(targetFOV, duration));
+            if (_fovCoroutine != null)
+                StopCoroutine(_fovCoroutine);
+            _fovCoroutine = StartCoroutine(ChangeFOVCoroutine(_targetFOV, duration));
         }
     }
 
@@ -136,15 +154,15 @@ public class Player : MonoBehaviour
             float curveValue = fovCurve.Evaluate(t);
 
             _camera.fieldOfView = Mathf.Lerp(startFOV, targetFOVValue, curveValue);
-            currentFOV = _camera.fieldOfView;
+            _currentFOV = _camera.fieldOfView;
 
             yield return null;
         }
 
         _camera.fieldOfView = targetFOVValue;
-        currentFOV = targetFOVValue;
-        targetFOV = targetFOVValue;
-        fovCoroutine = null;
+        _currentFOV = targetFOVValue;
+        _targetFOV = targetFOVValue;
+        _fovCoroutine = null;
     }
     #endregion
 }

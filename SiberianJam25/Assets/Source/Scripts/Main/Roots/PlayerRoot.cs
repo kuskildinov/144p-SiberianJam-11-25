@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class PlayerRoot : CompositeRoot
 {
+    private const string ShowFadeTrigger = "Show";
+
     [SerializeField] private Player _player;
     [SerializeField] private LevelRoot _levelRoot;
     [Header("UI")]
     [SerializeField] private Animator _glassOnFadeAnimation;
-    //[SerializeField] private Animator _glassOffFadeAnimation;
+    [SerializeField] private Animator _glassOffFadeAnimation;
    
 
     public override void Compose()
@@ -33,22 +35,22 @@ public class PlayerRoot : CompositeRoot
 
     public void OnGlassesOn()
     {
-        _levelRoot.TryShowBadWorld();
+        _levelRoot.TryShowPinkWorld();
     }
 
     public void OnGlassesOff()
     {
-        _levelRoot.TryShowPinkWorld();
+        _levelRoot.TryShowBadWorld();
     }
 
     public void ShowGlassOnFade()
     {
-        _glassOnFadeAnimation.SetTrigger("Show");
+        _glassOnFadeAnimation.SetTrigger(ShowFadeTrigger);
     }
 
     public void ShowGlassOffFade()
     {
-
+        _glassOffFadeAnimation.SetTrigger(ShowFadeTrigger);
     }
 
     
