@@ -14,9 +14,9 @@ public class PlayerMovment : MonoBehaviour
 
     [Header("Ground Detection")]
     [SerializeField] private float _groundCheckDistance = 0.1f;
-    [SerializeField] private LayerMask _groundMask = 1; // Слой Default
+    [SerializeField] private LayerMask _groundMask;
     [SerializeField] private float _slopeLimit = 45f;
-    [SerializeField] private GameObject _groundCheckPoint;
+    [SerializeField] private Transform _groundCheckPoint;
 
     [Header("Mouse Look")]
     [SerializeField] private float _mouseSensitivity = 2.0f;
@@ -144,17 +144,14 @@ public class PlayerMovment : MonoBehaviour
         if (Input.GetKeyDown(GlobalVars.JumpKey) && _isGrounded && !_isJumping)
         {
             _isJumping = true;
-            _jumpRequested = true;
-            Debug.Log("JUMP");
+            _jumpRequested = true;          
             _rigidbody.AddForce(Vector3.up * _jumpSpeed, ForceMode.Impulse);
         }       
     }
 
     private void CheckGroundHandle()
     {
-        RaycastHit hit;       
-        _isGrounded = Physics.Raycast(_groundCheckPoint.transform.position, Vector3.down, out hit,
-                        _groundCheckDistance, _groundMask);
+        _isGrounded = Physics.CheckSphere(_groundCheckPoint.transform.position, .5f, _groundMask);
 
         if (_isGrounded)
             _isJumping = false;
@@ -185,11 +182,5 @@ public class PlayerMovment : MonoBehaviour
             cameraPos.y = Mathf.Lerp(cameraPos.y, _defaultCameraY, Time.deltaTime * 3f);
             _camera.transform.localPosition = cameraPos;
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = _isGrounded ? Color.green : Color.red;       
-        Gizmos.DrawRay(_groundCheckPoint.transform.position, Vector3.down * _groundCheckDistance);
     }
 }

@@ -1,8 +1,14 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerRoot : CompositeRoot
 {
     [SerializeField] private Player _player;
+    [SerializeField] private LevelRoot _levelRoot;
+    [Header("UI")]
+    [SerializeField] private Animator _glassOnFadeAnimation;
+    //[SerializeField] private Animator _glassOffFadeAnimation;
+   
 
     public override void Compose()
     {
@@ -25,6 +31,28 @@ public class PlayerRoot : CompositeRoot
         ToggleMouse(true);
     }
 
+    public void OnGlassesOn()
+    {
+        _levelRoot.TryShowBadWorld();
+    }
+
+    public void OnGlassesOff()
+    {
+        _levelRoot.TryShowPinkWorld();
+    }
+
+    public void ShowGlassOnFade()
+    {
+        _glassOnFadeAnimation.SetTrigger("Show");
+    }
+
+    public void ShowGlassOffFade()
+    {
+
+    }
+
+    
+
     private void ToggleMouse(bool value)
     {
         if(value)
@@ -34,4 +62,5 @@ public class PlayerRoot : CompositeRoot
 
         Cursor.visible = value;
     }
+   
 }

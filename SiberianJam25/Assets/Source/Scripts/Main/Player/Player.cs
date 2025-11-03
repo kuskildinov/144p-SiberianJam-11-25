@@ -32,11 +32,21 @@ public class Player : MonoBehaviour
 
         currentFOV = _camera.fieldOfView;
         targetFOV = currentFOV;
+
+        _isActive = true;
     }
 
     private void Update()
     {
+        if (_isActive == false)
+            return;
+
         HandleCameraView();
+
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            TryGlassOn();
+        }
     }
 
     public void Activate()
@@ -62,6 +72,31 @@ public class Player : MonoBehaviour
         _movment.OnReturnControl();
         SetFOV(defaultFOV);
     }
+
+    #region >>> GLASSES
+    private void TryGlassOn()
+    {
+        _animations.PlayGlassOnAnimation();
+        _root.ShowGlassOnFade();       
+    }
+
+    private void TryGlassOff()
+    {
+        _animations.PlayGlassOffAnimation();
+        _root.ShowGlassOffFade();
+    }
+
+    public void OnGlassOnFull()
+    {
+        _root.OnGlassesOn();
+    }
+
+    public void OnGlassOffFull()
+    {
+        _root.OnGlassesOff();
+    }
+
+    #endregion
 
     #region Camera Settings
 

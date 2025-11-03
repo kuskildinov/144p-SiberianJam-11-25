@@ -7,6 +7,8 @@ public class PlayerAnimations : MonoBehaviour
     private const string HorizontalAxis = "Horizontal";
     private const string VerticalAxis = "Vertical";
     private const string WalkAnimation = "Walk";
+    private const string GlassOnAnimiation = "GlassOn";
+    private const string GlassOffAnimiation = "GlassOff";
 
     [SerializeField] private Animator _animator;
 
@@ -45,12 +47,22 @@ public class PlayerAnimations : MonoBehaviour
 
     public void PlayGlassOnAnimation()
     {
-
+        _animator.SetTrigger(GlassOnAnimiation);
     }
 
     public void PlayGlassOffAnimation()
     {
+        _animator.SetTrigger(GlassOffAnimiation);
+    }
 
+    public void OnGlassFullOn()
+    {
+        _player.OnGlassOnFull();
+    }
+
+    public void OnGlassFullOff()
+    {
+        _player.OnGlassOffFull();
     }
 
 
