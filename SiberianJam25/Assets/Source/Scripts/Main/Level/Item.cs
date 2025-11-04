@@ -5,6 +5,7 @@ using UnityEngine;
 public class Item : InteractableObject
 {
     [SerializeField] private int _index;
+    [SerializeField] private Collider _collider;
 
     public int Index => _index;
 
@@ -19,5 +20,7 @@ public class Item : InteractableObject
     {
         transform.SetParent(parent);
         transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.Euler(Vector3.zero);
+        _collider.enabled = false;
     }
 }
