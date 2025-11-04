@@ -9,7 +9,7 @@ public static class GlobalVars
     public static KeyCode InteractionKeySecondary = KeyCode.Mouse0;
     [Header("Сцены")]
     public static string MainMenuSceneName = "MainMenu";
-    public static string GameLevelSceneName = "Level_1";
+    public static string GameLevelSceneName = "Level_2";
     [Header("Готовность головоломок")]
     public static bool PuzzleOneReady = false;
     public static bool PuzzleTwoReady = false;
