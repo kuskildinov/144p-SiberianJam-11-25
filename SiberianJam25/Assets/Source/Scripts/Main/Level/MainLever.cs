@@ -11,6 +11,7 @@ public class MainLever : InteractableObject
     {
         _root = root;
         CheckCanInteract();
+        _animator.SetBool("Activate", false);
     }
 
     public override void TryInteract(Player player = null)
@@ -34,5 +35,6 @@ public class MainLever : InteractableObject
     {
         // анимация срабатывания
         CanInteract = false;
+        _animator.SetBool("Activate", true);
     }
 }
