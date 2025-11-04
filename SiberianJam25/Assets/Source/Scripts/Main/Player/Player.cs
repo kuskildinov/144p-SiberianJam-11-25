@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AnimationCurve fovCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
     [Header("Secure Detection Settings")]
     [SerializeField] private float _timeBeforeGameOver = 2.5f;
+    [SerializeField] private AudioSource _camZoneSound;
     [Header("TakeItemSettings")]
     [SerializeField] private Transform _takeItemContainer;
 
@@ -128,6 +129,8 @@ public class Player : MonoBehaviour
         _movment.OnLostControl(secureCam);
         SetFOV(minFOV);
         _isDetectedBySecure = true;
+
+        _camZoneSound.Play();
     }
 
     public void LostDetectionBySecure()
@@ -137,6 +140,8 @@ public class Player : MonoBehaviour
         SetFOV(defaultFOV);
         _isDetectedBySecure = false;
         _onDetectionTimer = 0f;
+
+        _camZoneSound.Stop();
     }
 
     private void StartUnderSecureTimer()
