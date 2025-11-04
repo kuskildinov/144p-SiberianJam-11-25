@@ -123,7 +123,7 @@ public class PlayerMovment : MonoBehaviour
 
         Vector3 move = new Vector3(horizontal, 0, vertical) * _currentSpeed;
         Vector3 newVelocity = transform.TransformDirection(move);
-        newVelocity.y = _rigidbody.velocity.y; // Сохраняем Y-скорость для гравитации
+        newVelocity.y = _rigidbody.velocity.y;
 
         _rigidbody.velocity = newVelocity;
     }
