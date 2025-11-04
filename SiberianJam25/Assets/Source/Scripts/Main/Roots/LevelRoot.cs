@@ -20,6 +20,9 @@ public class LevelRoot : CompositeRoot
     [Header("PostProcess")]
     [SerializeField] private GameObject _pinkVolume;
     [SerializeField] private GameObject _badVolume;
+    [Header("SkyBox Settings")]
+    [SerializeField] private Material _pinkkybox;
+    [SerializeField] private Material _badSkybox;
 
     private WorldState _currentWorldState;
 
@@ -61,6 +64,7 @@ public class LevelRoot : CompositeRoot
 
         _badVolume.gameObject.SetActive(false);
         _pinkVolume.gameObject.SetActive(true);
+        RenderSettings.skybox = _pinkkybox;
     }
 
     public void TryShowBadWorld()
@@ -69,6 +73,7 @@ public class LevelRoot : CompositeRoot
 
         _pinkVolume.gameObject.SetActive(false);
         _badVolume.gameObject.SetActive(true);
+        RenderSettings.skybox = _badSkybox;
     }
 
     #endregion
