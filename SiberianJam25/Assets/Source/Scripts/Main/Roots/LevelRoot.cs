@@ -19,14 +19,18 @@ public class LevelRoot : CompositeRoot
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private GameObject _startFadePanel;
     [SerializeField] private GameObject _switchOffGlassesInfoPanel;
+    [SerializeField] private GameObject _finalPanel;
     [Header("PostProcess")]
     [SerializeField] private GameObject _pinkVolume;
     [SerializeField] private GameObject _badVolume;
     [Header("SkyBox Settings")]
     [SerializeField] private Material _pinkkybox;
     [SerializeField] private Material _badSkybox;
+    [Header("Final")]
+    [SerializeField] private GameObject FinalCutScene; 
 
     private WorldState _currentWorldState;
+    private bool _gameOver = false;
 
     public WorldState CurrensState => _currentWorldState;
 
@@ -42,6 +46,14 @@ public class LevelRoot : CompositeRoot
         _playerRoom?.Initialize(this);
 
         InitializePuzzles();
+    }
+
+    private void Update()
+    {
+        if(_gameOver && Input.GetKeyDown(KeyCode.Escape))
+        {
+            BackToMainMenu();
+        }
     }
 
     #region >>> UI
@@ -164,12 +176,18 @@ public class LevelRoot : CompositeRoot
 
     public void OnWinGame()
     {
+        _gameOver = true;
+        _playerRoot.DeactivatePlayer();
+        _playerRoot.Player.gameObject.SetActive(false);
 
+        _finalPanel.gameObject.SetActive(true);
+        FinalCutScene.gameObject.SetActive(true);
     }
 
     public void OnGameOver()
     {
         _gameOverPanel.gameObject.SetActive(true);
+       
     }
 
     public void RestartLevel()

@@ -54,6 +54,8 @@ public class PlayerRoot : CompositeRoot
         _player.Deactivate();
 
         ToggleMouse(true);
+
+        _interactKeyinfo.gameObject.SetActive(false);
     }
 
     public void GameOver()
