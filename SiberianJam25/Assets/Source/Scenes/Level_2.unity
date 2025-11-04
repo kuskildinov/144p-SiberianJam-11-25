@@ -25187,6 +25187,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 119772284}
     m_Modifications:
+    - target: {fileID: 197799995915131812, guid: 5946eb156bbdb2e4c82e5da3fc35e813,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1235469886982669527, guid: 5946eb156bbdb2e4c82e5da3fc35e813,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -25237,10 +25242,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1298338030237874663, guid: 5946eb156bbdb2e4c82e5da3fc35e813,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3271269731401994869, guid: 5946eb156bbdb2e4c82e5da3fc35e813,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4052911102009132391, guid: 5946eb156bbdb2e4c82e5da3fc35e813,
         type: 3}
       propertyPath: m_Name
       value: PlayerRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 4099016307992320447, guid: 5946eb156bbdb2e4c82e5da3fc35e813,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846496915903685275, guid: 5946eb156bbdb2e4c82e5da3fc35e813,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867220177740830034, guid: 5946eb156bbdb2e4c82e5da3fc35e813,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319513926874699019, guid: 5946eb156bbdb2e4c82e5da3fc35e813,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -66922,7 +66957,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
