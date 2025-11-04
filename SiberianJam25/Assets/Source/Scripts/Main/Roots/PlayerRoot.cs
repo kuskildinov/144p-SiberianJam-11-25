@@ -6,7 +6,7 @@ public class PlayerRoot : CompositeRoot
     private const string ShowFadeTrigger = "Show";
 
     [SerializeField] private Player _player;
-    [SerializeField] private LevelRoot _levelRoot;
+    [SerializeField] public LevelRoot _levelRoot;
     [Header("Restart Settings")]
     [SerializeField] private Transform _restartPoint;
     [Header("UI")]

@@ -34,6 +34,11 @@ public class PoliceMan : NPC
                 {
                     if (hit.transform.TryGetComponent<Player>(out Player player))
                     {
+                        if (player.CheckCanBeDetected() == false)
+                        {
+                            Debug.Log("TEST");
+                            break;
+                        }                          
                         _currentDetectedPlayer = player;
                         detected = true;
                         _playerTransform = hitCollider.transform;

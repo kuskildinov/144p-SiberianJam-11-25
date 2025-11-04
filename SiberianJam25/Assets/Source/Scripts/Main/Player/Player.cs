@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     public bool IsActive => _isActive;
     public bool CanSwitchGlasses { get => _canSwitchGlass; set => _canSwitchGlass = value; }
     public Item CurrentItemOnHand => _currentItemOnHand;
+    
 
     public void initialize(PlayerRoot root)
     {
@@ -148,6 +149,14 @@ public class Player : MonoBehaviour
             _isDetectedBySecure = false;
             _onDetectionTimer = 0f;
         }
+    }
+
+    public bool CheckCanBeDetected()
+    {
+        if (_root._levelRoot.CurrensState == WorldState.PINK)
+            return false;
+        else
+            return true;
     }
 
     #endregion

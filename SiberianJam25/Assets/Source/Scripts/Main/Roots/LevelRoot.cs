@@ -13,6 +13,8 @@ public class LevelRoot : CompositeRoot
     [SerializeField] private List<MainLever> _levers;
     [SerializeField] private CodeGatePuzzle _codeGamePuzzle;
     [SerializeField] private FindObjectPuzzle _findObjectPuzzle;
+    [SerializeField] private List<GameObject> _nums;
+    [SerializeField] private List<GameObject> _symbols;
     [Header("UI")]
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private GameObject _startFadePanel;
@@ -25,6 +27,8 @@ public class LevelRoot : CompositeRoot
     [SerializeField] private Material _badSkybox;
 
     private WorldState _currentWorldState;
+
+    public WorldState CurrensState => _currentWorldState;
 
     public override void Compose()
     {
@@ -60,20 +64,26 @@ public class LevelRoot : CompositeRoot
     #region >>> WORLD SWITCHER
     public void TryShowPinkWorld()
     {
+        _currentWorldState = WorldState.PINK;
         _enviernemtSwitcher.ShowPinkWorld();
 
         _badVolume.gameObject.SetActive(false);
         _pinkVolume.gameObject.SetActive(true);
         RenderSettings.skybox = _pinkkybox;
+
+        ShowNums();
     }
 
     public void TryShowBadWorld()
     {
+        _currentWorldState = WorldState.BAD;
         _enviernemtSwitcher.ShowBadWorld();
 
         _pinkVolume.gameObject.SetActive(false);
         _badVolume.gameObject.SetActive(true);
         RenderSettings.skybox = _badSkybox;
+
+        ShowSymbols();
     }
 
     #endregion
@@ -120,6 +130,32 @@ public class LevelRoot : CompositeRoot
     private bool CheckAllPuzzlesReady()
     {
         return (GlobalVars.PuzzleOneReady && GlobalVars.PuzzleTwoReady && GlobalVars.PuzzleTreeReady);
+    }
+
+    public void ShowNums()
+    {
+        foreach (GameObject num in _nums)
+        {
+            num.gameObject.SetActive(true);
+        }
+
+        foreach (GameObject symbol in _symbols)
+        {
+            symbol.gameObject.SetActive(false);
+        }
+    }
+
+    public void ShowSymbols()
+    {
+        foreach (GameObject num in _nums)
+        {
+            num.gameObject.SetActive(false);
+        }
+
+        foreach (GameObject symbol in _symbols)
+        {
+            symbol.gameObject.SetActive(true);
+        }
     }
 
     #endregion
