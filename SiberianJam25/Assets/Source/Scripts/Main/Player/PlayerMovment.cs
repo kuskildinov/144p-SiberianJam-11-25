@@ -31,6 +31,9 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField] private float _shakeFrequency = 1.5f;
     [SerializeField] private float _shakeAmplitude = 0.1f;
 
+    [Header("Collision Handling")]
+    [SerializeField] private float _wallDetectionDistance = 0.5f;
+
     private Player _player;
     private Vector3 _moveDirection = Vector3.zero;
     private Vector3 _targetDirection = Vector3.zero;

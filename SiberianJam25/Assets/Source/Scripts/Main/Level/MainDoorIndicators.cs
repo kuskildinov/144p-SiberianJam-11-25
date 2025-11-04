@@ -8,6 +8,8 @@ public class MainDoorIndicators : MonoBehaviour
     [Header("Colors")]
     [SerializeField] private Material _greenColorMaterial;
     [SerializeField] private Material _redColorMaterial;
+    [Header("Gate")]
+    [SerializeField] private Animator _gate;
     
     public void Initialize()
     {
@@ -36,4 +38,9 @@ public class MainDoorIndicators : MonoBehaviour
         else
             _lighTree.material = _redColorMaterial;
     }       
+
+    public void OpenGate()
+    {
+        _gate.SetTrigger("Open");
+    }
 }
