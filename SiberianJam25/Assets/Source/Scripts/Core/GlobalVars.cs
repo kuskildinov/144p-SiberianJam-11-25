@@ -15,5 +15,5 @@ public static class GlobalVars
     public static bool PuzzleTwoReady = false;
     public static bool PuzzleTreeReady = false;
     [Header("Настройки головоломок")]
-    public static string CodePanelCode = "1234";
+    public static string CodePanelCode = "4221";
 }

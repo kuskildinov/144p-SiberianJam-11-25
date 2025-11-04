@@ -1,10 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class CodeGatePuzzle : MonoBehaviour
 {
     private const string OpenGateAnimation = "Open";
     [SerializeField] private CodePanel _codePanel;
-    [SerializeField] private Animator _animator;
+    [SerializeField] private Animator _doorAnimator;
 
     public void Initialize()
     {
@@ -13,6 +14,13 @@ public class CodeGatePuzzle : MonoBehaviour
 
     public void OpenGate()
     {
-        _animator.SetBool(OpenGateAnimation,true);
+        StartCoroutine(OpenDoorRoutine());
+    }
+
+    private IEnumerator OpenDoorRoutine()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+
+        _doorAnimator.SetTrigger("Open");
     }
 }
