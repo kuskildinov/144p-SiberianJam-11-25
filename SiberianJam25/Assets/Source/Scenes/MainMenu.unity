@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 42671555}
   - component: {fileID: 42671557}
   - component: {fileID: 42671556}
+  - component: {fileID: 42671558}
   m_Layer: 5
   m_Name: GameNameText
   m_TagString: Untagged
@@ -156,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 39, y: 360}
-  m_SizeDelta: {x: -1323.7623, y: -739.7495}
+  m_AnchoredPosition: {x: 59.905396, y: 341}
+  m_SizeDelta: {x: -741.8995, y: -706.259}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &42671556
 MonoBehaviour:
@@ -172,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -180,19 +181,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 66
-    m_FontStyle: 0
+    m_Font: {fileID: 12800000, guid: cab411eeeb2ebfe48890f31abfbb74b3, type: 3}
+    m_FontSize: 134
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 66
+    m_MaxSize: 154
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041D\u0410\u0417\u0412\u0410\u041D\u0418\u0415 \u0418\u0413\u0420\u042B"
+  m_Text: "\u041A\u041E\u0420\u041C\u0423\u0428\u041A\u0410"
 --- !u!222 &42671557
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -201,6 +202,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 42671554}
   m_CullTransparentMesh: 1
+--- !u!114 &42671558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42671554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &362811941
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +447,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.1
 --- !u!222 &469628077
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -498,12 +514,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 47
-    m_FontStyle: 0
+    m_Font: {fileID: 12800000, guid: 7cc8a94bb69b780489d89006c9ee7c0e, type: 3}
+    m_FontSize: 62
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 54
+    m_MaxSize: 63
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -631,7 +647,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.1
 --- !u!222 &499798472
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -776,12 +792,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 47
-    m_FontStyle: 0
+    m_Font: {fileID: 12800000, guid: 7cc8a94bb69b780489d89006c9ee7c0e, type: 3}
+    m_FontSize: 62
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 54
+    m_MaxSize: 63
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -987,14 +1003,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.43867922, b: 0.9569581, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: cee426206d14f794f8fad52db0c1ed68, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

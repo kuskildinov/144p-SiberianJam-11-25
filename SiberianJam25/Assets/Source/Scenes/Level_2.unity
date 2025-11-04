@@ -47889,7 +47889,7 @@ PrefabInstance:
     - target: {fileID: 8150274520399890665, guid: d000ae5cb8005934abe8e116f093dce5,
         type: 3}
       propertyPath: _canSwitchGlass
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8150274520399890665, guid: d000ae5cb8005934abe8e116f093dce5,
         type: 3}
@@ -53155,6 +53155,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8077803193721337611, guid: efd96b19db7eb0a44ad0149138b844ff,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2128056439}
+    - target: {fileID: 8077803193721337611, guid: efd96b19db7eb0a44ad0149138b844ff,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8453408062386503157, guid: efd96b19db7eb0a44ad0149138b844ff,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2128056439}
+    - target: {fileID: 8453408062386503157, guid: efd96b19db7eb0a44ad0149138b844ff,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartLevel
       objectReference: {fileID: 0}
     - target: {fileID: 8748362194062970065, guid: efd96b19db7eb0a44ad0149138b844ff,
         type: 3}
