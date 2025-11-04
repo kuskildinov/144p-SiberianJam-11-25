@@ -197,6 +197,8 @@ public class LevelRoot : CompositeRoot
         _startFadePanel.gameObject.SetActive(false);
     }
     #endregion
+
+   
 }
 
 public enum WorldState
