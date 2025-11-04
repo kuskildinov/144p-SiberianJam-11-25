@@ -31,6 +31,9 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField] private float _shakeFrequency = 1.5f;
     [SerializeField] private float _shakeAmplitude = 0.1f;
 
+    [Header("Collision Handling")]
+    [SerializeField] private float _wallDetectionDistance = 0.5f;
+
     private Player _player;
     private Vector3 _moveDirection = Vector3.zero;
     private Vector3 _targetDirection = Vector3.zero;
@@ -120,7 +123,7 @@ public class PlayerMovment : MonoBehaviour
 
         Vector3 move = new Vector3(horizontal, 0, vertical) * _currentSpeed;
         Vector3 newVelocity = transform.TransformDirection(move);
-        newVelocity.y = _rigidbody.velocity.y; // Сохраняем Y-скорость для гравитации
+        newVelocity.y = _rigidbody.velocity.y;
 
         _rigidbody.velocity = newVelocity;
     }

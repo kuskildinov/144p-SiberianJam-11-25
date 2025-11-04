@@ -105,7 +105,7 @@ public class LevelRoot : CompositeRoot
 
         if(CheckAllPuzzlesReady())
         {
-            //Открываем дверь
+            _mainDoorIndicator.OpenGate();
         }
     }
 
