@@ -46,7 +46,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1607528757671008240
 Transform:
@@ -75,13 +75,13 @@ GameObject:
   - component: {fileID: 4360744911001626552}
   - component: {fileID: 5091767159069829846}
   - component: {fileID: 3310736362501293062}
-  - component: {fileID: 2660795032751364097}
+  - component: {fileID: 5021772610684287044}
   m_Layer: 0
   m_Name: domik4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4360744911001626552
 Transform:
@@ -148,8 +148,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2660795032751364097
-MeshCollider:
+--- !u!65 &5021772610684287044
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -166,7 +166,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5273465568265532259, guid: f1c4238f020f3664fb1f7a10e6224d05, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 2.0365007, y: 4.566116, z: 2.0496125}
+  m_Center: {x: 0.003956522, y: 2.283058, z: -0.05898169}

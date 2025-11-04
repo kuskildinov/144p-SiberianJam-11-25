@@ -90,10 +90,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5764250615786572081, guid: dfc67bb1b79ef59439673a7107e8aaac,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dfc67bb1b79ef59439673a7107e8aaac,
         type: 3}
       propertyPath: m_Name
       value: domik5_UV
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dfc67bb1b79ef59439673a7107e8aaac,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2983941128758839531, guid: dfc67bb1b79ef59439673a7107e8aaac,
         type: 3}
@@ -104,7 +114,11 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: -2845779275431937956, guid: dfc67bb1b79ef59439673a7107e8aaac, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -5764250615786572081, guid: dfc67bb1b79ef59439673a7107e8aaac,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7644620650591798181}
   m_SourcePrefab: {fileID: 100100000, guid: dfc67bb1b79ef59439673a7107e8aaac, type: 3}
 --- !u!4 &6698964068901780092 stripped
 Transform:
@@ -112,3 +126,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6592488301540908439}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7745203673213791064 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5764250615786572081, guid: dfc67bb1b79ef59439673a7107e8aaac,
+    type: 3}
+  m_PrefabInstance: {fileID: 6592488301540908439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &7644620650591798181
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7745203673213791064}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.9870718, y: 3.36406, z: 2.013515}
+  m_Center: {x: -0.058832936, y: 1.68203, z: 0.06562834}
