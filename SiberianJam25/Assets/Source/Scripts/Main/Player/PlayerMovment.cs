@@ -10,7 +10,8 @@ public class PlayerMovment : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float _walkSpeed = 5.0f;
     [SerializeField] private float _runSpeed = 8.0f;
-    [SerializeField] private float _jumpSpeed = 7.0f;   
+    [SerializeField] private float _jumpSpeed = 7.0f;
+    [SerializeField] private float _gravity = 9.81f;
 
     [Header("Ground Detection")]
     [SerializeField] private float _groundCheckDistance = 0.1f;
@@ -25,15 +26,13 @@ public class PlayerMovment : MonoBehaviour
     [Header("Links")]    
     [SerializeField] private Camera _camera;
     [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private CharacterController _characterController;
 
     [Header("Head Shake")]
     [SerializeField] private bool _enableHeadShake = true;
     [SerializeField] private float _shakeFrequency = 1.5f;
     [SerializeField] private float _shakeAmplitude = 0.1f;
-
-    [Header("Collision Handling")]
-    [SerializeField] private float _wallDetectionDistance = 0.5f;
-
+   
     private Player _player;
     private Vector3 _moveDirection = Vector3.zero;
     private Vector3 _targetDirection = Vector3.zero;
@@ -47,7 +46,8 @@ public class PlayerMovment : MonoBehaviour
     private bool _isUnderControl = false;
 
     private float _defaultCameraY;
-    private float _shakeTimer = 0;   
+    private float _shakeTimer = 0;
+    private float _verticalVelocity = 0f;
 
     public bool IsMouseActive { get => _isMouseActive; set => _isMouseActive = value; }
     public bool IsUnderControl { get => _isUnderControl; set => _isUnderControl = value; }
@@ -66,8 +66,7 @@ public class PlayerMovment : MonoBehaviour
         if (_player.IsActive == false)
             return;
 
-        HandleMouseLook();
-        HandleJump();
+        HandleMouseLook();      
         HandleMovement();
         HandleHeadShake();
         HandleRunning();
@@ -109,23 +108,67 @@ public class PlayerMovment : MonoBehaviour
     }
 
     private void HandleMovement()
-    {      
+    {
         float horizontal = Input.GetAxis(HorizontalAxis);
         float vertical = Input.GetAxis(VerticalAxis);
-      
+
+        // Получаем направления движения относительно поворота объекта
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
-              
-        float curSpeedX = _currentSpeed * vertical;
-        float curSpeedY = _currentSpeed * horizontal;
 
-        _moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+        // Вычисляем горизонтальный вектор движения
+        Vector3 moveDirection = (forward * vertical) + (right * horizontal);
 
-        Vector3 move = new Vector3(horizontal, 0, vertical) * _currentSpeed;
-        Vector3 newVelocity = transform.TransformDirection(move);
-        newVelocity.y = _rigidbody.velocity.y;
+        // Нормализуем, если длина больше 1 (для диагонального движения)
+        if (moveDirection.magnitude > 1f)
+        {
+            moveDirection.Normalize();
+        }
 
-        _rigidbody.velocity = newVelocity;
+        // Умножаем на скорость
+        moveDirection *= _currentSpeed;
+
+        // Обработка гравитации и прыжка
+        HandleGravityAndJump();
+
+        // Комбинируем горизонтальное движение с вертикальной скоростью
+        Vector3 finalMove = new Vector3(moveDirection.x, _verticalVelocity, moveDirection.z);
+
+        // Двигаем персонажа
+        _characterController.Move(finalMove * Time.deltaTime);
+    }
+
+    private void HandleGravityAndJump()
+    {
+        // Проверяем, находится ли персонаж на земле
+        bool wasGrounded = _isGrounded;
+        _isGrounded = _characterController.isGrounded;
+
+        // Обработка приземления
+        if (!wasGrounded && _isGrounded)
+        {
+            _verticalVelocity = -2f; // Небольшая отрицательная скорость для лучшего прилипания к земле
+            _isJumping = false;
+        }
+
+        // Применяем гравитацию
+        if (!_isGrounded)
+        {
+            _verticalVelocity -= _gravity * Time.deltaTime;
+        }
+        else
+        {
+            // Небольшая отрицательная скорость когда на земле для лучшего прилипания
+            if (_verticalVelocity < 0)
+                _verticalVelocity = -2f;
+        }
+
+        // Обработка прыжка
+        if (Input.GetKeyDown(GlobalVars.JumpKey) && _isGrounded && !_isJumping)
+        {
+            _verticalVelocity = _jumpSpeed;
+            _isJumping = true;
+        }
     }
 
     private void HandleRunning()
@@ -140,17 +183,7 @@ public class PlayerMovment : MonoBehaviour
             _isRunning = false;
             _currentSpeed = _walkSpeed;
         }
-    }
-
-    private void HandleJump()
-    {       
-        if (Input.GetKeyDown(GlobalVars.JumpKey) && _isGrounded && !_isJumping)
-        {
-            _isJumping = true;
-            _jumpRequested = true;          
-            _rigidbody.AddForce(Vector3.up * _jumpSpeed, ForceMode.Impulse);
-        }       
-    }
+    }   
 
     private void CheckGroundHandle()
     {
