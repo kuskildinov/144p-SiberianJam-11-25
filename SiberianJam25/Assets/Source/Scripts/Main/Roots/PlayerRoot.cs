@@ -121,12 +121,12 @@ public class PlayerRoot : CompositeRoot
 
     private void ToggleMouse(bool value)
     {
-        if(value)
-            Cursor.lockState = CursorLockMode.None;      
-        else
-            Cursor.lockState = CursorLockMode.Locked;
+        //if(value)
+        //    Cursor.lockState = CursorLockMode.None;      
+        //else
+        //    Cursor.lockState = CursorLockMode.Locked;
 
-        Cursor.visible = value;
+        //Cursor.visible = value;
     }
 
     private void PauseGame()

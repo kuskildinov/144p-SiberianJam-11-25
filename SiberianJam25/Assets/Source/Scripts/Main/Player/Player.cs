@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerMovment _movment;
     [SerializeField] private PlayerAnimations _animations;
     [SerializeField] private PlayerInteractions _interactions;
+    [SerializeField] private GameObject _glassesButton;
     [Header("Camera Settings")]
     [SerializeField] private Camera _camera;
     [SerializeField] private float defaultFOV = 60f;
@@ -54,29 +55,17 @@ public class Player : MonoBehaviour
         if (_isActive == false)
             return;
 
-        HandleCameraView();
-
-        if (_canSwitchGlass)
-        {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                _canSwitchGlass = false;
-
-                if (_glassOn)
-                {
-                    TryGlassOff();
-                }
-                else
-                {
-                    TryGlassOn();
-                }
-            }
-        }
+        HandleCameraView();       
 
         if(_isDetectedBySecure)
         {
             StartUnderSecureTimer();
         }
+
+        if (_canSwitchGlass)
+            _glassesButton.gameObject.SetActive(true);
+        else
+            _glassesButton.gameObject.SetActive(false);
     }
 
     public void Activate()
@@ -167,6 +156,25 @@ public class Player : MonoBehaviour
     #endregion
 
     #region >>> GLASSES
+
+    public void OnGlassesButtonClicked()
+    {
+        if (_canSwitchGlass)
+        {
+            _canSwitchGlass = false;
+
+            if (_glassOn)
+            {
+                TryGlassOff();
+            }
+            else
+            {
+                TryGlassOn();
+            }
+        }
+    }
+
+
     private void TryGlassOn()
     {       
         _glassOn = true;

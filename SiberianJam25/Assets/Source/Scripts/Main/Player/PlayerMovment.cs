@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovment : MonoBehaviour
 {
@@ -32,7 +33,12 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField] private bool _enableHeadShake = true;
     [SerializeField] private float _shakeFrequency = 1.5f;
     [SerializeField] private float _shakeAmplitude = 0.1f;
-   
+
+    [Header("Joystick")]
+    [SerializeField] private Joystick _movmentJoysctick;
+    [SerializeField] private Joystick _lookJoysctick;
+    [SerializeField] private Button _jumpButton;  
+
     private Player _player;
     private Vector3 _moveDirection = Vector3.zero;
     private Vector3 _targetDirection = Vector3.zero;
@@ -61,6 +67,16 @@ public class PlayerMovment : MonoBehaviour
         _currentSpeed = _walkSpeed;
     }
 
+    private void OnEnable()
+    {
+        _jumpButton.onClick.AddListener(OnJumpButtonClicked);      
+    }
+
+    private void OnDisable()
+    {
+        _jumpButton.onClick.RemoveAllListeners();      
+    }
+
     private void Update()
     {
         if (_player.IsActive == false)
@@ -68,8 +84,7 @@ public class PlayerMovment : MonoBehaviour
 
         HandleMouseLook();      
         HandleMovement();
-        HandleHeadShake();
-        HandleRunning();
+        HandleHeadShake();       
         CheckGroundHandle();
         if (_isUnderControl)
             LockCameraToTarget();       
@@ -99,18 +114,18 @@ public class PlayerMovment : MonoBehaviour
         if (_isMouseActive == false)
             return;
 
-        float mouseX = Input.GetAxis(MouseX) * _mouseSensitivity;
+        float mouseX = _lookJoysctick.Horizontal * _mouseSensitivity;
         _player.transform.Rotate(0, mouseX, 0);
                
-        _rotationX -= Input.GetAxis(MouseY) * _mouseSensitivity;
+        _rotationX -= _lookJoysctick.Vertical * _mouseSensitivity;
         _rotationX = Mathf.Clamp(_rotationX, -_verticalLookLimit, _verticalLookLimit);
         _camera.transform.localRotation = Quaternion.Euler(_rotationX, 0, 0);
     }
 
     private void HandleMovement()
     {
-        float horizontal = Input.GetAxis(HorizontalAxis);
-        float vertical = Input.GetAxis(VerticalAxis);
+        float horizontal = _movmentJoysctick.Horizontal;
+        float vertical = _movmentJoysctick.Vertical;
 
         // Получаем направления движения относительно поворота объекта
         Vector3 forward = transform.TransformDirection(Vector3.forward);
@@ -162,28 +177,28 @@ public class PlayerMovment : MonoBehaviour
             if (_verticalVelocity < 0)
                 _verticalVelocity = -2f;
         }
+    }
 
-        // Обработка прыжка
-        if (Input.GetKeyDown(GlobalVars.JumpKey) && _isGrounded && !_isJumping)
+    private void OnJumpButtonClicked()
+    {
+        if (_isGrounded && !_isJumping)
         {
             _verticalVelocity = _jumpSpeed;
             _isJumping = true;
         }
     }
 
-    private void HandleRunning()
+    public void OnSprintButtonPointerDown()
     {
-        if (Input.GetKey(GlobalVars.RunKey))
-        {
-            _isRunning = true;
-            _currentSpeed = _runSpeed;
-        }
-        else
-        {
-            _isRunning = false;
-            _currentSpeed = _walkSpeed;
-        }
-    }   
+        _isRunning = true;
+        _currentSpeed = _runSpeed;
+    }
+
+    public void OnSprintButtonPointerUp()
+    {
+        _isRunning = false;
+        _currentSpeed = _walkSpeed;
+    }
 
     private void CheckGroundHandle()
     {
@@ -198,7 +213,7 @@ public class PlayerMovment : MonoBehaviour
         if (!_enableHeadShake || !_isGrounded|| _camera == null)
             return;
 
-        bool isMoving = (Input.GetAxis(HorizontalAxis) != 0 || Input.GetAxis(VerticalAxis) != 0);
+        bool isMoving = (_movmentJoysctick.Horizontal != 0 || _movmentJoysctick.Vertical != 0);
 
         if (isMoving)
         {

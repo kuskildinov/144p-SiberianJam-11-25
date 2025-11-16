@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteractions : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class PlayerInteractions : MonoBehaviour
     [SerializeField] private float _interactDistance = 1.0f;    
     [Header("Links")]
     [SerializeField] private Camera _camera;
+    [SerializeField] private Button _interactionButton;
 
     private Player _player;
     private InteractableObject _currentInteractableObject;
@@ -23,6 +25,16 @@ public class PlayerInteractions : MonoBehaviour
         HandleInteraction();
     }
 
+    private void OnEnable()
+    {
+        _interactionButton.onClick.AddListener(OnInteractionButtonClicked);
+    }
+
+    private void OnDisable()
+    {
+        _interactionButton.onClick.RemoveAllListeners();
+    }
+
     private void HandleInteraction()
     {
         RaycastHit hit;
@@ -34,14 +46,14 @@ public class PlayerInteractions : MonoBehaviour
             {
                 _currentInteractableObject = interactableObject;
                 if (_currentInteractableObject.CanInteract)
-                    _player.ShowInteractionInfo();
+                    _interactionButton.gameObject.SetActive(true);
                 else
-                    _player.HideInteractionInfo();
+                    _interactionButton.gameObject.SetActive(false);
             }          
             else
             {
                 _currentInteractableObject = null;
-                _player.HideInteractionInfo();
+                _interactionButton.gameObject.SetActive(false);
             }
         }
         else
@@ -49,12 +61,14 @@ public class PlayerInteractions : MonoBehaviour
             _player.HideInteractionInfo();
         }
 
-        if(_currentInteractableObject != null && _currentInteractableObject.CanInteract)
-        {           
-            if (Input.GetKeyDown(GlobalVars.InteractionKeyPrimary) || Input.GetKeyDown(GlobalVars.InteractionKeySecondary))
-            {               
-                _currentInteractableObject.TryInteract(_player);
-            }
+        
+    }
+
+    private void OnInteractionButtonClicked()
+    {
+        if (_currentInteractableObject != null && _currentInteractableObject.CanInteract)
+        {
+            _currentInteractableObject.TryInteract(_player);
         }
     }
 }
