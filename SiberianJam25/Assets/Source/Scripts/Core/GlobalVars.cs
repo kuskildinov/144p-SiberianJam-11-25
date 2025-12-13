@@ -16,4 +16,6 @@ public static class GlobalVars
     public static bool PuzzleTreeReady = false;
     [Header("Настройки головоломок")]
     public static string CodePanelCode = "4221";
+    [Header("Комната игрока")]
+    public static bool PlayerLeftRoom = false;
 }

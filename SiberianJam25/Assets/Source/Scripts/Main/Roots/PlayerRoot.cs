@@ -6,7 +6,7 @@ public class PlayerRoot : CompositeRoot
     private const string ShowFadeTrigger = "Show";
 
     [SerializeField] private Player _player;
-    [SerializeField] private LevelRoot _levelRoot;
+    [SerializeField] public LevelRoot _levelRoot;
     [Header("Restart Settings")]
     [SerializeField] private Transform _restartPoint;
     [Header("UI")]
@@ -14,14 +14,32 @@ public class PlayerRoot : CompositeRoot
     [SerializeField] private Animator _glassOffFadeAnimation;
     [SerializeField] private GameObject _cantTakeItemInfo;
     [SerializeField] private GameObject _interactKeyinfo;
+    [SerializeField] private GameObject _pausePanel;
 
     public Player Player => _player;
+
+    private bool _isPause;
 
     public override void Compose()
     {
         _player.initialize(this);
 
         ActivatePlayer();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (_isPause)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
     }
 
     public void ActivatePlayer()
@@ -36,6 +54,8 @@ public class PlayerRoot : CompositeRoot
         _player.Deactivate();
 
         ToggleMouse(true);
+
+        _interactKeyinfo.gameObject.SetActive(false);
     }
 
     public void GameOver()
@@ -108,5 +128,23 @@ public class PlayerRoot : CompositeRoot
 
         Cursor.visible = value;
     }
-   
+
+    private void PauseGame()
+    {
+        _isPause = true;
+        _pausePanel.gameObject.SetActive(true);
+        DeactivatePlayer();
+        ToggleMouse(true);
+        Time.timeScale = 0f;
+    }
+
+    private void ResumeGame()
+    {
+        _isPause = false;
+        _pausePanel.gameObject.SetActive(false);
+        ActivatePlayer();
+        ToggleMouse(false);
+        Time.timeScale = 1f;
+    }
+
 }

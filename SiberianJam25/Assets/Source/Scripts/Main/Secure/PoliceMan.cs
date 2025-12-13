@@ -5,6 +5,7 @@ public class PoliceMan : NPC
     [Header("Player Detection")]
     [SerializeField] private float _detectionRange = 8f;
     [SerializeField] private float _detectionAngle = 50f;
+    [SerializeField] private Transform _headPoint;
 
     private bool _playerDetected = false;
     private Transform _playerTransform;
@@ -34,6 +35,10 @@ public class PoliceMan : NPC
                 {
                     if (hit.transform.TryGetComponent<Player>(out Player player))
                     {
+                        if (player.CheckCanBeDetected() == false)
+                        {                           
+                            break;
+                        }                          
                         _currentDetectedPlayer = player;
                         detected = true;
                         _playerTransform = hitCollider.transform;
@@ -41,7 +46,7 @@ public class PoliceMan : NPC
                         if (!_playerDetected)
                         {
                             OnPlayerDetected();
-                            _currentDetectedPlayer.DetectedBySecure(transform);
+                            _currentDetectedPlayer.DetectedBySecure(_headPoint);
                         }
                         break;
                     }

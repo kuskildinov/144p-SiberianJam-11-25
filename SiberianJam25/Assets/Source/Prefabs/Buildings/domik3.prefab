@@ -64,7 +64,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5284729411168022957}
+  - {fileID: 5576924653989504073}
   m_Father: {fileID: 8095787349481874144}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1983983001052257605
@@ -138,7 +138,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.007433, y: 5.132093, z: 2.0109184}
   m_Center: {x: 0.08066361, y: 2.5660465, z: -0.5705293}
---- !u!1 &6618032828875274717
+--- !u!1 &8431475764524797150
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,37 +146,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5284729411168022957}
-  - component: {fileID: 283998724806712703}
+  - component: {fileID: 5576924653989504073}
+  - component: {fileID: 3296245232499819206}
   m_Layer: 0
-  m_Name: SignBoard
+  m_Name: Signboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5284729411168022957
+--- !u!4 &5576924653989504073
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6618032828875274717}
+  m_GameObject: {fileID: 8431475764524797150}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.23183277, z: 0, w: 0.97275573}
-  m_LocalPosition: {x: -0.867, y: 0.506, z: 1.275}
+  m_LocalRotation: {x: 0, y: 0.25763875, z: 0, w: 0.9662413}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4314163730686521707}
-  m_LocalEulerAnglesHint: {x: 0, y: 26.81, z: 0}
---- !u!65 &283998724806712703
+  m_LocalEulerAnglesHint: {x: 0, y: 29.86, z: 0}
+--- !u!65 &3296245232499819206
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6618032828875274717}
+  m_GameObject: {fileID: 8431475764524797150}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -189,8 +189,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5883419, y: 1, z: 0.62076974}
-  m_Center: {x: -0.058800977, y: 0, z: 0.08285319}
+  m_Size: {x: 0.582536, y: 1.0289736, z: 0.6406763}
+  m_Center: {x: -1.45733, y: 0.31448632, z: 0.7606751}
 --- !u!1 &8868101275330787418
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,6 +36,16 @@ public class PlayerRoom : MonoBehaviour
         StartCoroutine(StartCutSceneRoutine());
     }
 
+    private void OnEnable()
+    {
+        if(GlobalVars.PlayerLeftRoom)
+        {
+            _doorSource.playOnAwake = false;
+            _doorSource.Stop();
+            _policemanPhrasePanel.gameObject.SetActive(false);
+        }
+    }
+
     private void Update()
     {
         if(_needCheckGlassWearing && Input.GetKeyDown(KeyCode.Q))
@@ -51,7 +61,10 @@ public class PlayerRoom : MonoBehaviour
     public void OnPlayerLeft()
     {
         StopPolicemanKnockingSound();
+        _doorSource.playOnAwake = false;
         _policemanPhrasePanel.Hide();
+
+        GlobalVars.PlayerLeftRoom = true;
     }
 
     #region >>> DOOR
