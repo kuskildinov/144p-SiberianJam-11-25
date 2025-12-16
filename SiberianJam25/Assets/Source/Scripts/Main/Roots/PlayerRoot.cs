@@ -16,9 +16,9 @@ public class PlayerRoot : CompositeRoot
     [SerializeField] private GameObject _interactKeyinfo;
     [SerializeField] private GameObject _pausePanel;
 
-    public Player Player => _player;
-
     private bool _isPause;
+
+    public Player Player => _player;
 
     public override void Compose()
     {
@@ -132,7 +132,7 @@ public class PlayerRoot : CompositeRoot
     private void PauseGame()
     {
         _isPause = true;
-        _pausePanel.gameObject.SetActive(true);
+        _pausePanel?.gameObject.SetActive(true);
         DeactivatePlayer();
         ToggleMouse(true);
         Time.timeScale = 0f;
@@ -141,7 +141,7 @@ public class PlayerRoot : CompositeRoot
     private void ResumeGame()
     {
         _isPause = false;
-        _pausePanel.gameObject.SetActive(false);
+        _pausePanel?.gameObject.SetActive(false);
         ActivatePlayer();
         ToggleMouse(false);
         Time.timeScale = 1f;

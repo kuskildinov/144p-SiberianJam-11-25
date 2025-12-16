@@ -212113,16 +212113,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 482619086819985030, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: _characterController
-      value: 
-      objectReference: {fileID: 2088261108}
-    - target: {fileID: 3323620326260122917, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3784079492480537567, guid: d000ae5cb8005934abe8e116f093dce5,
         type: 3}
       propertyPath: m_Name
@@ -212178,50 +212168,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6513034653571350995, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: _interactDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150274520399890665, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: _camZoneSound
-      value: 
-      objectReference: {fileID: 2088261107}
-    - target: {fileID: 8150274520399890665, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: _canSwitchGlass
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150274520399890665, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: _takeItemContainer
-      value: 
-      objectReference: {fileID: 1423931906}
-    - target: {fileID: 8150274520399890665, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: _timeBeforeGameOver
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3784079492480537567, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2088261107}
-    - targetCorrespondingSourceObject: {fileID: 3784079492480537567, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2088261108}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d000ae5cb8005934abe8e116f093dce5, type: 3}
---- !u!1 &1387752665 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3784079492480537567, guid: d000ae5cb8005934abe8e116f093dce5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1387752664}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1388123057
 GameObject:
   m_ObjectHideFlags: 0
@@ -218848,12 +218799,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1420213318}
   m_Mesh: {fileID: -5521328925692312619, guid: 9bd6179365d85e149b46efb30e1233ee, type: 3}
---- !u!4 &1423931906 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5036447084584064812, guid: d000ae5cb8005934abe8e116f093dce5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1387752664}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1424780896
 GameObject:
   m_ObjectHideFlags: 0
@@ -290115,134 +290060,12 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1387752664}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1387752665}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25fad731ab058c6448f5ee2cd7c80879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &2088261107
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1387752665}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5d123e38b452dec47a67dc4a36b14268, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!143 &2088261108
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1387752665}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.71
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &2093519203
 GameObject:
   m_ObjectHideFlags: 0

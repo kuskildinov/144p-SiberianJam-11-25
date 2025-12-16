@@ -24,21 +24,23 @@ public class PoliceMan : NPC
         bool detected = false;
 
         foreach (var hitCollider in hitColliders)
-        {
+        {            
             Vector3 directionToPlayer = (hitCollider.transform.position - transform.position).normalized;
             float angle = Vector3.Angle(transform.forward, directionToPlayer);
 
             if (angle <= _detectionAngle / 2f)
-            {
+            {               
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, directionToPlayer, out hit, _detectionRange))
-                {
+                {                   
                     if (hit.transform.TryGetComponent<Player>(out Player player))
                     {
+                        Debug.Log("Player Detected!");
                         if (player.CheckCanBeDetected() == false)
                         {                           
                             break;
-                        }                          
+                        }
+                        Debug.Log("Попался");
                         _currentDetectedPlayer = player;
                         detected = true;
                         _playerTransform = hitCollider.transform;

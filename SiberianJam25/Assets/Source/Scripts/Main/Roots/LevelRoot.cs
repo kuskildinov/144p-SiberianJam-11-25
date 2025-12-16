@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class LevelRoot : CompositeRoot
     [SerializeField] private PlayerRoot _playerRoot;
     [SerializeField] private PlayerRoom _playerRoom;
     [Header("Puzzles")]
-    [SerializeField] private MainDoorIndicators _mainDoorIndicator;
+    [SerializeField] private MainTower _mainTower;
     [SerializeField] private List<MainLever> _levers;
     [SerializeField] private CodeGatePuzzle _codeGamePuzzle;
     [SerializeField] private FindObjectPuzzle _findObjectPuzzle;
@@ -34,13 +35,15 @@ public class LevelRoot : CompositeRoot
 
     public WorldState CurrensState => _currentWorldState;
 
+    public event Action<WorldState> OnWorldStateChanged;
+
     public override void Compose()
     {
         StartCoroutine(StartFadePanelRoutine());
 
         _currentWorldState = WorldState.PINK;
 
-        _mainDoorIndicator?.Initialize();
+        _mainTower.Initialize(this);
         _codeGamePuzzle?.Initialize();
         _findObjectPuzzle?.Initialize();
         _playerRoom?.Initialize(this);
@@ -66,9 +69,9 @@ public class LevelRoot : CompositeRoot
 
     private IEnumerator ShowSwitchOffGlassesInfoRoutine()
     {
-        _switchOffGlassesInfoPanel.gameObject.SetActive(true);
+        _switchOffGlassesInfoPanel?.gameObject.SetActive(true);
         yield return new WaitForSecondsRealtime(5f);
-        _switchOffGlassesInfoPanel.gameObject.SetActive(false);
+        _switchOffGlassesInfoPanel?.gameObject.SetActive(false);
     }
 
     #endregion
@@ -78,10 +81,9 @@ public class LevelRoot : CompositeRoot
     {
         _currentWorldState = WorldState.PINK;
         _enviernemtSwitcher.ShowPinkWorld();
-
-        _badVolume.gameObject.SetActive(false);
-        _pinkVolume.gameObject.SetActive(true);
-        RenderSettings.skybox = _pinkkybox;
+        TrySwitchPostProcessVolume();
+       
+        OnWorldStateChanged?.Invoke(_currentWorldState);
 
         ShowNums();
     }
@@ -91,11 +93,44 @@ public class LevelRoot : CompositeRoot
         _currentWorldState = WorldState.BAD;
         _enviernemtSwitcher.ShowBadWorld();
 
-        _pinkVolume.gameObject.SetActive(false);
-        _badVolume.gameObject.SetActive(true);
-        RenderSettings.skybox = _badSkybox;
+        TrySwitchPostProcessVolume();
+        TryChangeSkyBox();
+
+        OnWorldStateChanged?.Invoke(_currentWorldState);
 
         ShowSymbols();
+    }
+
+    private void TrySwitchPostProcessVolume()
+    {
+        if (_pinkVolume == null || _badVolume == null)
+            return;
+
+        if (_currentWorldState == WorldState.PINK)
+        {
+            _badVolume.gameObject.SetActive(false);
+            _pinkVolume.gameObject.SetActive(true);
+        }
+        else
+        {
+            _pinkVolume.gameObject.SetActive(false);
+            _badVolume.gameObject.SetActive(true);
+        }
+    }
+
+    private void TryChangeSkyBox()
+    {
+        if (_pinkkybox == null || _badSkybox == null)
+            return;
+
+        if (_currentWorldState == WorldState.PINK)
+        {
+            RenderSettings.skybox = _pinkkybox;
+        }
+        else
+        {
+            RenderSettings.skybox = _badSkybox;
+        }
     }
 
     #endregion
@@ -123,11 +158,11 @@ public class LevelRoot : CompositeRoot
                 }
         }
 
-        _mainDoorIndicator.OnPuzzleComplited();
+        _mainTower.OnPuzzleComplited(index);
 
         if(CheckAllPuzzlesReady())
         {
-            _mainDoorIndicator.OpenGate();
+            _mainTower.OpenGate();
         }
     }
 
@@ -180,13 +215,13 @@ public class LevelRoot : CompositeRoot
         _playerRoot.DeactivatePlayer();
         _playerRoot.Player.gameObject.SetActive(false);
 
-        _finalPanel.gameObject.SetActive(true);
-        FinalCutScene.gameObject.SetActive(true);
+        _finalPanel?.gameObject.SetActive(true);
+        FinalCutScene?.gameObject.SetActive(true);
     }
 
     public void OnGameOver()
     {
-        _gameOverPanel.gameObject.SetActive(true);
+        _gameOverPanel?.gameObject.SetActive(true);
        
     }
 
@@ -204,15 +239,15 @@ public class LevelRoot : CompositeRoot
     {
         _playerRoot.RestartLevel();
         yield return new WaitForSecondsRealtime(1f);
-        _gameOverPanel.gameObject.SetActive(false);
+        _gameOverPanel?.gameObject.SetActive(false);
         yield return StartFadePanelRoutine();
     }
 
     private IEnumerator StartFadePanelRoutine()
     {
-        _startFadePanel.gameObject.SetActive(true);
+        _startFadePanel?.gameObject.SetActive(true);
         yield return new WaitForSecondsRealtime(2f);
-        _startFadePanel.gameObject.SetActive(false);
+        _startFadePanel?.gameObject.SetActive(false);
     }
     #endregion
 
