@@ -14707,6 +14707,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4673752983949999598}
+  - component: {fileID: 9035330827079990409}
   m_Layer: 0
   m_Name: TowerRay
   m_TagString: Untagged
@@ -14722,7 +14723,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9200831697537964698}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.52292764, y: -0.45759398, z: -0.59713763, w: 0.40072584}
+  m_LocalRotation: {x: -0.5229279, y: -0.4575944, z: -0.5971358, w: 0.4007277}
   m_LocalPosition: {x: 0, y: 17.3, z: 0.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14730,3 +14731,20 @@ Transform:
   - {fileID: 6819160146959506140}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -105.073, y: -97.58099, z: 0}
+--- !u!114 &9035330827079990409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9200831697537964698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b17273e94a3c56c49a8996edd75d78fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _index: 0
+  _rayParticles:
+  - {fileID: 7738635881869459620}
+  - {fileID: 7486406218067042885}
+  - {fileID: 8351108565190722829}

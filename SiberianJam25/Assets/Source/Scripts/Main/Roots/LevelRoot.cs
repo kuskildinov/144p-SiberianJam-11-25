@@ -17,6 +17,7 @@ public class LevelRoot : CompositeRoot
     [SerializeField] private List<GameObject> _nums;
     [SerializeField] private List<GameObject> _symbols;
     [Header("UI")]
+    [SerializeField] private BlackFadePanel _blackFadePanel;
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private GameObject _startFadePanel;
     [SerializeField] private GameObject _switchOffGlassesInfoPanel;
@@ -28,7 +29,7 @@ public class LevelRoot : CompositeRoot
     [SerializeField] private Material _pinkkybox;
     [SerializeField] private Material _badSkybox;
     [Header("Final")]
-    [SerializeField] private GameObject FinalCutScene; 
+    [SerializeField] private GameObject _finalCutScene; 
 
     private WorldState _currentWorldState;
     private bool _gameOver = false;
@@ -39,7 +40,7 @@ public class LevelRoot : CompositeRoot
 
     public override void Compose()
     {
-        StartCoroutine(StartFadePanelRoutine());
+        _blackFadePanel.PlayFadeOffAnimation();
 
         _currentWorldState = WorldState.PINK;
 
@@ -73,6 +74,7 @@ public class LevelRoot : CompositeRoot
         yield return new WaitForSecondsRealtime(5f);
         _switchOffGlassesInfoPanel?.gameObject.SetActive(false);
     }
+       
 
     #endregion
 
@@ -216,7 +218,7 @@ public class LevelRoot : CompositeRoot
         _playerRoot.Player.gameObject.SetActive(false);
 
         _finalPanel?.gameObject.SetActive(true);
-        FinalCutScene?.gameObject.SetActive(true);
+        _finalCutScene?.gameObject.SetActive(true);
     }
 
     public void OnGameOver()
@@ -237,18 +239,13 @@ public class LevelRoot : CompositeRoot
 
     private IEnumerator RestartLevelRoutine()
     {
-        _playerRoot.RestartLevel();
-        yield return new WaitForSecondsRealtime(1f);
+        _blackFadePanel.PlayOnAndOffAnimation();
         _gameOverPanel?.gameObject.SetActive(false);
-        yield return StartFadePanelRoutine();
+        _playerRoot.RestartLevel();
+        
+        yield return null;
     }
 
-    private IEnumerator StartFadePanelRoutine()
-    {
-        _startFadePanel?.gameObject.SetActive(true);
-        yield return new WaitForSecondsRealtime(2f);
-        _startFadePanel?.gameObject.SetActive(false);
-    }
     #endregion
 
    

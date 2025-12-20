@@ -133,7 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canInteract: 1
   _index: 0
-  _animator: {fileID: 0}
+  _animator: {fileID: 3708166651082230403}
 --- !u!65 &2878018092081735284
 BoxCollider:
   m_ObjectHideFlags: 0

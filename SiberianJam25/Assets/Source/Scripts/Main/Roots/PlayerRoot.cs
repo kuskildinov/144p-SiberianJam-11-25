@@ -66,8 +66,10 @@ public class PlayerRoot : CompositeRoot
 
     public void RestartLevel()
     {
-        _player.transform.position = _restartPoint.position;
         ActivatePlayer();
+        Debug.Log($"Старая позиция игрока - { _player.transform.position}");
+        _player.transform.position = _restartPoint.position;
+        Debug.Log($"Новая позиция игрока - { _player.transform.position}");
     }
 
     #region GLASSES
