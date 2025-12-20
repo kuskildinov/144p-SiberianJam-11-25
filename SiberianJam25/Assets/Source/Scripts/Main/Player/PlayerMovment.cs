@@ -1,4 +1,5 @@
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerMovment : MonoBehaviour
 {
@@ -24,8 +25,8 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField] private float _verticalLookLimit = 80.0f;
 
     [Header("Links")]    
-    [SerializeField] private Camera _camera;
-    [SerializeField] private Rigidbody _rigidbody;
+    //[SerializeField] private Camera _camera;
+    [SerializeField] private CinemachineVirtualCamera _virtualCam;
     [SerializeField] private CharacterController _characterController;
 
     [Header("Head Shake")]
@@ -57,7 +58,7 @@ public class PlayerMovment : MonoBehaviour
     {
         _player = player;
 
-        _defaultCameraY = _camera.transform.localPosition.y;
+        _defaultCameraY = _virtualCam.transform.localPosition.y;
         _currentSpeed = _walkSpeed;
     }
 
@@ -90,8 +91,8 @@ public class PlayerMovment : MonoBehaviour
 
     private void LockCameraToTarget()
     {
-        Quaternion targetRotation = Quaternion.LookRotation(_targetDirection - _camera.transform.position);
-        _camera.transform.rotation = Quaternion.Slerp(_camera.transform.rotation, targetRotation, 2f * Time.deltaTime);    
+        Quaternion targetRotation = Quaternion.LookRotation(_targetDirection - _virtualCam.transform.position);
+        _virtualCam.transform.rotation = Quaternion.Slerp(_virtualCam.transform.rotation, targetRotation, 2f * Time.deltaTime);    
     }
 
     private void HandleMouseLook()
@@ -104,7 +105,7 @@ public class PlayerMovment : MonoBehaviour
                
         _rotationX -= Input.GetAxis(MouseY) * _mouseSensitivity;
         _rotationX = Mathf.Clamp(_rotationX, -_verticalLookLimit, _verticalLookLimit);
-        _camera.transform.localRotation = Quaternion.Euler(_rotationX, 0, 0);
+        _virtualCam.transform.localRotation = Quaternion.Euler(_rotationX, 0, 0);
     }
 
     private void HandleMovement()
@@ -195,7 +196,7 @@ public class PlayerMovment : MonoBehaviour
 
     private void HandleHeadShake()
     {
-        if (!_enableHeadShake || !_isGrounded|| _camera == null)
+        if (!_enableHeadShake || !_isGrounded|| _virtualCam == null)
             return;
 
         bool isMoving = (Input.GetAxis(HorizontalAxis) != 0 || Input.GetAxis(VerticalAxis) != 0);
@@ -207,16 +208,16 @@ public class PlayerMovment : MonoBehaviour
             float bobAmount = _isRunning ? _shakeAmplitude * 1.2f : _shakeAmplitude;
             float newY = _defaultCameraY + Mathf.Sin(_shakeTimer) * bobAmount;
 
-            Vector3 cameraPos = _camera.transform.localPosition;
+            Vector3 cameraPos = _virtualCam.transform.localPosition;
             cameraPos.y = newY;
-            _camera.transform.localPosition = cameraPos;
+            _virtualCam.transform.localPosition = cameraPos;
         }
         else
         {           
             _shakeTimer = 0;
-            Vector3 cameraPos = _camera.transform.localPosition;
+            Vector3 cameraPos = _virtualCam.transform.localPosition;
             cameraPos.y = Mathf.Lerp(cameraPos.y, _defaultCameraY, Time.deltaTime * 3f);
-            _camera.transform.localPosition = cameraPos;
+            _virtualCam.transform.localPosition = cameraPos;
         }
     }
 }
