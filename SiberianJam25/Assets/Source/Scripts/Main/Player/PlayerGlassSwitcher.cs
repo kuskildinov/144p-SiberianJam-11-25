@@ -34,11 +34,11 @@ public class PlayerGlassSwitcher : MonoBehaviour
     {
         if(_glassOn)
         {
-            _player.OnGlassesOn();
+            _player.OnGlassesOff();
         }
         else
-        {
-            _player.OnGlassesOff();
+        {            
+            _player.OnGlassesOn();
         }
     }
     

@@ -32,12 +32,9 @@ public class PlayerMovment : MonoBehaviour
     private float _rotationX = 0;
     private float _currentSpeed;
     private bool _isGrounded = true;
-    private bool _isJumping = false;   
-    private bool _isRunning = false;
+    private bool _isJumping = false;
     private bool _isMouseActive = true;
     private bool _isUnderControl = false;
-    private bool _canRun => _player.CurrentPlayerState == PlayerState.DEFAULT;
-    private bool _canJump => _player.CurrentPlayerState == PlayerState.DEFAULT;
 
     private float _horizontalInput;
     private float _verticalInput;
@@ -99,18 +96,13 @@ public class PlayerMovment : MonoBehaviour
     }
 
     private void HandleRunning()
-    {
-        if (!_canRun) 
-            return;
-
+    {        
         if (_runKeyInput)
-        {
-            _isRunning = true;
+        {           
             _currentSpeed = _runSpeed;
         }
         else
-        {
-            _isRunning = false;
+        {           
             _currentSpeed = _walkSpeed;
         }
     }
@@ -142,7 +134,7 @@ public class PlayerMovment : MonoBehaviour
         }
 
         // Обработка прыжка
-        if (_jumpKeyInput && _isGrounded && !_isJumping && _canJump)
+        if (_jumpKeyInput && _isGrounded && !_isJumping)
         {
             _verticalVelocity = _jumpSpeed;
             _isJumping = true;

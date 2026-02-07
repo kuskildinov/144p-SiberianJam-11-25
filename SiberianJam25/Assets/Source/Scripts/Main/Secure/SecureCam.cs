@@ -10,8 +10,7 @@ public class SecureCam : MonoBehaviour
     [SerializeField] private Transform _eye;
 
     [Header("Spotlight Settings")]
-    [SerializeField] private Light _eyeSpotlight;
-    [SerializeField] private float _spotlightRange = 50f;
+    [SerializeField] private Light _eyeSpotlight;  
     [SerializeField] private float _spotlightAngle = 50f;
 
     [Header("Player Detection")]      

@@ -1390,7 +1390,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60.000004
   orthographic: 0
@@ -1468,6 +1468,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player _1
       objectReference: {fileID: 0}
+    - target: {fileID: 5441323424105541612, guid: 3e07a91513ef443409cf30d84a644b89,
+        type: 3}
+      propertyPath: _minFOV
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6456510319118460431, guid: 3e07a91513ef443409cf30d84a644b89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1517,6 +1522,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7386952378299256217, guid: 3e07a91513ef443409cf30d84a644b89,
+        type: 3}
+      propertyPath: m_Lens.NearClipPlane
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8150274520399890665, guid: 3e07a91513ef443409cf30d84a644b89,
         type: 3}
