@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -7,12 +8,13 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerMovment _movment;
     [SerializeField] private PlayerAnimations _animations;
     [SerializeField] private PlayerInteractions _interactions;
+    [SerializeField] private PlayerGlassSwitcher _glassSwitcher;
     [Header("Camera Settings")]
     [SerializeField] private Camera _camera;
-    [SerializeField] private float defaultFOV = 60f;
-    [SerializeField] private float maxFOV = 90f;
-    [SerializeField] private float minFOV = 40f;
-    [SerializeField] private float fovChangeSpeed = 2f;
+    [SerializeField] private float _defaultFOV = 60f;
+    [SerializeField] private float _maxFOV = 90f;
+    [SerializeField] private float _minFOV = 40f;
+    [SerializeField] private float _fovChangeSpeed = 2f;
     [SerializeField] private AnimationCurve fovCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
     [Header("Secure Detection Settings")]
     [SerializeField] private float _timeBeforeGameOver = 2.5f;
@@ -22,8 +24,9 @@ public class Player : MonoBehaviour
 
     private PlayerRoot _root;
     private bool _isActive;
-    [SerializeField] private bool _canSwitchGlass;
-    private bool _glassOn = true;
+    private PlayerState _currentPlayerState = PlayerState.DEFAULT;
+
+    [SerializeField] private bool _canSwitchGlass;    
     private bool _isDetectedBySecure = false;
     private float _targetFOV;
     private float _currentFOV;
@@ -31,17 +34,24 @@ public class Player : MonoBehaviour
     private Coroutine _fovCoroutine;
     private Item _currentItemOnHand;
 
+    #region Properties
     public bool IsActive => _isActive;
+    public PlayerState CurrentPlayerState => _currentPlayerState;
     public bool CanSwitchGlasses { get => _canSwitchGlass; set => _canSwitchGlass = value; }
     public Item CurrentItemOnHand => _currentItemOnHand;
-    
+   
+    public Camera Camera => _camera;
+    #endregion
 
-    public void initialize(PlayerRoot root)
+    public event Action PlayerStateChanged;
+
+    public void Initialize(PlayerRoot root)
     {
         _root = root;
         _movment?.initialize(this);
         _animations?.initialize(this);
         _interactions?.initialize(this);
+        _glassSwitcher?.Initialize(this);
 
         _currentFOV = _camera.fieldOfView;
         _targetFOV = _currentFOV;
@@ -51,34 +61,15 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (_isActive == false)
+        if (!_isActive)
             return;
 
         HandleCameraView();
-
-        if (_canSwitchGlass)
-        {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                _canSwitchGlass = false;
-
-                if (_glassOn)
-                {
-                    TryGlassOff();
-                }
-                else
-                {
-                    TryGlassOn();
-                }
-            }
-        }
-
-        if(_isDetectedBySecure)
-        {
-            StartUnderSecureTimer();
-        }
+        SwitchGlassesHandler();
+        SecureDetectionHandler();
     }
 
+    #region >>> ACTIVATE DEACTIVATE
     public void Activate()
     {
         _isActive = true;
@@ -88,20 +79,22 @@ public class Player : MonoBehaviour
     {
         _isActive = false;
     }
+    #endregion
+    #region >>> STATE
 
-    #region >>> UI
-
-    public void ShowInteractionInfo()
+    private void SetNewState(PlayerState newState)
     {
-        _root.ShowInteractionInfo();
-    }
-
-    public void HideInteractionInfo()
-    {
-        _root.HideInteractionInfo();
+        _currentPlayerState = newState;
+        PlayerStateChanged?.Invoke();
     }
     #endregion
+    #region >>> INTERACTION INFO 
 
+    public void ShowInteractionInfo() => _root.ShowInteractionInfo();
+
+    public void HideInteractionInfo() => _root.HideInteractionInfo();
+    #endregion
+    #region >>> ITEMS INTERACTION
     public void TakeItem(Item item)
     {
         if(_currentItemOnHand != null)
@@ -120,14 +113,14 @@ public class Player : MonoBehaviour
         _currentItemOnHand = null;
 
     }
-
+    #endregion
     #region >>> SECURE DETECTION
 
     public void DetectedBySecure(Transform secureCam)
     {
         Debug.Log("Игрок замечен");
         _movment.OnLostControl(secureCam);
-        SetFOV(minFOV);
+        SetFOV(_minFOV);
         _isDetectedBySecure = true;
 
         _camZoneSound.Play();
@@ -137,7 +130,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Игрок потерян");
         _movment.OnReturnControl();
-        SetFOV(defaultFOV);
+        SetFOV(_defaultFOV);
         _isDetectedBySecure = false;
         _onDetectionTimer = 0f;
 
@@ -164,37 +157,45 @@ public class Player : MonoBehaviour
             return true;
     }
 
-    #endregion
+    private void SecureDetectionHandler() 
+    {
+        if (_isDetectedBySecure)
+        {
+            StartUnderSecureTimer();
+        }
+    }
 
+    #endregion
     #region >>> GLASSES
-    private void TryGlassOn()
-    {       
-        _glassOn = true;
-        _animations.PlayGlassOnAnimation();
-        _root.ShowGlassOnFade();       
-    }
 
-    private void TryGlassOff()
+    public void OnGlassSwitchEnded()
     {
-        _glassOn = false;
-        _animations.PlayGlassOffAnimation();
-        _root.ShowGlassOffFade();
-    }
-
-    public void OnGlassOnFull()
-    {
-        _root.OnGlassesOn();
         _canSwitchGlass = true;
+        SetNewState(PlayerState.DEFAULT);
+        _glassSwitcher.OnEndSwitchGlasses();
     }
 
-    public void OnGlassOffFull()
+    public void PlaySwitchGlassesAnimation()
     {
-        _root.OnGlassesOff();
-        _canSwitchGlass = true;
+        _animations.PlayGlassSwitchAnimation();
     }
 
+    private void SwitchGlassesHandler()
+    {        
+        if (Input.GetKeyDown(KeyCode.Q) && _canSwitchGlass)
+        {
+            TrySwitchGlasses();
+        }
+    }
+
+    private void TrySwitchGlasses()
+    {
+        _canSwitchGlass = false;      
+        SetNewState(PlayerState.GLASS_PUTTING);
+        _glassSwitcher.TrySwitchGlasses();
+    }   
+  
     #endregion
-
     #region >>> CAMERA SETTINGS
 
     private void HandleCameraView()
@@ -204,14 +205,14 @@ public class Player : MonoBehaviour
             _camera.fieldOfView = Mathf.Lerp(
                 _camera.fieldOfView,
                 _targetFOV,
-                fovChangeSpeed * Time.deltaTime
+                _fovChangeSpeed * Time.deltaTime
             );
         }
     }
 
     public void SetFOV(float newFOV, float duration = -1f)
     {
-        _targetFOV = Mathf.Clamp(newFOV, minFOV, maxFOV);
+        _targetFOV = Mathf.Clamp(newFOV, _minFOV, _maxFOV);
 
         if (duration > 0 && gameObject.activeInHierarchy)
         {
@@ -252,4 +253,10 @@ public class Player : MonoBehaviour
             playerRoom.OnPlayerLeft();
         }
     }
+}
+
+public enum PlayerState
+{
+    DEFAULT,
+    GLASS_PUTTING
 }

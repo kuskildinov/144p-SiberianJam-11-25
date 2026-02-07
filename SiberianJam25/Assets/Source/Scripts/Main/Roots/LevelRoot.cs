@@ -44,7 +44,7 @@ public class LevelRoot : CompositeRoot
 
         _currentWorldState = WorldState.PINK;
 
-        _mainTower.Initialize(this);
+        _mainTower?.Initialize(this);
         _codeGamePuzzle?.Initialize();
         _findObjectPuzzle?.Initialize();
         _playerRoom?.Initialize(this);

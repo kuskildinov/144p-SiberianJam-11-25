@@ -1,15 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimations : MonoBehaviour
 {
     private const string HorizontalAxis = "Horizontal";
     private const string VerticalAxis = "Vertical";
-    private const string WalkAnimation = "Walk";
-    private const string GlassOnAnimiation = "GlassOn";
-    private const string GlassOffAnimiation = "GlassOff";
-
+    private const string WalkAnimationParam = "Walk";    
+    private const string GlassSwitchAnimiationParam = "SwitchGlasses";
+    
     [SerializeField] private Animator _animator;
 
     private Player _player;
@@ -35,35 +32,11 @@ public class PlayerAnimations : MonoBehaviour
             PlayIdleAnimation();
     }
 
-     public void PlayWalkAnimation()
-    {
-        _animator.SetBool(WalkAnimation, true);
-    }
+     public void PlayWalkAnimation() => _animator.SetBool(WalkAnimationParam, true);
 
-    public void PlayIdleAnimation()
-    {
-        _animator.SetBool(WalkAnimation, false);
-    }
+    public void PlayIdleAnimation() => _animator.SetBool(WalkAnimationParam, false);
 
-    public void PlayGlassOnAnimation()
-    {
-        _animator.SetTrigger(GlassOnAnimiation);
-    }
+    public void PlayGlassSwitchAnimation() => _animator.SetTrigger(GlassSwitchAnimiationParam);
 
-    public void PlayGlassOffAnimation()
-    {
-        _animator.SetTrigger(GlassOffAnimiation);
-    }
-
-    public void OnGlassFullOn()
-    {
-        _player.OnGlassOnFull();
-    }
-
-    public void OnGlassFullOff()
-    {
-        _player.OnGlassOffFull();
-    }
-
-
+    public  void OnEndSwitchGlass() => _player.OnGlassSwitchEnded();
 }

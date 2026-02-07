@@ -3,15 +3,13 @@ using UnityEngine;
 
 public class PlayerRoot : CompositeRoot
 {
-    private const string ShowFadeTrigger = "Show";
+    
 
     [SerializeField] private Player _player;
     [SerializeField] public LevelRoot _levelRoot;
     [Header("Restart Settings")]
     [SerializeField] private Transform _restartPoint;
-    [Header("UI")]
-    [SerializeField] private Animator _glassOnFadeAnimation;
-    [SerializeField] private Animator _glassOffFadeAnimation;
+    [Header("UI")]   
     [SerializeField] private GameObject _cantTakeItemInfo;
     [SerializeField] private GameObject _interactKeyinfo;
     [SerializeField] private GameObject _pausePanel;
@@ -22,7 +20,7 @@ public class PlayerRoot : CompositeRoot
 
     public override void Compose()
     {
-        _player.initialize(this);
+        _player.Initialize(this);
 
         ActivatePlayer();
     }
@@ -83,15 +81,7 @@ public class PlayerRoot : CompositeRoot
         _levelRoot.TryShowBadWorld();
     }
 
-    public void ShowGlassOnFade()
-    {
-        _glassOnFadeAnimation.SetTrigger(ShowFadeTrigger);
-    }
-
-    public void ShowGlassOffFade()
-    {
-        _glassOffFadeAnimation.SetTrigger(ShowFadeTrigger);
-    }
+   
 
     #endregion
 
