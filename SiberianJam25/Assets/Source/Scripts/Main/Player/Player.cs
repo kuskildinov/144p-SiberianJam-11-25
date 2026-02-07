@@ -180,6 +180,10 @@ public class Player : MonoBehaviour
         _animations.PlayGlassSwitchAnimation();
     }
 
+    public void OnGlassesOn() => _root.OnGlassesOn();
+
+    public void OnGlassesOff() => _root.OnGlassesOff();
+
     private void SwitchGlassesHandler()
     {        
         if (Input.GetKeyDown(KeyCode.Q) && _canSwitchGlass)

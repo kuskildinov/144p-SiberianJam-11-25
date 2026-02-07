@@ -2,12 +2,10 @@ using System.Collections;
 using UnityEngine;
 
 public class PlayerGlassSwitcher : MonoBehaviour
-{  
-    private const string CameraDownAnimationParam = "Down";
+{     
     private const string BlinkAnimationTriggerParam = "Blink";
 
     [SerializeField] private GameObject _glassFade;
-    [SerializeField] private Animator _camAnimator;
     [SerializeField] private Animator _eyeBlinkAnimator;
     [SerializeField] private GameObject _glasses;
 
@@ -29,19 +27,26 @@ public class PlayerGlassSwitcher : MonoBehaviour
 
     public void OnEndSwitchGlasses()
     {
-        _camAnimator.enabled = false;
-        _camAnimator.SetBool(CameraDownAnimationParam, false);      
+       
     }
 
+    public void OnEyesClosed()
+    {
+        if(_glassOn)
+        {
+            _player.OnGlassesOn();
+        }
+        else
+        {
+            _player.OnGlassesOff();
+        }
+    }
     
     private IEnumerator SwitchGlassesRoutine()
     {        
-        // активируем аниматор камеры
-        _camAnimator.enabled = true;                   
+        // активируем аниматор камеры                
         yield return null;
-
-        // ¬ключаем анимацию камеры с ожиданием в зависимости от длительности анимации
-        _camAnimator.SetBool(CameraDownAnimationParam,true);
+               
         if (_glassOn)
         {           
             // ћы снимаем очки, поэтому сначала в руке их нет
@@ -55,10 +60,7 @@ public class PlayerGlassSwitcher : MonoBehaviour
             Debug.Log("Ќадеваем");
         }
        
-        yield return null;
-        AnimatorStateInfo stateInfo = _camAnimator.GetCurrentAnimatorStateInfo(0);
-        float animationLength = stateInfo.length;
-        yield return new WaitForSecondsRealtime(animationLength / 2);
+        yield return null;       
 
         _player.PlaySwitchGlassesAnimation();
         // ƒожидаемс€ середины надевани€ очков
@@ -75,8 +77,8 @@ public class PlayerGlassSwitcher : MonoBehaviour
             _glasses.gameObject.SetActive(false);
         }
 
-        _eyeBlinkAnimator.SetTrigger(BlinkAnimationTriggerParam);
         _glassOn = !_glassOn;
+        _eyeBlinkAnimator.SetTrigger(BlinkAnimationTriggerParam);
         yield return null;
     }
 }

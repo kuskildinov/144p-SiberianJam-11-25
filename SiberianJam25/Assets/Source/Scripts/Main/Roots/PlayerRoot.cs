@@ -71,17 +71,9 @@ public class PlayerRoot : CompositeRoot
     }
 
     #region GLASSES
-    public void OnGlassesOn()
-    {
-        _levelRoot.TryShowPinkWorld();
-    }
+    public void OnGlassesOn() => _levelRoot.TryShowPinkWorld();
 
-    public void OnGlassesOff()
-    {
-        _levelRoot.TryShowBadWorld();
-    }
-
-   
+    public void OnGlassesOff() => _levelRoot.TryShowBadWorld();
 
     #endregion
 
