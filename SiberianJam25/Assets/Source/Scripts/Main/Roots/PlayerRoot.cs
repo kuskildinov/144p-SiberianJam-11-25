@@ -22,7 +22,7 @@ public class PlayerRoot : CompositeRoot
     {
         _player.Initialize(this);
 
-        ActivatePlayer();
+        //ActivatePlayer();
     }
 
     private void Update()

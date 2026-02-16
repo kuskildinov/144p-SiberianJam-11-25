@@ -25,6 +25,11 @@ public class PlayerInteractions : MonoBehaviour
 
     private void HandleInteraction()
     {
+        if(_camera == null)
+        {           
+            return;
+        }
+        
         RaycastHit hit;
       
         if (Physics.Raycast(_camera.transform.position, _camera.transform.forward,
