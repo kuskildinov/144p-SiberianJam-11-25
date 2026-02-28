@@ -38,7 +38,7 @@ public class LevelRoot : CompositeRoot
 
     public WorldState CurrensState => _currentWorldState;
 
-    public event Action<WorldState> OnWorldStateChanged;
+    public event Action<WorldState> WorldStateChanged;
 
     public override void Compose()
     {
@@ -80,7 +80,6 @@ public class LevelRoot : CompositeRoot
        
 
     #endregion
-
     #region >>> WORLD SWITCHER
     public void TryShowPinkWorld()
     {
@@ -88,7 +87,7 @@ public class LevelRoot : CompositeRoot
         _enviernemtSwitcher.ShowPinkWorld();
         TrySwitchPostProcessVolume();
        
-        OnWorldStateChanged?.Invoke(_currentWorldState);
+        WorldStateChanged?.Invoke(_currentWorldState);
 
         ShowNums();
     }
@@ -101,7 +100,7 @@ public class LevelRoot : CompositeRoot
         TrySwitchPostProcessVolume();
         TryChangeSkyBox();
 
-        OnWorldStateChanged?.Invoke(_currentWorldState);
+        WorldStateChanged?.Invoke(_currentWorldState);
 
         ShowSymbols();
     }
@@ -139,7 +138,6 @@ public class LevelRoot : CompositeRoot
     }
 
     #endregion
-
     #region >>> PUZZLES
 
     public void OnPuzzleComplited(int index)
@@ -211,7 +209,6 @@ public class LevelRoot : CompositeRoot
     }
 
     #endregion
-
     #region >>> WIN LOSE
 
     public void OnWinGame()
@@ -226,8 +223,7 @@ public class LevelRoot : CompositeRoot
 
     public void OnGameOver()
     {
-        _gameOverPanel?.gameObject.SetActive(true);
-       
+        _gameOverPanel?.gameObject.SetActive(true);       
     }
 
     public void RestartLevel()
@@ -244,7 +240,7 @@ public class LevelRoot : CompositeRoot
     {
         _blackFadePanel.PlayOnAndOffAnimation();
         _gameOverPanel?.gameObject.SetActive(false);
-        _playerRoot.RestartLevel();
+        _playerRoot.BackPlayerToStart();
         
         yield return null;
     }

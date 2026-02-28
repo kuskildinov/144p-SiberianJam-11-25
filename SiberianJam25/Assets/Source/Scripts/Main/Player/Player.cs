@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -39,6 +38,7 @@ public class Player : MonoBehaviour
     public Item CurrentItemOnHand => _currentItemOnHand;
    
     public Camera Camera => _camera;
+    public CharacterController CharacterController => _movment.CharacterController;
     #endregion
   
     public void Initialize(PlayerRoot root)
@@ -46,11 +46,11 @@ public class Player : MonoBehaviour
         _root = root;
         _camera = Camera.main;
 
-        _movment?.initialize(this);
+        _movment?.Initialize(this);
         _animations?.initialize(this);
         _interactions?.initialize(this);
         _glassSwitcher?.Initialize(this);
-        _playerCamera?.Initialize(this);
+        _playerCamera?.Initialize();
         _diaryBook?.Initialize();
         _isActive = true;
     }
@@ -60,9 +60,8 @@ public class Player : MonoBehaviour
         ShowDiaryHandler();
 
         if (!_isActive || _root.IsPause)
-            return;
-                
-        HandleCameraView();
+            return;                
+      
         SwitchGlassesHandler();
         SecureDetectionHandler();
     }
@@ -231,12 +230,7 @@ public class Player : MonoBehaviour
         _diaryBook.ResetToFirstPage();
     }
     #endregion
-    #region >>> CAMERA SETTINGS
-
-    private void HandleCameraView() => _playerCamera.HandleCameraView();
    
-    #endregion
-
     private void OnTriggerExit(Collider other)
     {
         if(other.TryGetComponent<PlayerRoom> (out PlayerRoom playerRoom))

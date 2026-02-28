@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1541528024696620928}
+  - component: {fileID: 3846733865155480761}
   m_Layer: 0
   m_Name: domik1
   m_TagString: Untagged
@@ -32,6 +33,21 @@ Transform:
   - {fileID: 2270887264959599588}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3846733865155480761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6641900717856307964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd84ef583afe36d468bb87d16d5a24ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 1133181754713910373}
+  _pinkMaterial: {fileID: 2100000, guid: e107ae3148cf09249bcee19a15046e38, type: 2}
+  _badMaterial: {fileID: 2100000, guid: 02c7074772740de4c9c0f8c8d79fc5c6, type: 2}
 --- !u!1001 &1732045905137071119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140,6 +156,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3944375427019091763}
   m_SourcePrefab: {fileID: 100100000, guid: ceb446239e03188488f43e6ba555dbc9, type: 3}
+--- !u!23 &1133181754713910373 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7516322648919353238, guid: ceb446239e03188488f43e6ba555dbc9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1732045905137071119}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2270887264959599588 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ceb446239e03188488f43e6ba555dbc9,

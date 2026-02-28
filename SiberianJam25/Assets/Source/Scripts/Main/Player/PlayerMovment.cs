@@ -43,9 +43,11 @@ public class PlayerMovment : MonoBehaviour
     private float _verticalVelocity = 0f;           
     private bool _runKeyInput;
     private bool _jumpKeyInput;
-   
 
-    public void initialize(Player player)
+    public CharacterController CharacterController => _characterController;
+
+
+    public void Initialize(Player player)
     {
         _player = player;                
         _currentSpeed = _walkSpeed;

@@ -35,6 +35,9 @@ public class PoliceMan : NPC
                 {                   
                     if (hit.transform.TryGetComponent<Player>(out Player player))
                     {
+                        if (!player.IsActive)
+                            return;
+
                         Debug.Log("Player Detected!");
                         if (player.CheckCanBeDetected() == false)
                         {                           

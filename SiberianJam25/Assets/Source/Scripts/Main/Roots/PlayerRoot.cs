@@ -1,10 +1,9 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class PlayerRoot : CompositeRoot
 {
-    
-
     [SerializeField] private Player _player;
     [SerializeField] public LevelRoot _levelRoot;
     [Header("Restart Settings")]
@@ -63,12 +62,13 @@ public class PlayerRoot : CompositeRoot
         _levelRoot.OnGameOver();
     }
 
-    public void RestartLevel()
+    public void BackPlayerToStart()
     {
         ActivatePlayer();
-        Debug.Log($"Старая позиция игрока - { _player.transform.position}");
-        _player.transform.position = _restartPoint.position;
-        Debug.Log($"Новая позиция игрока - { _player.transform.position}");
+        
+        _player.CharacterController.enabled = false;
+        _player.gameObject.transform.localPosition = _restartPoint.position;
+        _player.CharacterController.enabled = true;      
     }
 
     #region GLASSES
@@ -100,6 +100,15 @@ public class PlayerRoot : CompositeRoot
         _cantTakeItemInfo.gameObject.SetActive(true);
         yield return new WaitForSecondsRealtime(2f);
         _cantTakeItemInfo.gameObject.SetActive(false);
+    }
+
+    #endregion
+
+    #region >>> DIALOGS
+
+    public void SetDialog(DialogComponent dialogComponent)
+    {
+        throw new NotImplementedException();
     }
 
     #endregion

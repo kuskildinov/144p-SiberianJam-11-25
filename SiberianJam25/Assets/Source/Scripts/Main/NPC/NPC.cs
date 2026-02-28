@@ -42,7 +42,7 @@ public class NPC : InteractableObject
         }
     }
 
-   public virtual void Update()
+    public virtual void Update()
     {
         switch (_currentState)
         {
@@ -60,7 +60,28 @@ public class NPC : InteractableObject
 
         UpdateAnimator();
     }
-       
+
+    #region >>> INTERACTION
+
+    public override void TryInteract(Player player = null)
+    {
+        base.TryInteract(player);
+
+        if(TryGetComponent<DialogComponent>(out DialogComponent dialogComponent))
+        {
+            PlayerRoot playerRoot = FindObjectOfType<PlayerRoot>();
+            if(playerRoot ==  null)
+            {
+                Debug.LogError("Cant Find PLayer Root For Dialog");
+                return;
+            }
+
+            playerRoot.SetDialog(dialogComponent);
+        }
+    }
+
+    #endregion
+    #region >>> MOVMENT
     public void StartPatrol()
     {
         if (!HasWaypoints) return;
@@ -213,4 +234,5 @@ public class NPC : InteractableObject
     {
         _loopPatrol = loop;
     }
+    #endregion
 }

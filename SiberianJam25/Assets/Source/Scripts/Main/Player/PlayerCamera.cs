@@ -10,32 +10,15 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private float _minFOV = 40f;
     [SerializeField] private float _fovChangeSpeed = 2f;
     [SerializeField] private AnimationCurve fovCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-
-    private Player _player;
-    private float _targetFOV;   
+       
+    private float _targetFOV;
     private Coroutine _fovCoroutine;
 
-    public void Initialize(Player player)
-    {
-        _player = player;
+    public void Initialize()
+    {       
         _playerVCam.m_Lens.FieldOfView = _defaultFOV;
     }
-
-    public void HandleCameraView()
-    {
-        if (!_player.IsDetected)
-            return;
-
-        if (Mathf.Abs(_playerVCam.m_Lens.FieldOfView - _targetFOV) > 0.1f)
-        {
-            _playerVCam.m_Lens.FieldOfView = Mathf.Lerp(
-                _playerVCam.m_Lens.FieldOfView,
-                _targetFOV,
-                _fovChangeSpeed * Time.deltaTime
-            );
-        }
-    }
-
+   
     public void SetMinFOV()
     {
         SetFOV(_minFOV);
@@ -46,7 +29,7 @@ public class PlayerCamera : MonoBehaviour
         SetFOV(_defaultFOV);
     }
 
-    private void SetFOV(float newFOV, float duration = -1f)
+    private void SetFOV(float newFOV, float duration = 1f)
     {
         _targetFOV = Mathf.Clamp(newFOV, _minFOV, _maxFOV);
 
@@ -68,12 +51,13 @@ public class PlayerCamera : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / duration;
             float curveValue = fovCurve.Evaluate(t);
-            _playerVCam.m_Lens.FieldOfView = Mathf.Lerp(startFOV, targetFOVValue, curveValue);          
+            _playerVCam.m_Lens.FieldOfView = Mathf.Lerp(startFOV, targetFOVValue, curveValue);
 
             yield return null;
         }
 
-        _playerVCam.m_Lens.FieldOfView = targetFOVValue;       
+        _playerVCam.m_Lens.FieldOfView = targetFOVValue;
         _targetFOV = targetFOVValue;
         _fovCoroutine = null;
-    }}
+    }
+}

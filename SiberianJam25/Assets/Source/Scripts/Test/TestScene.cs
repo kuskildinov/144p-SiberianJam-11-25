@@ -10,12 +10,12 @@ public class TestScene : MonoBehaviour
 
     private void OnEnable()
     {
-        _levelRoot.OnWorldStateChanged += OnWorldStateChanged;
+        _levelRoot.WorldStateChanged += OnWorldStateChanged;
     }
 
     private void OnDisable()
     {
-        _levelRoot.OnWorldStateChanged -= OnWorldStateChanged;
+        _levelRoot.WorldStateChanged -= OnWorldStateChanged;
     }
 
     private void OnWorldStateChanged(WorldState newState)
