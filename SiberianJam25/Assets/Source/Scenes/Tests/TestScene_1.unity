@@ -2517,6 +2517,11 @@ PrefabInstance:
       objectReference: {fileID: 2143929543}
     - target: {fileID: 6257868032233054225, guid: 5279dde09d31f444aa9b959141d78c70,
         type: 3}
+      propertyPath: _shopMonster
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6257868032233054225, guid: 5279dde09d31f444aa9b959141d78c70,
+        type: 3}
       propertyPath: _gameOverPanel
       value: 
       objectReference: {fileID: 254832943}

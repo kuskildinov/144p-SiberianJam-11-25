@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SecureCam : MonoBehaviour
@@ -15,7 +16,12 @@ public class SecureCam : MonoBehaviour
 
     [Header("Player Detection")]      
     [SerializeField] private float _detectionRange = 8f;
-    
+
+    [Header("Visualization Settings")]
+    [SerializeField] private bool _showDetectionVisuals = true;
+    [SerializeField] private Material _spotlightConeMaterial;
+    [SerializeField] private float _visualsUpdateInterval = 0.1f;
+
     private int _currentIndex = 0;
     private bool _movingForward = true;
     private float _holdTimer = 0f;
@@ -24,6 +30,21 @@ public class SecureCam : MonoBehaviour
     private bool _playerInSight = false;
     private Transform _playerTransform;
     private Player _currentDetectedPlayer;
+
+    private GameObject _visualizationContainer;
+    private GameObject _rangeSphere;
+    private GameObject _spotlightCone;
+    private LineRenderer _targetLineRenderer;
+    private List<LineRenderer> _pathLines = new List<LineRenderer>();
+    private float _lastVisualsUpdate;
+
+    private void Start()
+    {
+        if (_showDetectionVisuals)
+        {
+            CreateDetectionVisuals();
+        }
+    }
 
     private void Update()
     {
@@ -42,6 +63,12 @@ public class SecureCam : MonoBehaviour
         if (_eyeSpotlight == null) return;
 
         CheckPlayerDetection();
+
+        if (_showDetectionVisuals && Time.time > _lastVisualsUpdate + _visualsUpdateInterval)
+        {
+            UpdateDetectionVisuals();
+            _lastVisualsUpdate = Time.time;
+        }
     }
 
     #region Movment
@@ -160,6 +187,186 @@ public class SecureCam : MonoBehaviour
     {
         _eye.LookAt(player);
     }
+
+    #endregion
+
+    #region >>> GEOMETRY
+
+    private void CreateDetectionVisuals()
+    {
+        // Создаем контейнер для всех визуальных элементов
+        _visualizationContainer = new GameObject("DetectionVisuals");
+        _visualizationContainer.transform.SetParent(transform);
+        _visualizationContainer.transform.localPosition = Vector3.zero;
+      
+        // Создаем конус спотлайта
+        CreateSpotlightCone();
+    }
+
+    private void CreateSpotlightCone()
+    {
+        _spotlightCone = new GameObject("SpotlightCone");
+        _spotlightCone.transform.SetParent(_visualizationContainer.transform);
+        _spotlightCone.transform.position = _eye.position;
+        _spotlightCone.transform.rotation = _eye.rotation;
+
+        // Создаем меш конуса
+        Mesh coneMesh = CreateConeMesh(20, _detectionRange, _spotlightAngle);
+
+        var meshFilter = _spotlightCone.AddComponent<MeshFilter>();
+        meshFilter.mesh = coneMesh;
+
+        var meshRenderer = _spotlightCone.AddComponent<MeshRenderer>();
+
+        if (_spotlightConeMaterial != null)
+        {
+            meshRenderer.material = new Material(_spotlightConeMaterial);
+        }
+        else
+        {
+            // Создаем простой полупрозрачный материал
+            Material mat = new Material(Shader.Find("Standard"));
+            mat.color = new Color(0f, 1f, 1f, 0.1f);
+            mat.SetFloat("_Mode", 3);
+            mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+            mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+            mat.SetInt("_ZWrite", 0);
+            mat.DisableKeyword("_ALPHATEST_ON");
+            mat.EnableKeyword("_ALPHABLEND_ON");
+            mat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+            mat.renderQueue = 3000;
+            meshRenderer.material = mat;
+        }
+
+        meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        meshRenderer.receiveShadows = false;
+    }
+
+    private Mesh CreateConeMesh(int segments, float height, float angle)
+    {
+        Mesh mesh = new Mesh();
+
+        float radius = Mathf.Tan(angle * 0.5f * Mathf.Deg2Rad) * height;
+
+        // Вершины
+        List<Vector3> vertices = new List<Vector3>();
+        List<int> triangles = new List<int>();
+
+        // Вершина конуса (начало)
+        vertices.Add(Vector3.zero);
+
+        // Вершины основания
+        for (int i = 0; i < segments; i++)
+        {
+            float rad = (float)i / segments * Mathf.PI * 2;
+            float x = Mathf.Cos(rad) * radius;
+            float y = Mathf.Sin(rad) * radius;
+            vertices.Add(new Vector3(x, y, height));
+        }
+
+        // Боковые грани
+        for (int i = 0; i < segments; i++)
+        {
+            int next = (i + 1) % segments;
+
+            // Треугольники боковой поверхности
+            triangles.Add(0);
+            triangles.Add(i + 1);
+            triangles.Add(next + 1);
+        }
+
+        // Основание
+        int baseStartIndex = vertices.Count;
+        for (int i = 0; i < segments; i++)
+        {
+            float rad = (float)i / segments * Mathf.PI * 2;
+            float x = Mathf.Cos(rad) * radius;
+            float y = Mathf.Sin(rad) * radius;
+            vertices.Add(new Vector3(x, y, height));
+        }
+
+        for (int i = 0; i < segments; i++)
+        {
+            int next = (i + 1) % segments;
+            triangles.Add(baseStartIndex + i);
+            triangles.Add(baseStartIndex + next);
+            triangles.Add(baseStartIndex + segments);
+        }
+
+        // Добавляем центральную вершину для основания
+        vertices.Add(new Vector3(0, 0, height));
+
+        mesh.vertices = vertices.ToArray();
+        mesh.triangles = triangles.ToArray();
+        mesh.RecalculateNormals();
+
+        return mesh;
+    }
+   
+    private void UpdateDetectionVisuals()
+    {
+        if (!_showDetectionVisuals || _visualizationContainer == null) return;
+
+        // Обновляем позицию сферы
+        if (_rangeSphere != null)
+        {
+            _rangeSphere.transform.position = _eye.position;
+        }
+
+        // Обновляем позицию и поворот конуса
+        if (_spotlightCone != null)
+        {
+            _spotlightCone.transform.position = _eye.position;
+            _spotlightCone.transform.rotation = _eye.rotation;
+
+            // Меняем цвет конуса в зависимости от обнаружения
+            var renderer = _spotlightCone.GetComponent<MeshRenderer>();
+            if (renderer != null && renderer.material != null)
+            {
+                Color targetColor = _playerInSight ? new Color(1f, 0f, 0f, 0.3f) : new Color(0f, 1f, 1f, 0.2f);
+                renderer.material.color = Color.Lerp(renderer.material.color, targetColor, Time.deltaTime * 5f);
+            }
+        }
+
+        // Обновляем линию к текущей цели
+        if (_targetLineRenderer != null && _targets != null && _targets.Length > 0)
+        {
+            _targetLineRenderer.SetPosition(0, _eye.position);
+            if (_currentIndex < _targets.Length && _targets[_currentIndex] != null)
+            {
+                _targetLineRenderer.SetPosition(1, _targets[_currentIndex].position);
+            }
+        }
+
+        // Обновляем линии путей (если цели двигаются)
+        for (int i = 0; i < _pathLines.Count; i++)
+        {
+            if (i < _targets.Length - 1 && _targets[i] != null && _targets[i + 1] != null)
+            {
+                _pathLines[i].SetPosition(0, _targets[i].position);
+                _pathLines[i].SetPosition(1, _targets[i + 1].position);
+            }
+        }
+    }
+
+    // Метод для включения/выключения визуализации
+    public void ToggleDetectionVisuals(bool show)
+    {
+        _showDetectionVisuals = show;
+        if (_visualizationContainer != null)
+        {
+            _visualizationContainer.SetActive(show);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_visualizationContainer != null)
+        {
+            Destroy(_visualizationContainer);
+        }
+    }
+
 
     #endregion
 }

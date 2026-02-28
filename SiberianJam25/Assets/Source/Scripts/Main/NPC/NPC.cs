@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class NPC : InteractableObject
 {
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator _animator;
     [Header("Movement Settings")]
     [SerializeField] private float _movementSpeed = 2f;
     [SerializeField] private float _rotationSpeed = 120f;
     [SerializeField] private float _waitTimeAtPoint = 2f;
     [SerializeField] private bool _loopPatrol = true;
+    [SerializeField] private bool _resetMovePoint;
 
     [Header("Waypoints")]
     [SerializeField] private List<Transform> _waypoints = new List<Transform>();
@@ -79,10 +80,10 @@ public class NPC : InteractableObject
     {
         _waypoints.Add(waypoint);
                
-        if (_currentState == NPCState.Idle && _waypoints.Count == 1)
-        {
-            StartPatrol();
-        }
+        //if (_currentState == NPCState.Idle && _waypoints.Count == 1)
+        //{
+        //    StartPatrol();
+        //}
     }
         
     public void ClearWaypoints()
@@ -131,7 +132,15 @@ public class NPC : InteractableObject
 
         yield return new WaitForSeconds(_waitTimeAtPoint);
 
-        GoToNextWaypoint();
+        if(_resetMovePoint)
+        {
+            ClearWaypoints();
+        }
+        else
+        {
+            GoToNextWaypoint();
+        }
+       
     }
        
     private void GoToNextWaypoint()
@@ -172,9 +181,16 @@ public class NPC : InteractableObject
 
     private void UpdateAnimator()
     {
-        if (animator == null) return;
+        if (_animator == null) return;
                
-        animator.SetFloat("Speed", _currentState == NPCState.Moving ? _movementSpeed : 0f);       
+        if(_currentState == NPCState.Idle || _currentState == NPCState.Waiting)
+        {
+            _animator.SetBool("Walk", false);
+        }
+        else if(_currentState == NPCState.Moving)
+        {
+            _animator.SetBool("Walk", true);
+        }
     }
   
     private void SetIdle()
