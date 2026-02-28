@@ -2032,6 +2032,7 @@ Transform:
   - {fileID: 842043832}
   - {fileID: 214569086}
   - {fileID: 3597800747733047139}
+  - {fileID: 1200882004}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &55882135
@@ -8411,18 +8412,16 @@ MonoBehaviour:
     rid: 5479921517607518212
   m_Size: {x: -1.9398346, y: 6.3963532, z: -2.05373}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 237785783}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 1581
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -0.9699173, y: 3.1981766, z: -1.0268631}
     m_Extent: {x: 0.9699173, y: 3.1981766, z: 1.026865}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921517607518212
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &237785783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8747,6 +8746,7 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -8760,6 +8760,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &237785784
 Transform:
   m_ObjectHideFlags: 0
@@ -10090,18 +10094,16 @@ MonoBehaviour:
     rid: 5479921517607518209
   m_Size: {x: -1.3507004, y: 13.730176, z: -1.2250137}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 298395483}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 1926
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -0.6753464, y: 6.865088, z: -0.61250687}
     m_Extent: {x: 0.6753502, y: 6.865088, z: 0.61250687}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921517607518209
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &298395483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10846,6 +10848,7 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -10859,6 +10862,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &298395484
 Transform:
   m_ObjectHideFlags: 0
@@ -13839,18 +13846,16 @@ MonoBehaviour:
     rid: 5479921203048349702
   m_Size: {x: -14.610656, y: 18.157253, z: -11.775635}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 342030858}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 2340
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -7.3053284, y: 9.078627, z: -5.8878174}
     m_Extent: {x: 7.3053284, y: 9.078627, z: 5.8878174}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921203048349702
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &342030858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15015,6 +15020,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -15028,6 +15034,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &342030859
 Transform:
   m_ObjectHideFlags: 0
@@ -15425,18 +15435,16 @@ MonoBehaviour:
     rid: 5479921203048349702
   m_Size: {x: -14.610656, y: 18.157253, z: -11.775635}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 357827275}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 2340
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -7.3053284, y: 9.078627, z: -5.8878174}
     m_Extent: {x: 7.3053284, y: 9.078627, z: 5.8878174}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921203048349702
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &357827275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15641,6 +15649,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -15654,6 +15663,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &357827276
 Transform:
   m_ObjectHideFlags: 0
@@ -18100,18 +18113,16 @@ MonoBehaviour:
     rid: 5479921203048349702
   m_Size: {x: -14.610656, y: 18.157253, z: -11.775635}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 422845569}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 2340
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -7.3053284, y: 9.078627, z: -5.8878174}
     m_Extent: {x: 7.3053284, y: 9.078627, z: 5.8878174}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921203048349702
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &422845569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20720,6 +20731,7 @@ MonoBehaviour:
   - {x: 0, y: 0, z: -1, w: -1}
   - {x: 0, y: 0, z: -1, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -20733,6 +20745,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &422845570
 Transform:
   m_ObjectHideFlags: 0
@@ -21709,18 +21725,16 @@ MonoBehaviour:
     rid: 5479921203048349702
   m_Size: {x: -14.610656, y: 18.157253, z: -11.775635}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 471710132}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 2340
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -7.3053284, y: 9.078627, z: -5.8878174}
     m_Extent: {x: 7.3053284, y: 9.078627, z: 5.8878174}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921203048349702
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &471710132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21925,6 +21939,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -21938,6 +21953,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &471710133
 Transform:
   m_ObjectHideFlags: 0
@@ -22820,18 +22839,16 @@ MonoBehaviour:
     rid: 5479921517607518209
   m_Size: {x: -1.3507004, y: 13.730176, z: -1.2250137}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 500120084}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 1926
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -0.6753464, y: 6.865088, z: -0.61250687}
     m_Extent: {x: 0.6753502, y: 6.865088, z: 0.61250687}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921517607518209
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &500120084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23576,6 +23593,7 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -23589,6 +23607,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &500120085
 Transform:
   m_ObjectHideFlags: 0
@@ -26188,18 +26210,16 @@ MonoBehaviour:
     rid: 5479921203048349705
   m_Size: {x: -2.7236748, y: 2.4031484, z: 3.0543785}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 581763045}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 1265
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -1.3618374, y: 1.201574, z: 1.5271873}
     m_Extent: {x: 1.3618374, y: 1.2015742, z: 1.5271893}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921203048349705
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &581763045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26404,6 +26424,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -26417,6 +26438,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &581763046
 Transform:
   m_ObjectHideFlags: 0
@@ -28356,134 +28381,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 600273258}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &600403873 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3784079492480537567, guid: d000ae5cb8005934abe8e116f093dce5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1109779571}
-  m_PrefabAsset: {fileID: 0}
---- !u!143 &600403874
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600403873}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.71
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!82 &600403875
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600403873}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5d123e38b452dec47a67dc4a36b14268, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1001 &606184241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30480,18 +30377,16 @@ MonoBehaviour:
     rid: 5479921203048349704
   m_Size: {x: -6.2271767, y: 5.3110933, z: 6.030224}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 657166907}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 1927
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -3.1135883, y: 2.6555467, z: 3.0151138}
     m_Extent: {x: 3.1135883, y: 2.6555467, z: 3.015112}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921203048349704
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &657166907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30696,6 +30591,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -30709,6 +30605,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &657166908
 Transform:
   m_ObjectHideFlags: 0
@@ -37003,8 +36903,7 @@ MonoBehaviour:
   _player: {fileID: 2088261106}
   _levelRoot: {fileID: 2128056439}
   _restartPoint: {fileID: 741171029}
-  _glassOnFadeAnimation: {fileID: 1550934487}
-  _glassOffFadeAnimation: {fileID: 1550934488}
+  _playerUi: {fileID: 0}
   _cantTakeItemInfo: {fileID: 1550934489}
   _interactKeyinfo: {fileID: 1550934490}
   _pausePanel: {fileID: 1052658376}
@@ -37486,18 +37385,16 @@ MonoBehaviour:
     rid: 5479921517607518210
   m_Size: {x: 2.5443878, y: 12.752048, z: 0.7962079}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 841610542}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 1470
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: 1.2721939, y: 6.3760242, z: 0.39810395}
     m_Extent: {x: 1.2721939, y: 6.3760242, z: 0.39810395}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921517607518210
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &841610542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37702,6 +37599,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -37715,6 +37613,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &841610543
 Transform:
   m_ObjectHideFlags: 0
@@ -39244,18 +39146,16 @@ MonoBehaviour:
     rid: 5479921203048349702
   m_Size: {x: -14.610656, y: 18.157253, z: -11.775635}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 862865898}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 2340
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -7.3053284, y: 9.078627, z: -5.8878174}
     m_Extent: {x: 7.3053284, y: 9.078627, z: 5.8878174}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921203048349702
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &862865898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39460,6 +39360,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -39473,6 +39374,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &862865899
 Transform:
   m_ObjectHideFlags: 0
@@ -42807,18 +42712,16 @@ MonoBehaviour:
     rid: 5479921517607518209
   m_Size: {x: -1.3507004, y: 13.730176, z: -1.2250137}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 923783882}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 1926
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -0.6753464, y: 6.865088, z: -0.61250687}
     m_Extent: {x: 0.6753502, y: 6.865088, z: 0.61250687}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921517607518209
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &923783882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43563,6 +43466,7 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -43576,6 +43480,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &923783883
 Transform:
   m_ObjectHideFlags: 0
@@ -43591,12 +43499,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &925366410 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5036447084584064812, guid: d000ae5cb8005934abe8e116f093dce5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1109779571}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &926266189 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1316487299206186565, guid: ba34010d9d302b94a859b977c03b2e7a,
@@ -47345,18 +47247,16 @@ MonoBehaviour:
     rid: 5479921203048349702
   m_Size: {x: -14.610656, y: 18.157253, z: -11.775635}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 1045203933}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 2340
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -7.3053284, y: 9.078627, z: -5.8878174}
     m_Extent: {x: 7.3053284, y: 9.078627, z: 5.8878174}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921203048349702
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1045203933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47561,6 +47461,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -47574,6 +47475,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &1045203934
 Transform:
   m_ObjectHideFlags: 0
@@ -51901,132 +51806,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1105652355}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1109779571
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 482619086819985030, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: _characterController
-      value: 
-      objectReference: {fileID: 600403874}
-    - target: {fileID: 706899522871041916, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 706899522871041916, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 706899522871041916, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -40
-      objectReference: {fileID: 0}
-    - target: {fileID: 3323620326260122917, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3784079492480537567, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: m_Name
-      value: Player (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6456510319118460431, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 38.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 6456510319118460431, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 6456510319118460431, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -15.22
-      objectReference: {fileID: 0}
-    - target: {fileID: 6456510319118460431, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9810861
-      objectReference: {fileID: 0}
-    - target: {fileID: 6456510319118460431, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6456510319118460431, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.19357198
-      objectReference: {fileID: 0}
-    - target: {fileID: 6456510319118460431, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6456510319118460431, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6456510319118460431, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -22.323
-      objectReference: {fileID: 0}
-    - target: {fileID: 6456510319118460431, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6513034653571350995, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: _interactDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150274520399890665, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: _camZoneSound
-      value: 
-      objectReference: {fileID: 600403875}
-    - target: {fileID: 8150274520399890665, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: _canSwitchGlass
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8150274520399890665, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: _takeItemContainer
-      value: 
-      objectReference: {fileID: 925366410}
-    - target: {fileID: 8150274520399890665, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      propertyPath: _timeBeforeGameOver
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3784079492480537567, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 600403875}
-    - targetCorrespondingSourceObject: {fileID: 3784079492480537567, guid: d000ae5cb8005934abe8e116f093dce5,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 600403874}
-  m_SourcePrefab: {fileID: 100100000, guid: d000ae5cb8005934abe8e116f093dce5, type: 3}
 --- !u!1 &1112364748
 GameObject:
   m_ObjectHideFlags: 0
@@ -52136,18 +51915,16 @@ MonoBehaviour:
     rid: 5479921203048349702
   m_Size: {x: -14.610656, y: 18.157253, z: -11.775635}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 1112364753}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 2340
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -7.3053284, y: 9.078627, z: -5.8878174}
     m_Extent: {x: 7.3053284, y: 9.078627, z: 5.8878174}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921203048349702
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1112364753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52352,6 +52129,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -52365,6 +52143,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &1112364754
 Transform:
   m_ObjectHideFlags: 0
@@ -52489,18 +52271,16 @@ MonoBehaviour:
     rid: 5479921517607518213
   m_Size: {x: -7.7370224, y: 3.9027286, z: 4.428314}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 1114906333}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 1332
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -3.8685074, y: 1.9513633, z: 2.214157}
     m_Extent: {x: 3.8685112, y: 1.9513643, z: 2.214157}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921517607518213
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1114906333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52705,6 +52485,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -52718,6 +52499,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &1114906334
 Transform:
   m_ObjectHideFlags: 0
@@ -55408,18 +55193,16 @@ MonoBehaviour:
     rid: 5479921517607518211
   m_Size: {x: 69.38125, y: 6.5094957, z: -2.2621307}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 1163636663}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 2089
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: 34.690624, y: 3.2547479, z: -1.1310654}
     m_Extent: {x: 34.690624, y: 3.2547479, z: 1.1310654}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921517607518211
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1163636663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55624,6 +55407,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -55637,6 +55421,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &1163636664
 Transform:
   m_ObjectHideFlags: 0
@@ -57176,6 +56964,178 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1199463986}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1200882003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1200882004}
+  - component: {fileID: 1200882008}
+  - component: {fileID: 1200882007}
+  - component: {fileID: 1200882006}
+  - component: {fileID: 1200882005}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1200882004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200882003}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.19357198, z: 0, w: 0.9810861}
+  m_LocalPosition: {x: 38.05, y: 3.671, z: -15.22}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 54091111}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1200882005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200882003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowDebugText: 0
+  m_ShowCameraFrustum: 1
+  m_IgnoreTimeScale: 0
+  m_WorldUpOverride: {fileID: 0}
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
+  m_DefaultBlend:
+    m_Style: 1
+    m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_CustomBlends: {fileID: 0}
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1200882006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200882003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+--- !u!81 &1200882007
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200882003}
+  m_Enabled: 1
+--- !u!20 &1200882008
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200882003}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60.000004
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!4 &1205173426 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e098c8ccc9bdbb940ad730264c14f0b1,
@@ -62986,18 +62946,16 @@ MonoBehaviour:
     rid: 5479921203048349702
   m_Size: {x: -14.610656, y: 18.157253, z: -11.775635}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 1362844315}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 2340
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -7.3053284, y: 9.078627, z: -5.8878174}
     m_Extent: {x: 7.3053284, y: 9.078627, z: 5.8878174}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921203048349702
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1362844315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63202,6 +63160,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -63215,6 +63174,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &1362844316
 Transform:
   m_ObjectHideFlags: 0
@@ -63613,18 +63576,16 @@ MonoBehaviour:
     rid: 5479921203048349706
   m_Size: {x: -2.7181911, y: 2.3031137, z: 3.4150429}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 1369752555}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 3074
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -1.3590946, y: 1.1515568, z: 1.7075233}
     m_Extent: {x: 1.3590956, y: 1.1515568, z: 1.7075214}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921203048349706
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1369752555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63829,6 +63790,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -63842,6 +63804,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &1369752556
 Transform:
   m_ObjectHideFlags: 0
@@ -64468,18 +64434,16 @@ MonoBehaviour:
     rid: 5479921203048349702
   m_Size: {x: -14.610656, y: 18.157253, z: -11.775635}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 1399614736}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 2340
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -7.3053284, y: 9.078627, z: -5.8878174}
     m_Extent: {x: 7.3053284, y: 9.078627, z: 5.8878174}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921203048349702
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1399614736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64684,6 +64648,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -64697,6 +64662,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &1399614737
 Transform:
   m_ObjectHideFlags: 0
@@ -66235,18 +66204,16 @@ MonoBehaviour:
     rid: 5479921203048349702
   m_Size: {x: -14.610656, y: 18.157253, z: -11.775635}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 1422481048}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 2340
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -7.3053284, y: 9.078627, z: -5.8878174}
     m_Extent: {x: 7.3053284, y: 9.078627, z: 5.8878174}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921203048349702
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1422481048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72317,6 +72284,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -72330,6 +72298,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 4
+  m_SelectedCoincidentVertexCount: 12
+  m_SelectedCoincidentVertices: e8020000160300001f030000e9020000170300001a030000ea0200001b03000022030000eb0200001e03000023030000
 --- !u!4 &1422481049
 Transform:
   m_ObjectHideFlags: 0
@@ -74531,18 +74503,16 @@ MonoBehaviour:
     rid: 5479921203048349702
   m_Size: {x: -14.610656, y: 18.157253, z: -11.775635}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 1483584018}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 2340
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -7.3053284, y: 9.078627, z: -5.8878174}
     m_Extent: {x: 7.3053284, y: 9.078627, z: 5.8878174}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921203048349702
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1483584018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75587,6 +75557,7 @@ MonoBehaviour:
   - {x: 0, y: 0, z: -1, w: -1}
   - {x: 0, y: 0, z: -1, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -75600,6 +75571,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &1483584019
 Transform:
   m_ObjectHideFlags: 0
@@ -77383,18 +77358,16 @@ MonoBehaviour:
     rid: 5479921517607518209
   m_Size: {x: -1.3507004, y: 13.730176, z: -1.2250137}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 1529777308}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 1926
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -0.6753464, y: 6.865088, z: -0.61250687}
     m_Extent: {x: 0.6753502, y: 6.865088, z: 0.61250687}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921517607518209
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1529777308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78139,6 +78112,7 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -78152,6 +78126,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &1529777309
 Transform:
   m_ObjectHideFlags: 0
@@ -78547,18 +78525,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efd96b19db7eb0a44ad0149138b844ff, type: 3}
---- !u!95 &1550934487 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4646265567560264790, guid: efd96b19db7eb0a44ad0149138b844ff,
-    type: 3}
-  m_PrefabInstance: {fileID: 1550934486}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1550934488 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 8956564322541340747, guid: efd96b19db7eb0a44ad0149138b844ff,
-    type: 3}
-  m_PrefabInstance: {fileID: 1550934486}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1550934489 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7610043347318630059, guid: efd96b19db7eb0a44ad0149138b844ff,
@@ -79492,18 +79458,16 @@ MonoBehaviour:
     rid: 5479921517607518209
   m_Size: {x: -1.3507004, y: 13.730176, z: -1.2250137}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 1593759343}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 1926
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -0.6753464, y: 6.865088, z: -0.61250687}
     m_Extent: {x: 0.6753502, y: 6.865088, z: 0.61250687}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921517607518209
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1593759343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80248,6 +80212,7 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -80261,6 +80226,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &1593759344
 Transform:
   m_ObjectHideFlags: 0
@@ -81687,18 +81656,16 @@ MonoBehaviour:
     rid: 5479921517607518209
   m_Size: {x: -1.3507004, y: 13.730176, z: -1.2250137}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 1623381955}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 1926
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -0.6753464, y: 6.865088, z: -0.61250687}
     m_Extent: {x: 0.6753502, y: 6.865088, z: 0.61250687}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921517607518209
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1623381955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82443,6 +82410,7 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -82456,6 +82424,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &1623381956
 Transform:
   m_ObjectHideFlags: 0
@@ -84040,18 +84012,16 @@ MonoBehaviour:
     rid: 5479921517607518212
   m_Size: {x: -1.9398346, y: 6.3963532, z: -2.05373}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 1651075351}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 1581
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -0.9699173, y: 3.1981766, z: -1.0268631}
     m_Extent: {x: 0.9699173, y: 3.1981766, z: 1.026865}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921517607518212
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1651075351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84376,6 +84346,7 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -84389,6 +84360,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &1651075352
 Transform:
   m_ObjectHideFlags: 0
@@ -85004,18 +84979,16 @@ MonoBehaviour:
     rid: 5479921203048349702
   m_Size: {x: -14.610656, y: 18.157253, z: -11.775635}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 1686800157}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 2340
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -7.3053284, y: 9.078627, z: -5.8878174}
     m_Extent: {x: 7.3053284, y: 9.078627, z: 5.8878174}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921203048349702
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1686800157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86060,6 +86033,7 @@ MonoBehaviour:
   - {x: 0, y: 0, z: -1, w: -1}
   - {x: 0, y: 0, z: -1, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -86073,6 +86047,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &1686800158
 Transform:
   m_ObjectHideFlags: 0
@@ -87436,18 +87414,16 @@ MonoBehaviour:
     rid: 5479921203048349702
   m_Size: {x: -14.610656, y: 18.157253, z: -11.775635}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 1704753872}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 2340
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -7.3053284, y: 9.078627, z: -5.8878174}
     m_Extent: {x: 7.3053284, y: 9.078627, z: 5.8878174}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921203048349702
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1704753872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89278,6 +89254,7 @@ MonoBehaviour:
   - {x: -0.00000022707945, y: 0, z: 1, w: -1}
   - {x: -0.00000022707945, y: 0, z: 1, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -89291,6 +89268,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &1704753873
 Transform:
   m_ObjectHideFlags: 0
@@ -89540,18 +89521,16 @@ MonoBehaviour:
     rid: 5479921517607518213
   m_Size: {x: -7.7370224, y: 3.9027286, z: 4.428314}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 1712199963}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 1332
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -3.8685074, y: 1.9513633, z: 2.214157}
     m_Extent: {x: 3.8685112, y: 1.9513643, z: 2.214157}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921517607518213
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1712199963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89996,6 +89975,7 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -90009,6 +89989,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &1712199964
 Transform:
   m_ObjectHideFlags: 0
@@ -90133,18 +90117,16 @@ MonoBehaviour:
     rid: 5479921517607518209
   m_Size: {x: -1.3507004, y: 13.730176, z: -1.2250137}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 1712650431}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 1926
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -0.6753464, y: 6.865088, z: -0.61250687}
     m_Extent: {x: 0.6753502, y: 6.865088, z: 0.61250687}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921517607518209
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1712650431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90889,6 +90871,7 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -90902,6 +90885,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &1712650432
 Transform:
   m_ObjectHideFlags: 0
@@ -92184,18 +92171,16 @@ MonoBehaviour:
     rid: 5479921203048349702
   m_Size: {x: -14.610656, y: 18.157253, z: -11.775635}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 1768363823}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 2340
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -7.3053284, y: 9.078627, z: -5.8878174}
     m_Extent: {x: 7.3053284, y: 9.078627, z: 5.8878174}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921203048349702
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1768363823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92400,6 +92385,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -92413,6 +92399,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &1768363824
 Transform:
   m_ObjectHideFlags: 0
@@ -94892,18 +94882,16 @@ MonoBehaviour:
     rid: 5479921517607518212
   m_Size: {x: -1.9398346, y: 6.3963532, z: -2.05373}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 1825794760}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 1581
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -0.9699173, y: 3.1981766, z: -1.0268631}
     m_Extent: {x: 0.9699173, y: 3.1981766, z: 1.026865}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921517607518212
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &1825794760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95228,6 +95216,7 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -95241,6 +95230,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &1825794761
 Transform:
   m_ObjectHideFlags: 0
@@ -102658,18 +102651,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 487f7e2ee8a05814bb261d9484687003, type: 3}
---- !u!114 &1930811985 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2725148897715208188, guid: 07c25ba0d113efe4db69650f46b5d325,
-    type: 3}
-  m_PrefabInstance: {fileID: 5620664586925334353}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfbf6de05d9d73747b374d3debc7bd97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1930922298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -105799,18 +105780,16 @@ MonoBehaviour:
     rid: 5479921517607518212
   m_Size: {x: -1.9398346, y: 6.3963532, z: -2.05373}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 2004932790}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 1581
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -0.9699173, y: 3.1981766, z: -1.0268631}
     m_Extent: {x: 0.9699173, y: 3.1981766, z: 1.026865}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921517607518212
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &2004932790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106135,6 +106114,7 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -106148,6 +106128,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &2004932791
 Transform:
   m_ObjectHideFlags: 0
@@ -106278,18 +106262,16 @@ MonoBehaviour:
     rid: 5479921517607518209
   m_Size: {x: -1.3507004, y: 13.730176, z: -1.2250137}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 2006836509}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 1926
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -0.6753464, y: 6.865088, z: -0.61250687}
     m_Extent: {x: 0.6753502, y: 6.865088, z: 0.61250687}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921517607518209
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &2006836509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107034,6 +107016,7 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -107047,6 +107030,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &2006836510
 Transform:
   m_ObjectHideFlags: 0
@@ -107259,18 +107246,16 @@ MonoBehaviour:
     rid: 5479921203048349702
   m_Size: {x: -14.610656, y: 18.157253, z: -11.775635}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 2012311951}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 2340
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -7.3053284, y: 9.078627, z: -5.8878174}
     m_Extent: {x: 7.3053284, y: 9.078627, z: 5.8878174}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921203048349702
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &2012311951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117116,6 +117101,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0, w: -1}
   - {x: -1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -117129,6 +117115,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &2012311952
 Transform:
   m_ObjectHideFlags: 0
@@ -120413,18 +120403,16 @@ MonoBehaviour:
     rid: 5479921517607518209
   m_Size: {x: -1.3507004, y: 13.730176, z: -1.2250137}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Mesh: {fileID: 2095589896}
   m_PivotLocation: 1
   m_PivotPosition: {x: 0, y: 0, z: 0}
   m_UnmodifiedMeshVersion: 1926
+  m_EditionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_ShapeBox:
     m_Center: {x: -0.6753464, y: 6.865088, z: -0.61250687}
     m_Extent: {x: 0.6753502, y: 6.865088, z: 0.61250687}
-  references:
-    version: 2
-    RefIds:
-    - rid: 5479921517607518209
-      type: {class: Cube, ns: UnityEngine.ProBuilder.Shapes, asm: Unity.ProBuilder}
-      data: 
 --- !u!114 &2095589896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121169,6 +121157,7 @@ MonoBehaviour:
   - {x: 1, y: 0, z: 0, w: -1}
   - {x: 1, y: 0, z: 0, w: -1}
   m_Colors: []
+  <userCollisions>k__BackingField: 0
   m_UnwrapParameters:
     m_HardAngle: 88
     m_PackMargin: 20
@@ -121182,6 +121171,10 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+  m_SelectedCacheDirty: 1
+  m_SelectedSharedVerticesCount: 0
+  m_SelectedCoincidentVertexCount: 0
+  m_SelectedCoincidentVertices: 
 --- !u!4 &2095589897
 Transform:
   m_ObjectHideFlags: 0
@@ -123911,7 +123904,7 @@ MonoBehaviour:
   _enviernemtSwitcher: {fileID: 1087579837}
   _playerRoot: {fileID: 832168048}
   _playerRoom: {fileID: 1263265514}
-  _mainDoorIndicator: {fileID: 1930811985}
+  _mainTower: {fileID: 0}
   _levers:
   - {fileID: 2084485722}
   - {fileID: 7068095364601190175}
@@ -123934,6 +123927,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _shopMonster: {fileID: 0}
+  _blackFadePanel: {fileID: 0}
   _gameOverPanel: {fileID: 1550934491}
   _startFadePanel: {fileID: 1590669305}
   _switchOffGlassesInfoPanel: {fileID: 167499383}
@@ -123942,7 +123937,7 @@ MonoBehaviour:
   _badVolume: {fileID: 948654961}
   _pinkkybox: {fileID: 2100000, guid: 3e5399bd195de7649b874f58c1b9f8a3, type: 2}
   _badSkybox: {fileID: 2100000, guid: e391f00234292cc4f935308c11cf0e54, type: 2}
-  FinalCutScene: {fileID: 3597800747733047138}
+  _finalCutScene: {fileID: 0}
 --- !u!4 &2129768701 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2163957820968705636, guid: ec118c4bd79bb844b9f667a785720c00,
@@ -124453,7 +124448,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _panel: {fileID: 3668964545528180401}
-  _text: {fileID: 1173868272096777584}
+  _nameText: {fileID: 0}
+  _phraseText: {fileID: 0}
   _typingSpeed: 0.01
   _fastForwardSpeed: 0.01
   _textColor: {r: 1, g: 0, b: 0, a: 1}
@@ -125771,12 +125767,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8738df3b9b7690548ab32883bd1f9637, type: 3}
---- !u!1 &3597800747733047138 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8884977088352193406, guid: 8738df3b9b7690548ab32883bd1f9637,
-    type: 3}
-  m_PrefabInstance: {fileID: 3597800747733047137}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3597800747733047139 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 730010932420686697, guid: 8738df3b9b7690548ab32883bd1f9637,
@@ -127120,7 +127110,6 @@ SceneRoots:
   - {fileID: 1280481577}
   - {fileID: 463440469}
   - {fileID: 1387752664}
-  - {fileID: 1109779571}
   - {fileID: 1971810586}
   - {fileID: 1362844316}
   - {fileID: 471710133}
