@@ -8,7 +8,8 @@ public class PlayerRoot : CompositeRoot
     [SerializeField] public LevelRoot _levelRoot;
     [Header("Restart Settings")]
     [SerializeField] private Transform _restartPoint;
-    [Header("UI")]   
+    [Header("UI")]
+    [SerializeField] private PlayerUI _playerUi;
     [SerializeField] private GameObject _cantTakeItemInfo;
     [SerializeField] private GameObject _interactKeyinfo;
     [SerializeField] private GameObject _pausePanel;
@@ -108,7 +109,7 @@ public class PlayerRoot : CompositeRoot
 
     public void SetDialog(DialogComponent dialogComponent)
     {
-        throw new NotImplementedException();
+        _playerUi.SetDialogPhrase(dialogComponent);
     }
 
     #endregion

@@ -50,8 +50,7 @@ public class PlayerGlassSwitcher : MonoBehaviour
         if (_glassOn)
         {           
             // Мы снимаем очки, поэтому сначала в руке их нет
-            _glasses.gameObject.SetActive(false);
-            Debug.Log("Снимаем");
+            _glasses.gameObject.SetActive(false);           
         }
         else
         {

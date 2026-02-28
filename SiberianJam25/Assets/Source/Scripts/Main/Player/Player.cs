@@ -106,8 +106,7 @@ public class Player : MonoBehaviour
     #region >>> SECURE DETECTION
 
     public void DetectedBySecure(Transform secureCam)
-    {
-        Debug.Log("Игрок замечен");
+    {      
         _movment.OnLostControl(secureCam);
         _playerCamera.SetMinFOV();
         _isDetectedBySecure = true;
@@ -116,8 +115,7 @@ public class Player : MonoBehaviour
     }
 
     public void LostDetectionBySecure()
-    {
-        Debug.Log("Игрок потерян");
+    {      
         _movment.OnReturnControl();
         _isDetectedBySecure = false;
         _playerCamera.SetDefaultFOV();

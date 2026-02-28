@@ -7,7 +7,8 @@ public class PhrasePanel : MonoBehaviour
 {
     [Header("UI Components")]
     [SerializeField] private GameObject _panel;
-    [SerializeField] private Text _text;
+    [SerializeField] private Text _nameText;
+    [SerializeField] private Text _phraseText;
 
     [Header("Typing Settings")]
     [SerializeField] private float _typingSpeed = 0.05f;
@@ -23,7 +24,7 @@ public class PhrasePanel : MonoBehaviour
 
     private void Awake()
     {
-        _text.color = _textColor;
+        _phraseText.color = _textColor;
     }
 
     /// <summary>
@@ -53,9 +54,9 @@ public class PhrasePanel : MonoBehaviour
         _isFastForward = false;
     }
 
-    public void ShowPhrase(string phrase)
+    public void ShowPhrase(string phrase, string name)
     {
-        if (_text == null) return;
+        if (_phraseText == null) return;
 
         Show();
 
@@ -66,7 +67,8 @@ public class PhrasePanel : MonoBehaviour
         }
 
         _currentPhrase = phrase;
-        _text.text = "";
+        _phraseText.text = "";
+        _nameText.text = name;
         _isTyping = true;
         _isFastForward = false;
 
@@ -77,15 +79,18 @@ public class PhrasePanel : MonoBehaviour
     {
         for (int i = 0; i < text.Length; i++)
         {
-            _text.text += text[i];
+            _phraseText.text += text[i];
 
             // Используем разную скорость в зависимости от режима
             float speed = _isFastForward ? _fastForwardSpeed : _typingSpeed;
-            yield return new WaitForSeconds(speed);
+            yield return new WaitForSecondsRealtime(speed);
         }
 
         _isTyping = false;
         _typingCoroutine = null;
+
+        yield return new WaitForSecondsRealtime(5f);
+        Hide();
     }
 
     public void FastForward()
@@ -104,9 +109,9 @@ public class PhrasePanel : MonoBehaviour
             _typingCoroutine = null;
         }
 
-        if (_text != null && _currentPhrase != null)
+        if (_phraseText != null && _currentPhrase != null)
         {
-            _text.text = _currentPhrase;
+            _phraseText.text = _currentPhrase;
         }
 
         _isTyping = false;
@@ -120,9 +125,10 @@ public class PhrasePanel : MonoBehaviour
 
     public void ClearText()
     {
-        if (_text != null)
-            _text.text = "";
-
+        if (_phraseText != null)
+            _phraseText.text = "";
+        if (_nameText != null)
+            _nameText.text = "";
         _currentPhrase = "";
         _isTyping = false;
         _isFastForward = false;

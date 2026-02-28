@@ -37,13 +37,12 @@ public class PoliceMan : NPC
                     {
                         if (!player.IsActive)
                             return;
-
-                        Debug.Log("Player Detected!");
+                                              
                         if (player.CheckCanBeDetected() == false)
                         {                           
                             break;
                         }
-                        Debug.Log("Попался");
+                      
                         _currentDetectedPlayer = player;
                         detected = true;
                         _playerTransform = hitCollider.transform;

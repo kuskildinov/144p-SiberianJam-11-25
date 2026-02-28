@@ -829,30 +829,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7118686544725426340, guid: c7a3e85d4c454a04ebb79b93e3560ef0,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 384321644}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7a3e85d4c454a04ebb79b93e3560ef0, type: 3}
---- !u!1 &384321643 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7118686544725426340, guid: c7a3e85d4c454a04ebb79b93e3560ef0,
-    type: 3}
-  m_PrefabInstance: {fileID: 384321642}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &384321644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 384321643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dfaa3fae05a9504f969bf51dd2c02df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &441259779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,6 +1518,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 869336341}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &766913380 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4181762898110342202, guid: 3e07a91513ef443409cf30d84a644b89,
+    type: 3}
+  m_PrefabInstance: {fileID: 869336341}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 766913378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f02bd1dd3f32814598b4ab66730f7f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &869336341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1563,11 +1553,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 751046978}
-    - target: {fileID: 5441323424105541612, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: _fovChangeSpeed
-      value: 0.01
-      objectReference: {fileID: 0}
     - target: {fileID: 6456510319118460431, guid: 3e07a91513ef443409cf30d84a644b89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2665,6 +2650,11 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 1117673760}
+    - target: {fileID: 8214076368196776871, guid: 5279dde09d31f444aa9b959141d78c70,
+        type: 3}
+      propertyPath: _playerUi
+      value: 
+      objectReference: {fileID: 766913380}
     - target: {fileID: 8214076368196776871, guid: 5279dde09d31f444aa9b959141d78c70,
         type: 3}
       propertyPath: _pausePanel

@@ -116,27 +116,27 @@ public class PlayerRoom : MonoBehaviour
 
     public void PlayFirstPhrase()
     {      
-        _friendPhrasePanel.ShowPhrase(_phrase_1);
+        _friendPhrasePanel.ShowPhrase(_phrase_1, "");
     }
 
     public void PlaySecondPhrase()
     {
-        _friendPhrasePanel.ShowPhrase(_phrase_2);
+        _friendPhrasePanel.ShowPhrase(_phrase_2,"");
     }
 
     public void PlayThirdPhrase()
     {
-        _friendPhrasePanel.ShowPhrase(_phrase_3);
+        _friendPhrasePanel.ShowPhrase(_phrase_3,"");
     }
 
     public void PlayFouthPhrase()
     {
-        _friendPhrasePanel.ShowPhrase(_phrase_4);
+        _friendPhrasePanel.ShowPhrase(_phrase_4,"");
     }
 
     public void PlayPolicemansPhrases()
     {       
-        _policemanPhrasePanel.ShowPhrase("Полиция! Откройте дверь!");
+        _policemanPhrasePanel.ShowPhrase("Полиция! Откройте дверь!","");
         PlayPolicmanKnockingSound();
     }  
 

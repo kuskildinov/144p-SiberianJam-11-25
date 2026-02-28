@@ -76,6 +76,7 @@ public class NPC : InteractableObject
                 return;
             }
 
+            transform.LookAt(new Vector3(player.transform.position.x,1f,player.transform.position.z));
             playerRoot.SetDialog(dialogComponent);
         }
     }

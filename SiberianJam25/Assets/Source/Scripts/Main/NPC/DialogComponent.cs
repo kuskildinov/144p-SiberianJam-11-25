@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class DialogComponent : MonoBehaviour
 {
-    [SerializeField] private string _characterName;
-    [SerializeField] private List<DialogPhrase> _phrases;
+    public string CharacterName;
+    public List<DialogPhrase> Phrases;
 }
 
 [Serializable]
 public struct DialogPhrase
 {
-    public string PhraseText;
+    public string PhraseTextRus;
+    public string PhraseTextEn;
 }
