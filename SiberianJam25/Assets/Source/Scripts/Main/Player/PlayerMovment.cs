@@ -1,4 +1,5 @@
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerMovment : MonoBehaviour
 {
@@ -10,55 +11,47 @@ public class PlayerMovment : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float _walkSpeed = 5.0f;
     [SerializeField] private float _runSpeed = 8.0f;
+    [SerializeField] private float _slowWalkSpeed = 1f;
     [SerializeField] private float _jumpSpeed = 7.0f;
     [SerializeField] private float _gravity = 9.81f;
 
-    [Header("Ground Detection")]
-    [SerializeField] private float _groundCheckDistance = 0.1f;
-    [SerializeField] private LayerMask _groundMask;
-    [SerializeField] private float _slopeLimit = 45f;
+    [Header("Ground Detection")]  
+    [SerializeField] private LayerMask _groundMask;   
     [SerializeField] private Transform _groundCheckPoint;
 
     [Header("Mouse Look")]
     [SerializeField] private float _mouseSensitivity = 2.0f;
     [SerializeField] private float _verticalLookLimit = 80.0f;
 
-    [Header("Links")]    
-    [SerializeField] private Camera _camera;
-    [SerializeField] private Rigidbody _rigidbody;
-    [SerializeField] private CharacterController _characterController;
-
-    [Header("Head Shake")]
-    [SerializeField] private bool _enableHeadShake = true;
-    [SerializeField] private float _shakeFrequency = 1.5f;
-    [SerializeField] private float _shakeAmplitude = 0.1f;
+    [Header("Links")]
+    [SerializeField] private CinemachineVirtualCamera _virtualCam;
+    [SerializeField] private CharacterController _characterController;   
    
-    private Player _player;
-    private Vector3 _moveDirection = Vector3.zero;
+    private Player _player;  
     private Vector3 _targetDirection = Vector3.zero;
     private float _rotationX = 0;
     private float _currentSpeed;
     private bool _isGrounded = true;
     private bool _isJumping = false;
-    private bool _jumpRequested = false;
-    private bool _isRunning = false;
     private bool _isMouseActive = true;
     private bool _isUnderControl = false;
 
-    private float _defaultCameraY;
-    private float _shakeTimer = 0;
-    private float _verticalVelocity = 0f;
+    private float _horizontalInput;
+    private float _verticalInput;
+    private float _mouseX;
+    private float _mouseY;
+    private float _verticalVelocity = 0f;           
+    private bool _runKeyInput;
+    private bool _jumpKeyInput;
 
-    public bool IsMouseActive { get => _isMouseActive; set => _isMouseActive = value; }
-    public bool IsUnderControl { get => _isUnderControl; set => _isUnderControl = value; }
-    public Vector3 TargetDirection { get => _targetDirection; set => _targetDirection = value; }
+    public CharacterController CharacterController => _characterController;
 
-    public void initialize(Player player)
+
+    public void Initialize(Player player)
     {
-        _player = player;
-
-        _defaultCameraY = _camera.transform.localPosition.y;
+        _player = player;                
         _currentSpeed = _walkSpeed;
+        _slowWalkSpeed = _walkSpeed / 2;
     }
 
     private void Update()
@@ -66,58 +59,24 @@ public class PlayerMovment : MonoBehaviour
         if (_player.IsActive == false)
             return;
 
+        ReadInput();
         HandleMouseLook();      
-        HandleMovement();
-        HandleHeadShake();
+        HandleMovement();       
         HandleRunning();
         CheckGroundHandle();
         if (_isUnderControl)
             LockCameraToTarget();       
     }
 
-    public void OnLostControl(Transform secureCam)
-    {
-        _targetDirection = secureCam.position;
-        _isMouseActive = false;
-        _isUnderControl = true;
-    }
-
-    public void OnReturnControl()
-    {
-        _isMouseActive = true;
-        _isUnderControl = false;
-    }
-
-    private void LockCameraToTarget()
-    {
-        Quaternion targetRotation = Quaternion.LookRotation(_targetDirection - _camera.transform.position);
-        _camera.transform.rotation = Quaternion.Slerp(_camera.transform.rotation, targetRotation, 2f * Time.deltaTime);    
-    }
-
-    private void HandleMouseLook()
-    {
-        if (_isMouseActive == false)
-            return;
-
-        float mouseX = Input.GetAxis(MouseX) * _mouseSensitivity;
-        _player.transform.Rotate(0, mouseX, 0);
-               
-        _rotationX -= Input.GetAxis(MouseY) * _mouseSensitivity;
-        _rotationX = Mathf.Clamp(_rotationX, -_verticalLookLimit, _verticalLookLimit);
-        _camera.transform.localRotation = Quaternion.Euler(_rotationX, 0, 0);
-    }
-
+    #region >>> MOVMENT
     private void HandleMovement()
-    {
-        float horizontal = Input.GetAxis(HorizontalAxis);
-        float vertical = Input.GetAxis(VerticalAxis);
-
+    {       
         // Получаем направления движения относительно поворота объекта
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
         // Вычисляем горизонтальный вектор движения
-        Vector3 moveDirection = (forward * vertical) + (right * horizontal);
+        Vector3 moveDirection = (forward * _verticalInput) + (right * _horizontalInput);
 
         // Нормализуем, если длина больше 1 (для диагонального движения)
         if (moveDirection.magnitude > 1f)
@@ -138,6 +97,19 @@ public class PlayerMovment : MonoBehaviour
         _characterController.Move(finalMove * Time.deltaTime);
     }
 
+    private void HandleRunning()
+    {        
+        if (_runKeyInput)
+        {           
+            _currentSpeed = _runSpeed;
+        }
+        else
+        {           
+            _currentSpeed = _walkSpeed;
+        }
+    }
+    #endregion
+    #region >>> JUMP
     private void HandleGravityAndJump()
     {
         // Проверяем, находится ли персонаж на земле
@@ -164,26 +136,12 @@ public class PlayerMovment : MonoBehaviour
         }
 
         // Обработка прыжка
-        if (Input.GetKeyDown(GlobalVars.JumpKey) && _isGrounded && !_isJumping)
+        if (_jumpKeyInput && _isGrounded && !_isJumping)
         {
             _verticalVelocity = _jumpSpeed;
             _isJumping = true;
         }
     }
-
-    private void HandleRunning()
-    {
-        if (Input.GetKey(GlobalVars.RunKey))
-        {
-            _isRunning = true;
-            _currentSpeed = _runSpeed;
-        }
-        else
-        {
-            _isRunning = false;
-            _currentSpeed = _walkSpeed;
-        }
-    }   
 
     private void CheckGroundHandle()
     {
@@ -191,32 +149,54 @@ public class PlayerMovment : MonoBehaviour
 
         if (_isGrounded)
             _isJumping = false;
-    }   
+    }
 
-    private void HandleHeadShake()
+    #endregion
+    #region >>> LOOK DIRECTION
+    public void OnLostControl(Transform secureCam)
     {
-        if (!_enableHeadShake || !_isGrounded|| _camera == null)
+        _targetDirection = secureCam.position;
+        _isMouseActive = false;
+        _isUnderControl = true;
+    }
+
+    public void OnReturnControl()
+    {
+        _isMouseActive = true;
+        _isUnderControl = false;
+    }
+
+    private void LockCameraToTarget()
+    {
+        Quaternion targetRotation = Quaternion.LookRotation(_targetDirection - _virtualCam.transform.position);
+        _virtualCam.transform.rotation = Quaternion.Slerp(_virtualCam.transform.rotation, targetRotation, 2f * Time.deltaTime);    
+    }
+
+    private void HandleMouseLook()
+    {
+        if (_isMouseActive == false)
             return;
+             
+        _player.transform.Rotate(0, _mouseX, 0);               
+        _rotationX -= _mouseY;
+        _rotationX = Mathf.Clamp(_rotationX, -_verticalLookLimit, _verticalLookLimit);
+        _virtualCam.transform.localRotation = Quaternion.Euler(_rotationX, 0, 0);
+    }
 
-        bool isMoving = (Input.GetAxis(HorizontalAxis) != 0 || Input.GetAxis(VerticalAxis) != 0);
+    #endregion
 
-        if (isMoving)
-        {
-            _shakeTimer += Time.deltaTime * (_isRunning ? _shakeFrequency * 1.5f : _shakeFrequency);
+    private void ReadInput()
+    {       
+        _horizontalInput = Input.GetAxis(HorizontalAxis);
+        _verticalInput = Input.GetAxis(VerticalAxis);
+        _runKeyInput = Input.GetKey(GlobalVars.RunKey);
+        _jumpKeyInput = Input.GetKeyDown(GlobalVars.JumpKey);
+        _mouseX = Input.GetAxis(MouseX) * _mouseSensitivity;
+        _mouseY = Input.GetAxis(MouseY) * _mouseSensitivity;
+    }
 
-            float bobAmount = _isRunning ? _shakeAmplitude * 1.2f : _shakeAmplitude;
-            float newY = _defaultCameraY + Mathf.Sin(_shakeTimer) * bobAmount;
-
-            Vector3 cameraPos = _camera.transform.localPosition;
-            cameraPos.y = newY;
-            _camera.transform.localPosition = cameraPos;
-        }
-        else
-        {           
-            _shakeTimer = 0;
-            Vector3 cameraPos = _camera.transform.localPosition;
-            cameraPos.y = Mathf.Lerp(cameraPos.y, _defaultCameraY, Time.deltaTime * 3f);
-            _camera.transform.localPosition = cameraPos;
-        }
+    private void OnDestroy()
+    {
+        
     }
 }

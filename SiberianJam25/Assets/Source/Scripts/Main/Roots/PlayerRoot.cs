@@ -1,30 +1,29 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class PlayerRoot : CompositeRoot
 {
-    private const string ShowFadeTrigger = "Show";
-
     [SerializeField] private Player _player;
     [SerializeField] public LevelRoot _levelRoot;
     [Header("Restart Settings")]
     [SerializeField] private Transform _restartPoint;
     [Header("UI")]
-    [SerializeField] private Animator _glassOnFadeAnimation;
-    [SerializeField] private Animator _glassOffFadeAnimation;
+    [SerializeField] private PlayerUI _playerUi;
     [SerializeField] private GameObject _cantTakeItemInfo;
     [SerializeField] private GameObject _interactKeyinfo;
     [SerializeField] private GameObject _pausePanel;
 
-    public Player Player => _player;
-
     private bool _isPause;
+
+    public Player Player => _player;
+    public bool IsPause => _isPause;
 
     public override void Compose()
     {
-        _player.initialize(this);
+        _player.Initialize(this);
 
-        ActivatePlayer();
+        //ActivatePlayer();
     }
 
     private void Update()
@@ -64,32 +63,19 @@ public class PlayerRoot : CompositeRoot
         _levelRoot.OnGameOver();
     }
 
-    public void RestartLevel()
+    public void BackPlayerToStart()
     {
-        _player.transform.position = _restartPoint.position;
         ActivatePlayer();
+        
+        _player.CharacterController.enabled = false;
+        _player.gameObject.transform.localPosition = _restartPoint.position;
+        _player.CharacterController.enabled = true;      
     }
 
     #region GLASSES
-    public void OnGlassesOn()
-    {
-        _levelRoot.TryShowPinkWorld();
-    }
+    public void OnGlassesOn() => _levelRoot.TryShowPinkWorld();
 
-    public void OnGlassesOff()
-    {
-        _levelRoot.TryShowBadWorld();
-    }
-
-    public void ShowGlassOnFade()
-    {
-        _glassOnFadeAnimation.SetTrigger(ShowFadeTrigger);
-    }
-
-    public void ShowGlassOffFade()
-    {
-        _glassOffFadeAnimation.SetTrigger(ShowFadeTrigger);
-    }
+    public void OnGlassesOff() => _levelRoot.TryShowBadWorld();
 
     #endregion
 
@@ -119,6 +105,15 @@ public class PlayerRoot : CompositeRoot
 
     #endregion
 
+    #region >>> DIALOGS
+
+    public void SetDialog(DialogComponent dialogComponent)
+    {
+        _playerUi.SetDialogPhrase(dialogComponent);
+    }
+
+    #endregion
+
     private void ToggleMouse(bool value)
     {
         if(value)
@@ -132,7 +127,7 @@ public class PlayerRoot : CompositeRoot
     private void PauseGame()
     {
         _isPause = true;
-        _pausePanel.gameObject.SetActive(true);
+        _pausePanel?.gameObject.SetActive(true);
         DeactivatePlayer();
         ToggleMouse(true);
         Time.timeScale = 0f;
@@ -141,7 +136,7 @@ public class PlayerRoot : CompositeRoot
     private void ResumeGame()
     {
         _isPause = false;
-        _pausePanel.gameObject.SetActive(false);
+        _pausePanel?.gameObject.SetActive(false);
         ActivatePlayer();
         ToggleMouse(false);
         Time.timeScale = 1f;

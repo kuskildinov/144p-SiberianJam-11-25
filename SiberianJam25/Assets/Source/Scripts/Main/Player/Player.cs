@@ -3,82 +3,70 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private const string DiaryShowAnimParam = "Show";
+
     [Header("Components")]
     [SerializeField] private PlayerMovment _movment;
     [SerializeField] private PlayerAnimations _animations;
     [SerializeField] private PlayerInteractions _interactions;
-    [Header("Camera Settings")]
-    [SerializeField] private Camera _camera;
-    [SerializeField] private float defaultFOV = 60f;
-    [SerializeField] private float maxFOV = 90f;
-    [SerializeField] private float minFOV = 40f;
-    [SerializeField] private float fovChangeSpeed = 2f;
-    [SerializeField] private AnimationCurve fovCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+    [SerializeField] private PlayerGlassSwitcher _glassSwitcher;
+    [SerializeField] private PlayerCamera _playerCamera;   
     [Header("Secure Detection Settings")]
     [SerializeField] private float _timeBeforeGameOver = 2.5f;
     [SerializeField] private AudioSource _camZoneSound;
     [Header("TakeItemSettings")]
     [SerializeField] private Transform _takeItemContainer;
+    [Header("Deary Book Settings")]
+    [SerializeField] private DiaryBook _diaryBook;
+    [SerializeField] private Animator _diaryAnimator;
 
     private PlayerRoot _root;
+    private Camera _camera;
     private bool _isActive;
-    [SerializeField] private bool _canSwitchGlass;
-    private bool _glassOn = true;
+  
+    [SerializeField] private bool _canSwitchGlass;    
     private bool _isDetectedBySecure = false;
-    private float _targetFOV;
-    private float _currentFOV;
+    [SerializeField] private bool _canOpenDiary = true;
+    private bool _diaryOpen = false;
     private float _onDetectionTimer;
-    private Coroutine _fovCoroutine;
     private Item _currentItemOnHand;
 
+    #region Properties
     public bool IsActive => _isActive;
+    public bool IsDetected => _isDetectedBySecure;
     public bool CanSwitchGlasses { get => _canSwitchGlass; set => _canSwitchGlass = value; }
     public Item CurrentItemOnHand => _currentItemOnHand;
-    
-
-    public void initialize(PlayerRoot root)
+   
+    public Camera Camera => _camera;
+    public CharacterController CharacterController => _movment.CharacterController;
+    #endregion
+  
+    public void Initialize(PlayerRoot root)
     {
         _root = root;
-        _movment?.initialize(this);
+        _camera = Camera.main;
+
+        _movment?.Initialize(this);
         _animations?.initialize(this);
         _interactions?.initialize(this);
-
-        _currentFOV = _camera.fieldOfView;
-        _targetFOV = _currentFOV;
-
+        _glassSwitcher?.Initialize(this);
+        _playerCamera?.Initialize();
+        _diaryBook?.Initialize();
         _isActive = true;
     }
 
     private void Update()
     {
-        if (_isActive == false)
-            return;
+        ShowDiaryHandler();
 
-        HandleCameraView();
-
-        if (_canSwitchGlass)
-        {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                _canSwitchGlass = false;
-
-                if (_glassOn)
-                {
-                    TryGlassOff();
-                }
-                else
-                {
-                    TryGlassOn();
-                }
-            }
-        }
-
-        if(_isDetectedBySecure)
-        {
-            StartUnderSecureTimer();
-        }
+        if (!_isActive || _root.IsPause)
+            return;                
+      
+        SwitchGlassesHandler();
+        SecureDetectionHandler();
     }
 
+    #region >>> ACTIVATE DEACTIVATE
     public void Activate()
     {
         _isActive = true;
@@ -88,20 +76,14 @@ public class Player : MonoBehaviour
     {
         _isActive = false;
     }
+    #endregion    
+    #region >>> INTERACTION INFO 
 
-    #region >>> UI
+    public void ShowInteractionInfo() => _root.ShowInteractionInfo();
 
-    public void ShowInteractionInfo()
-    {
-        _root.ShowInteractionInfo();
-    }
-
-    public void HideInteractionInfo()
-    {
-        _root.HideInteractionInfo();
-    }
+    public void HideInteractionInfo() => _root.HideInteractionInfo();
     #endregion
-
+    #region >>> ITEMS INTERACTION
     public void TakeItem(Item item)
     {
         if(_currentItemOnHand != null)
@@ -120,25 +102,23 @@ public class Player : MonoBehaviour
         _currentItemOnHand = null;
 
     }
-
+    #endregion
     #region >>> SECURE DETECTION
 
     public void DetectedBySecure(Transform secureCam)
-    {
-        Debug.Log("Игрок замечен");
+    {      
         _movment.OnLostControl(secureCam);
-        SetFOV(minFOV);
+        _playerCamera.SetMinFOV();
         _isDetectedBySecure = true;
 
         _camZoneSound.Play();
     }
 
     public void LostDetectionBySecure()
-    {
-        Debug.Log("Игрок потерян");
+    {      
         _movment.OnReturnControl();
-        SetFOV(defaultFOV);
         _isDetectedBySecure = false;
+        _playerCamera.SetDefaultFOV();
         _onDetectionTimer = 0f;
 
         _camZoneSound.Stop();
@@ -164,87 +144,91 @@ public class Player : MonoBehaviour
             return true;
     }
 
-    #endregion
+    private void SecureDetectionHandler() 
+    {
+        if (_isDetectedBySecure)
+        {
+            StartUnderSecureTimer();
+        }
+    }
 
+    #endregion
     #region >>> GLASSES
-    private void TryGlassOn()
-    {       
-        _glassOn = true;
-        _animations.PlayGlassOnAnimation();
-        _root.ShowGlassOnFade();       
+
+    public void OnGlassSwitchEnded()
+    {
+        _canSwitchGlass = true;       
+        _glassSwitcher.OnEndSwitchGlasses();
     }
 
-    private void TryGlassOff()
+    public void PlaySwitchGlassesAnimation()
     {
-        _glassOn = false;
-        _animations.PlayGlassOffAnimation();
-        _root.ShowGlassOffFade();
+        _animations.PlayGlassSwitchAnimation();
     }
 
-    public void OnGlassOnFull()
-    {
-        _root.OnGlassesOn();
-        _canSwitchGlass = true;
+    public void OnGlassesOn() => _root.OnGlassesOn();
+
+    public void OnGlassesOff() => _root.OnGlassesOff();
+
+    private void SwitchGlassesHandler()
+    {        
+        if (Input.GetKeyDown(KeyCode.Q) && _canSwitchGlass)
+        {
+            TrySwitchGlasses();
+        }
     }
 
-    public void OnGlassOffFull()
+    private void TrySwitchGlasses()
     {
-        _root.OnGlassesOff();
-        _canSwitchGlass = true;
+        _canSwitchGlass = false;
+        _glassSwitcher.TrySwitchGlasses();
     }
 
     #endregion
+    #region >>> DIARY
 
-    #region >>> CAMERA SETTINGS
-
-    private void HandleCameraView()
+    public void OnDiaryPageTaked(SheetData newData)
     {
-        if (Mathf.Abs(_camera.fieldOfView - _targetFOV) > 0.1f)
+        _diaryBook.AddSheet(newData);
+    }
+
+    private void ShowDiaryHandler()
+    {
+        if(Input.GetKeyDown(KeyCode.Tab) && _canOpenDiary)
         {
-            _camera.fieldOfView = Mathf.Lerp(
-                _camera.fieldOfView,
-                _targetFOV,
-                fovChangeSpeed * Time.deltaTime
-            );
+            if (_diaryOpen)
+                HideDiary();
+            else
+                ShowDiary();
         }
     }
 
-    public void SetFOV(float newFOV, float duration = -1f)
+    private void ShowDiary()
     {
-        _targetFOV = Mathf.Clamp(newFOV, minFOV, maxFOV);
+        _diaryOpen = true;
+        _diaryAnimator.SetBool(DiaryShowAnimParam, true);
 
-        if (duration > 0 && gameObject.activeInHierarchy)
-        {
-            if (_fovCoroutine != null)
-                StopCoroutine(_fovCoroutine);
-            _fovCoroutine = StartCoroutine(ChangeFOVCoroutine(_targetFOV, duration));
-        }
+        _isActive = false;
     }
 
-    private IEnumerator ChangeFOVCoroutine(float targetFOVValue, float duration)
+    private void HideDiary()
     {
-        float startFOV = _camera.fieldOfView;
-        float elapsedTime = 0f;
+        StartCoroutine(HideDiaryRoutine());
+    }
 
-        while (elapsedTime < duration)
-        {
-            elapsedTime += Time.deltaTime;
-            float t = elapsedTime / duration;
-            float curveValue = fovCurve.Evaluate(t);
+    private IEnumerator HideDiaryRoutine()
+    {
+        _diaryOpen = false;
+        _diaryAnimator.SetBool(DiaryShowAnimParam, false);
 
-            _camera.fieldOfView = Mathf.Lerp(startFOV, targetFOVValue, curveValue);
-            _currentFOV = _camera.fieldOfView;
+        _isActive = true;
 
-            yield return null;
-        }
+        yield return new WaitForSecondsRealtime(0.7f);
 
-        _camera.fieldOfView = targetFOVValue;
-        _currentFOV = targetFOVValue;
-        _targetFOV = targetFOVValue;
-        _fovCoroutine = null;
+        _diaryBook.ResetToFirstPage();
     }
     #endregion
-
+   
     private void OnTriggerExit(Collider other)
     {
         if(other.TryGetComponent<PlayerRoom> (out PlayerRoom playerRoom))

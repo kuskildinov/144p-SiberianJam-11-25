@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 337945215554712501}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.488, y: 0.018, z: 0.065}
-  m_LocalScale: {x: 0.27324042, y: 0.20723581, z: 0.20723581}
+  m_LocalPosition: {x: 0.401, y: 0.018, z: 0.053}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8694729500845685535}
@@ -133,8 +133,8 @@ Transform:
   m_GameObject: {fileID: 1651310598985183370}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.516, y: 0.028, z: 0.065}
-  m_LocalScale: {x: 0.27324042, y: 0.20723581, z: 0.20723581}
+  m_LocalPosition: {x: -0.411, y: 0.028, z: 0.059}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8694729500845685535}
@@ -238,8 +238,8 @@ Transform:
   m_GameObject: {fileID: 5832363041803435702}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.018, y: 0.028, z: 0.065}
-  m_LocalScale: {x: 0.27324042, y: 0.20723581, z: 0.20723581}
+  m_LocalPosition: {x: -0.005, y: 0.028, z: 0.053}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8694729500845685535}
@@ -327,12 +327,13 @@ GameObject:
   - component: {fileID: 1273762657983473223}
   - component: {fileID: 4441232166183640127}
   - component: {fileID: 2683971488541973031}
+  - component: {fileID: 406526629354101979}
   m_Layer: 7
-  m_Name: vorota
+  m_Name: Gates
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &7514839210860283225
 Transform:
@@ -343,7 +344,7 @@ Transform:
   m_GameObject: {fileID: 6567425029490538015}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.012128416, y: -0.72053945, z: -0.15014291}
+  m_LocalPosition: {x: -0.01212842, y: -0.72053945, z: 0.314}
   m_LocalScale: {x: 1.2128415, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -420,6 +421,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.8419867, y: 1.2034636, z: 0.067999996}
   m_Center: {x: 0, y: 0, z: -0.03400095}
+--- !u!95 &406526629354101979
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6567425029490538015}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 348f9da42e4629b42972cee0d1444384, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7566749028855361286
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,7 +469,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.98331, y: 6.2, z: 29.17}
-  m_LocalScale: {x: 0.82451, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5977054608494637248}
@@ -473,4 +495,3 @@ MonoBehaviour:
   _lighTree: {fileID: 2290033557809209195}
   _greenColorMaterial: {fileID: 2100000, guid: 16bbce643c7c1d44199d3acb3d607c6b, type: 2}
   _redColorMaterial: {fileID: 2100000, guid: b8c45a2dc3ddd8b4baa8961728ba8fa6, type: 2}
-  _gate: {fileID: 0}

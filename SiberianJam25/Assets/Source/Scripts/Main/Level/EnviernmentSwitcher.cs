@@ -13,7 +13,7 @@ public class EnviernmentSwitcher : MonoBehaviour
 
     public void ShowBadWorld()
     {
-        _pinkWorldEnvienment.gameObject.SetActive(false);
-        _badWorldEnviernment.gameObject.SetActive(true);
+        _pinkWorldEnvienment?.gameObject.SetActive(false);
+        _badWorldEnviernment?.gameObject.SetActive(true);
     }
 }

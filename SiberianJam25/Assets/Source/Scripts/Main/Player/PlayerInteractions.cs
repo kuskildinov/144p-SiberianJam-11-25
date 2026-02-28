@@ -5,9 +5,9 @@ public class PlayerInteractions : MonoBehaviour
     [Header("Interaction Settings")]
     [SerializeField] private float _interactDistance = 1.0f;    
     [Header("Links")]
-    [SerializeField] private Camera _camera;
 
     private Player _player;
+    private Camera _camera => _player.Camera;
     private InteractableObject _currentInteractableObject;
 
     public void initialize(Player player)
@@ -25,6 +25,11 @@ public class PlayerInteractions : MonoBehaviour
 
     private void HandleInteraction()
     {
+        if(_camera == null)
+        {           
+            return;
+        }
+        
         RaycastHit hit;
       
         if (Physics.Raycast(_camera.transform.position, _camera.transform.forward,
