@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private const string DiaryShowAnimParam = "Show";
+
     [Header("Components")]
     [SerializeField] private PlayerMovment _movment;
     [SerializeField] private PlayerAnimations _animations;
@@ -15,13 +17,18 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioSource _camZoneSound;
     [Header("TakeItemSettings")]
     [SerializeField] private Transform _takeItemContainer;
+    [Header("Deary Book Settings")]
+    [SerializeField] private DiaryBook _diaryBook;
+    [SerializeField] private Animator _diaryAnimator;
 
     private PlayerRoot _root;
     private Camera _camera;
     private bool _isActive;
   
     [SerializeField] private bool _canSwitchGlass;    
-    private bool _isDetectedBySecure = false;   
+    private bool _isDetectedBySecure = false;
+    [SerializeField] private bool _canOpenDiary = true;
+    private bool _diaryOpen = false;
     private float _onDetectionTimer;
     private Item _currentItemOnHand;
 
@@ -44,13 +51,15 @@ public class Player : MonoBehaviour
         _interactions?.initialize(this);
         _glassSwitcher?.Initialize(this);
         _playerCamera?.Initialize(this);
-       
+        _diaryBook?.Initialize();
         _isActive = true;
     }
 
     private void Update()
     {
-        if (!_isActive)
+        ShowDiaryHandler();
+
+        if (!_isActive || _root.IsPause)
             return;
                 
         HandleCameraView();
@@ -178,6 +187,49 @@ public class Player : MonoBehaviour
         _glassSwitcher.TrySwitchGlasses();
     }
 
+    #endregion
+    #region >>> DIARY
+
+    public void OnDiaryPageTaked(SheetData newData)
+    {
+        _diaryBook.AddSheet(newData);
+    }
+
+    private void ShowDiaryHandler()
+    {
+        if(Input.GetKeyDown(KeyCode.Tab) && _canOpenDiary)
+        {
+            if (_diaryOpen)
+                HideDiary();
+            else
+                ShowDiary();
+        }
+    }
+
+    private void ShowDiary()
+    {
+        _diaryOpen = true;
+        _diaryAnimator.SetBool(DiaryShowAnimParam, true);
+
+        _isActive = false;
+    }
+
+    private void HideDiary()
+    {
+        StartCoroutine(HideDiaryRoutine());
+    }
+
+    private IEnumerator HideDiaryRoutine()
+    {
+        _diaryOpen = false;
+        _diaryAnimator.SetBool(DiaryShowAnimParam, false);
+
+        _isActive = true;
+
+        yield return new WaitForSecondsRealtime(0.7f);
+
+        _diaryBook.ResetToFirstPage();
+    }
     #endregion
     #region >>> CAMERA SETTINGS
 

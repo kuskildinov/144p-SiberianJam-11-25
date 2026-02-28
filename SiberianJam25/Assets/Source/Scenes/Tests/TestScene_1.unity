@@ -1287,7 +1287,7 @@ GameObject:
   - component: {fileID: 751046979}
   m_Layer: 0
   m_Name: MainCam
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1463,86 +1463,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1952224609}
-    - target: {fileID: 546459886162688114, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2179784563091998471, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.26345995
-      objectReference: {fileID: 0}
-    - target: {fileID: 2179784563091998471, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2179784563091998471, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.000000029802322
-      objectReference: {fileID: 0}
-    - target: {fileID: 2179784563091998471, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.9646704
-      objectReference: {fileID: 0}
-    - target: {fileID: 2179784563091998471, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -149.449
-      objectReference: {fileID: 0}
-    - target: {fileID: 2631837451409851516, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 2631837451409851516, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 2631837451409851516, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -400
-      objectReference: {fileID: 0}
-    - target: {fileID: 2631837451409851516, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 2858855160687934673, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: _turnSpeed
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 2858855160687934673, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: _firstSheet
-      value: 
-      objectReference: {fileID: 953955775}
-    - target: {fileID: 2858855160687934673, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: _currentSheetsData.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2858855160687934673, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: _currentSheetsData.Array.data[1].SheetText
-      value: "\u0412\u0442\u043E\u0440\u0430\u044F \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0430"
-      objectReference: {fileID: 0}
-    - target: {fileID: 2858855160687934673, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: _currentSheetsData.Array.data[2].SheetText
-      value: "\u0422\u0440\u0435\u0442\u044C\u044F \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0430"
-      objectReference: {fileID: 0}
-    - target: {fileID: 2858855160687934673, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: _currentSheetsData.Array.data[3].SheetText
-      value: "\u0422\u0440\u0435\u0442\u044C\u044F \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u0430"
-      objectReference: {fileID: 0}
     - target: {fileID: 3784079492480537567, guid: 3e07a91513ef443409cf30d84a644b89,
         type: 3}
       propertyPath: m_Name
@@ -1553,36 +1473,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 751046978}
-    - target: {fileID: 4952570127265470156, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 4952570127265470156, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 4952570127265470156, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 4952570127265470156, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 6234777080247158954, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.083
-      objectReference: {fileID: 0}
-    - target: {fileID: 6234777080247158954, guid: 3e07a91513ef443409cf30d84a644b89,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.774
-      objectReference: {fileID: 0}
     - target: {fileID: 6456510319118460431, guid: 3e07a91513ef443409cf30d84a644b89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1743,18 +1633,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913559149}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &953955775 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4101419664432854656, guid: 3e07a91513ef443409cf30d84a644b89,
-    type: 3}
-  m_PrefabInstance: {fileID: 869336341}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ade84a87ab9c42459b9eefa70a913fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &990921623 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2476568862400267626, guid: 3e07a91513ef443409cf30d84a644b89,

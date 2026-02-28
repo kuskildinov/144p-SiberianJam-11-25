@@ -17,6 +17,7 @@ public class PlayerRoot : CompositeRoot
     private bool _isPause;
 
     public Player Player => _player;
+    public bool IsPause => _isPause;
 
     public override void Compose()
     {

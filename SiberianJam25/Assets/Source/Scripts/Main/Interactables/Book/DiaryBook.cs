@@ -17,7 +17,8 @@ public class DiaryBook : MonoBehaviour
     [SerializeField] private Button _nextPageButton;
     [SerializeField] private Button _previousPageButton;
 
-    private bool _canTurn;   
+    private bool _canTurn;
+    private bool _isTurning;
 
     private float _currentAngle;
     private int _currentPageIndex = 0;
@@ -30,17 +31,19 @@ public class DiaryBook : MonoBehaviour
         SubscribeToEvents();
 
         _firstSheet.SetData(_currentSheetsData[0]);
-    }
 
-    private void Start()
-    {
-        Initialize();
+        CheckNavigationButtons();
     }
 
     private void Update()
     {  
         SheetTurnHandler();
     }  
+
+    public void AddSheet(SheetData newData)
+    {
+        _currentSheetsData.Add(newData);
+    }
 
     private void SheetTurnHandler()
     {
@@ -56,7 +59,8 @@ public class DiaryBook : MonoBehaviour
                 {
                     Debug.Log("Перевернули");
                     _canTurn = false;
-                   if(_hideSheet!= null)
+                    _isTurning = false;
+                   if (_hideSheet!= null)
                     {
                         _hideSheet.gameObject.SetActive(false);
                         _hideSheet = null;
@@ -67,6 +71,7 @@ public class DiaryBook : MonoBehaviour
 
     private void TurnSheet(DiarySheet sheet, float targetAngle,Action OnCenter, Action OnComplete)
     {
+        _isTurning = true;
         float t = _turnSpeed * Time.deltaTime;
         _currentAngle = Mathf.MoveTowards(_currentAngle, targetAngle, t);
 
@@ -84,6 +89,9 @@ public class DiaryBook : MonoBehaviour
 
     private void TryOpenNextPage()
     {
+        if (_isTurning)
+            return;
+
         _currentAngle = _opendAngle;       
 
         if (_currentSheetsData.Count > 2)
@@ -140,6 +148,9 @@ public class DiaryBook : MonoBehaviour
 
     private void TryOpenPreviousPage()
     {
+        if (_isTurning)
+            return;
+
         _currentAngle = _closedAngle;
 
         if (_currentSheetsData.Count > 2)
@@ -198,11 +209,26 @@ public class DiaryBook : MonoBehaviour
 
     private void CheckNavigationButtons()
     {
+        if (_currentPageIndex <= 0)
+        {
+            _previousPageButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            _previousPageButton.gameObject.SetActive(true);
+        }
 
+        if (_currentPageIndex >= _currentSheetsData.Count)
+        {
+            _nextPageButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            _nextPageButton.gameObject.SetActive(true);
+        }
     }
 
     #endregion
-
     #region >>> EVENTS
 
     private void SubscribeToEvents()
@@ -226,9 +252,45 @@ public class DiaryBook : MonoBehaviour
     private void OnPreviousPageButtonClicked()
     {
         TryOpenPreviousPage();
-    }   
+    }
 
     #endregion
+
+    public void ResetToFirstPage()
+    {
+        // Сбрасываем индекс текущей страницы
+        _currentPageIndex = 0;
+
+        // Отключаем возможность перелистывания во время сброса
+        _canTurn = false;
+
+        // Сбрасываем угол поворота
+        _currentAngle = 0f;
+
+       
+
+        // Устанавливаем данные для первого листа
+        _firstSheet.SetData(_currentSheetsData[0]);
+
+        // Сбрасываем целевые листы
+        _targetSheet = null;
+        _hideSheet = null;
+
+        // Применяем правильную ротацию для первого листа
+        _firstSheet.transform.localRotation = Quaternion.Euler(0, 0, _opendAngle);
+        _defaultSheet.transform.localRotation = Quaternion.Euler(0,0, _opendAngle);
+        _lastSheet.transform.localRotation = Quaternion.Euler(0, 0, _opendAngle);
+
+        // Деактивируем все листы
+        _firstSheet.gameObject.SetActive(true);
+        _defaultSheet.gameObject.SetActive(false);
+        _lastSheet.gameObject.SetActive(false);
+
+        // Обновляем состояние кнопок навигации
+        CheckNavigationButtons();
+
+        Debug.Log("Сброс до первой страницы выполнен");
+    }
 
     private void OnDestroy()
     {
