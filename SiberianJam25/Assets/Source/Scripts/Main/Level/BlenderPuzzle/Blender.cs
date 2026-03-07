@@ -21,18 +21,19 @@ public class Blender : MonoBehaviour
     [Header("Interactors")]
     [SerializeField] private InteractableObject _button;
     [SerializeField] private InteractableObject _carete;
+    [Header("other")]
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _buttonSound;
+    [SerializeField] private int _maxPiecesCount = 1;
     
     private LevelRoot _levelRoot;
     private bool _switchOn;
-    private int _maxPiecesCount = 5;
-    private int _currentPiecesCount = 5;
+    private int _currentPiecesCount;
 
     public void Initialize(LevelRoot levelRoot)
     {
         _levelRoot = levelRoot;
-        _currentPiecesCount = 5;
+        _currentPiecesCount = 0;
         HideBlood();
         SubscribeToEvents();
     }
@@ -140,6 +141,16 @@ public class Blender : MonoBehaviour
     {
         piece.SetParent(transform);
         piece.transform.position = _blenderSpawnPoint.position;
+        _currentPiecesCount++;
+        CheckPiecesCount();
+    }
+
+    private void CheckPiecesCount()
+    {
+        if (_currentPiecesCount >= _maxPiecesCount)
+        {
+            _button.CanInteract = true;
+        }
     }
 
     #endregion

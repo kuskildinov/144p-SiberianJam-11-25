@@ -101,7 +101,6 @@ public class Player : MonoBehaviour
     {
         _currentItemOnHand.Rigidbody.isKinematic = false;
         _currentItemOnHand = null;
-
     }
     #endregion
     #region >>> SECURE DETECTION
