@@ -14,6 +14,7 @@ public class LevelRoot : CompositeRoot
     [SerializeField] private List<MainLever> _levers;
     [SerializeField] private CodeGatePuzzle _codeGamePuzzle;
     [SerializeField] private FindObjectPuzzle _findObjectPuzzle;
+    [SerializeField] private Blender _blender;
     [SerializeField] private List<GameObject> _nums;
     [SerializeField] private List<GameObject> _symbols;
     [Header("Monsters")]
@@ -51,6 +52,7 @@ public class LevelRoot : CompositeRoot
         _findObjectPuzzle?.Initialize();
         _playerRoom?.Initialize(this);
         _shopMonster?.Initialize(this);
+        _blender?.Initialize(this);
 
         InitializePuzzles();
     }

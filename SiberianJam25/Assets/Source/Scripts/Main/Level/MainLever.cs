@@ -13,7 +13,7 @@ public class MainLever : InteractableObject
     [SerializeField] private float _playSoundDeley = 1f;
 
     private LevelRoot _root;
-
+    
     public void Initialize(LevelRoot root)
     {
         _root = root;

@@ -93,12 +93,13 @@ public class Player : MonoBehaviour
         }
 
         _currentItemOnHand = item;
-
-        item.SetParent(_takeItemContainer);
+        _currentItemOnHand.Rigidbody.isKinematic = true;
+        _currentItemOnHand.SetParent(_takeItemContainer);
     }
 
     public void DropItem()
     {
+        _currentItemOnHand.Rigidbody.isKinematic = false;
         _currentItemOnHand = null;
 
     }
