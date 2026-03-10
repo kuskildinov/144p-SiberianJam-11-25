@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Blender : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class Blender : MonoBehaviour
     [Header("Interactors")]
     [SerializeField] private InteractableObject _button;
     [SerializeField] private InteractableObject _carete;
+    [Header("Indicators")]
+    [SerializeField] private Text _fullText;
+    [SerializeField] private Color _textActiveColor;
+    [SerializeField] private Color _textNoActiveColor;
+    [SerializeField] private GameObject _indicatorLight;
     [Header("other")]
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _buttonSound;
@@ -34,7 +40,7 @@ public class Blender : MonoBehaviour
     {
         _levelRoot = levelRoot;
         _currentPiecesCount = 0;
-        HideBlood();
+        HideBlood();      
         SubscribeToEvents();
     }
 
@@ -73,7 +79,7 @@ public class Blender : MonoBehaviour
         StartCoroutine(BloodCollectionRoutine());
     }
 
-    #endregion
+    #endregion  
     #region >>> BLOOD BEHAVIOUR
 
     private void ShowBlood()
@@ -149,8 +155,29 @@ public class Blender : MonoBehaviour
     {
         if (_currentPiecesCount >= _maxPiecesCount)
         {
-            _button.CanInteract = true;
+            OnPiecesFull();
         }
+    }
+
+    private void OnPiecesFull()
+    {
+        _button.CanInteract = true;
+        ActivateFullIndecator();
+    }
+
+    #endregion
+    #region >>> INDICATORS
+
+    private void ActivateFullIndecator()
+    {
+        _fullText.color = _textActiveColor;
+        _indicatorLight.gameObject.SetActive(true);
+    }
+
+    private void DeactivateFullIndicator()
+    {
+        _fullText.color = _textNoActiveColor;
+        _indicatorLight.gameObject.SetActive(false);
     }
 
     #endregion
@@ -195,7 +222,7 @@ public class Blender : MonoBehaviour
     {
         Item piece = player.CurrentItemOnHand;
         if(piece!= null && piece.TryGetComponent<BodyPieces>(out BodyPieces bodyPiece))
-        {
+        {          
             player.DropItem();
             AddNewPiece(bodyPiece);
         }
