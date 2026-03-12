@@ -2849,12 +2849,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blender
       objectReference: {fileID: 0}
-    - target: {fileID: 2559148604147088065, guid: f633e09cd1fd8dd42b60dd93319d400b,
-        type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000,
-        type: 0}
     - target: {fileID: 3903037889372318202, guid: f633e09cd1fd8dd42b60dd93319d400b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2904,11 +2898,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7264811887872662460, guid: f633e09cd1fd8dd42b60dd93319d400b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.62
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

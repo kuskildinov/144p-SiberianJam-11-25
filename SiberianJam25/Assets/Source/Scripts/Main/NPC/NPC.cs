@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,10 @@ public class NPC : InteractableObject
     [SerializeField] private float _movementSpeed = 2f;
     [SerializeField] private float _rotationSpeed = 120f;
     [SerializeField] private float _waitTimeAtPoint = 2f;
-    [SerializeField] private bool _loopPatrol = true;
+    [SerializeField] private bool _loopPatrol;
     [SerializeField] private bool _resetMovePoint;
+    [SerializeField] private bool _pingPongMove;
+    [SerializeField] private bool _playOnAwake;
 
     [Header("Waypoints")]
     [SerializeField] private List<Transform> _waypoints = new List<Transform>();
@@ -24,9 +27,12 @@ public class NPC : InteractableObject
     public bool HasWaypoints => _waypoints != null && _waypoints.Count > 0;
     public bool IsMoving => _currentState == NPCState.Moving;
 
+    public event Action OnLastPointReached;
+
     private void Start()
     {
-        Activate();
+        if(_playOnAwake)
+            Activate();
     }
 
     public void Activate()
@@ -181,9 +187,10 @@ public class NPC : InteractableObject
                 if (_currentWaypointIndex >= _waypoints.Count - 1)
                 {
                     _movingForward = false;
+                    OnLastPointReached?.Invoke();
                 }
             }
-            else
+            else if(_pingPongMove)
             {
                 _currentWaypointIndex--;
                 if (_currentWaypointIndex <= 0)

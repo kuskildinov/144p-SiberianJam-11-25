@@ -14,7 +14,7 @@ public class LevelRoot : CompositeRoot
     [SerializeField] private List<MainLever> _levers;
     [SerializeField] private CodeGatePuzzle _codeGamePuzzle;
     [SerializeField] private FindObjectPuzzle _findObjectPuzzle;
-    [SerializeField] private Blender _blender;
+    [SerializeField] private BlenderPuzzle _blender;
     [SerializeField] private List<GameObject> _nums;
     [SerializeField] private List<GameObject> _symbols;
     [Header("Monsters")]
