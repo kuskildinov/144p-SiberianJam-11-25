@@ -20,7 +20,7 @@ public class LevelRoot : CompositeRoot
     [Header("Monsters")]
     [SerializeField] private ShopMonster _shopMonster;
     [Header("UI")]
-    [SerializeField] private BlackFadePanel _blackFadePanel;
+    [SerializeField] private LevelUI _levelUI;
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private GameObject _startFadePanel;
     [SerializeField] private GameObject _switchOffGlassesInfoPanel;
@@ -43,10 +43,10 @@ public class LevelRoot : CompositeRoot
 
     public override void Compose()
     {
-        _blackFadePanel.PlayFadeOffAnimation();
+        _levelUI.ShowBlackFadeOff();
 
         _currentWorldState = WorldState.PINK;
-
+        _levelUI?.Initialize(this);
         _mainTower?.Initialize(this);
         _codeGamePuzzle?.Initialize();
         _findObjectPuzzle?.Initialize();
@@ -240,7 +240,7 @@ public class LevelRoot : CompositeRoot
 
     private IEnumerator RestartLevelRoutine()
     {
-        _blackFadePanel.PlayOnAndOffAnimation();
+        _levelUI.ShowBlackFadeOff();
         _gameOverPanel?.gameObject.SetActive(false);
         _playerRoot.BackPlayerToStart();
         

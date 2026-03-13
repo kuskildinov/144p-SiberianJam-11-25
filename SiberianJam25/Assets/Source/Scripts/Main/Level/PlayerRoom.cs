@@ -31,8 +31,8 @@ public class PlayerRoom : MonoBehaviour
     {
         _root = root;
 
-        _door.CanInteract = false;
-        _window.CanInteract = false;
+        _door.SetInteractable(false);
+        _window.SetInteractable(false);
         StartCoroutine(StartCutSceneRoutine());
     }
 
@@ -52,7 +52,7 @@ public class PlayerRoom : MonoBehaviour
         {
             _outsideScene.gameObject.SetActive(false);
             _needCheckGlassWearing = false;
-            _window.CanInteract = true;
+            _window.SetInteractable(true);
 
             PlayPolicemansPhrases();
         }
@@ -73,7 +73,7 @@ public class PlayerRoom : MonoBehaviour
     {       
         _openDooePlayable.Play();
         _doorAnimator.SetTrigger("Activate");
-        _door.CanInteract = false;
+        _door.SetInteractable(false);
         StopFriendKnockingSound();
 
     }
@@ -106,7 +106,7 @@ public class PlayerRoom : MonoBehaviour
     private IEnumerator StartCutSceneRoutine()
     {
         yield return new WaitForSecondsRealtime(_timeBeforeKniking);
-        _door.CanInteract = true;
+        _door.SetInteractable(true);
         PlayFriendKnockingSound();
     }
 

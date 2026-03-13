@@ -92,7 +92,7 @@ public class CodePanel : MonoBehaviour
     {
         foreach (CodePanelButton button in _butttons)
         {
-            button.CanInteract = false;
+            button.SetInteractable(false);
         }
     }
 

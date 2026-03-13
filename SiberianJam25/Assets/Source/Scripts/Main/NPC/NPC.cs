@@ -22,6 +22,8 @@ public class NPC : InteractableObject
     private NPCState _currentState = NPCState.Idle;
     private int _currentWaypointIndex = 0;
     private bool _movingForward = true;
+    private Quaternion _defaultRotation;
+    private Coroutine _dialogCoroutine;
 
     // Properties
     public bool HasWaypoints => _waypoints != null && _waypoints.Count > 0;
@@ -33,6 +35,8 @@ public class NPC : InteractableObject
     {
         if(_playOnAwake)
             Activate();
+
+        _defaultRotation = transform.rotation;
     }
 
     public void Activate()
@@ -73,18 +77,32 @@ public class NPC : InteractableObject
     {
         base.TryInteract(player);
 
-        if(TryGetComponent<DialogComponent>(out DialogComponent dialogComponent))
-        {
-            PlayerRoot playerRoot = FindObjectOfType<PlayerRoot>();
-            if(playerRoot ==  null)
-            {
-                Debug.LogError("Cant Find PLayer Root For Dialog");
-                return;
-            }
+        TryStartDialogWithPlayer(player);
+    }
 
-            transform.LookAt(new Vector3(player.transform.position.x,1f,player.transform.position.z));
-            playerRoot.SetDialog(dialogComponent);
+    #endregion
+    #region >>> DIALOG
+
+    private void TryStartDialogWithPlayer(Player player)
+    {
+        if (TryGetComponent<DialogComponent>(out DialogComponent dialogComponent))
+        {
+            if(_dialogCoroutine != null)
+            {
+                StopCoroutine(_dialogCoroutine);
+            }
+            _dialogCoroutine = StartCoroutine(DialogWithPlayerRoutine(player, dialogComponent));
         }
+    }
+
+    private IEnumerator DialogWithPlayerRoutine(Player player, DialogComponent dialogComponent)
+    {
+        transform.LookAt(new Vector3(player.transform.position.x, 1f, player.transform.position.z));
+        player.TryActivateDialog(dialogComponent);
+
+        yield return new WaitForSecondsRealtime(dialogComponent.DialogTime);
+
+        ResetRotation();
     }
 
     #endregion
@@ -134,14 +152,7 @@ public class NPC : InteractableObject
         }
 
         // Поворот в сторону цели
-        Vector3 direction = (targetWaypoint.position - transform.position).normalized;
-        direction.y = 0; // Игнорируем разницу по высоте
-
-        if (direction != Vector3.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
-        }
+        RotateToMovePoint(targetWaypoint);
 
         // Движение к точке
         transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, _movementSpeed * Time.deltaTime);
@@ -241,6 +252,24 @@ public class NPC : InteractableObject
     public void SetLoopPatrol(bool loop)
     {
         _loopPatrol = loop;
+    }
+    #endregion
+    #region >>> ROTATION
+    private void RotateToMovePoint(Transform targetWaypoint)
+    {
+        Vector3 direction = (targetWaypoint.position - transform.position).normalized;
+        direction.y = 0; // Игнорируем разницу по высоте
+
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+        }
+    }
+
+    private void ResetRotation()
+    {
+        transform.rotation = _defaultRotation;
     }
     #endregion
 }

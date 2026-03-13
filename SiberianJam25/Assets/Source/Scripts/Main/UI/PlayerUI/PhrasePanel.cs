@@ -13,6 +13,7 @@ public class PhrasePanel : MonoBehaviour
     [Header("Typing Settings")]
     [SerializeField] private float _typingSpeed = 0.05f;
     [SerializeField] private float _fastForwardSpeed = 0.01f;
+    [SerializeField] private float _endDialogTime;
 
     [Header("Appearance")]
     [SerializeField] private Color _textColor = Color.white;
@@ -62,8 +63,9 @@ public class PhrasePanel : MonoBehaviour
 
         // Останавливаем предыдущую корутину
         if (_typingCoroutine != null)
-        {
-            StopCoroutine(_typingCoroutine);
+        {           
+            SkipTyping();
+            return;
         }
 
         _currentPhrase = phrase;
@@ -86,10 +88,10 @@ public class PhrasePanel : MonoBehaviour
             yield return new WaitForSecondsRealtime(speed);
         }
 
+        yield return new WaitForSecondsRealtime(_endDialogTime);
+
         _isTyping = false;
         _typingCoroutine = null;
-
-        yield return new WaitForSecondsRealtime(5f);
         Hide();
     }
 

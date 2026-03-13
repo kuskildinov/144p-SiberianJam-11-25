@@ -24,11 +24,11 @@ public class KeyLock : InteractableObject
             return;
 
         _isEmpty = false;
-        CanInteract = false;
+        _canInteract = false;
 
         player.DropItem();
         item.SetParent(transform);
-        item.CanInteract = false;
+        item.SetInteractable(false);
 
         _puzzle.OnKeyInserted();
     }

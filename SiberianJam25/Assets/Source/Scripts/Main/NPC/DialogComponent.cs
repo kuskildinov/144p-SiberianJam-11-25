@@ -6,6 +6,7 @@ public class DialogComponent : MonoBehaviour
 {
     public string CharacterName;
     public List<DialogPhrase> Phrases;
+    public float DialogTime = 5f;
 }
 
 [Serializable]

@@ -49,7 +49,7 @@ public class MainLever : InteractableObject
 
     private void SwitchOn()
     {
-        CanInteract = true;
+        _canInteract = true;
         _animator.SetBool("Activate", false);
 
         DeactivateSparks();
@@ -57,7 +57,7 @@ public class MainLever : InteractableObject
 
     private IEnumerator SwitchOffRoutine()
     {       
-        CanInteract = false;
+        _canInteract = false;
         PlaySwitchOffAnimation();
         ActivateSparks();
         yield return new WaitForSecondsRealtime(_playSoundDeley);

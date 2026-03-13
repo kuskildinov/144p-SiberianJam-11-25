@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
 
         _movment?.Initialize(this);
         _animations?.initialize(this);
-        _interactions?.initialize(this);
+        _interactions?.Initialize(this);
         _glassSwitcher?.Initialize(this);
         _playerCamera?.Initialize();
         _diaryBook?.Initialize();
@@ -76,19 +76,21 @@ public class Player : MonoBehaviour
     {
         _isActive = false;
     }
-    #endregion    
+    #endregion
     #region >>> INTERACTION INFO 
 
-    public void ShowInteractionInfo() => _root.ShowInteractionInfo();
+    public void TryShowInteractionInfo(string infoText)
+    {
+        _root.TryShowInteractionInfo(infoText);
+    }
 
-    public void HideInteractionInfo() => _root.HideInteractionInfo();
     #endregion
     #region >>> ITEMS INTERACTION
     public void TakeItem(Item item)
     {
         if(_currentItemOnHand != null)
         {
-            _root.ShowCantTakeItemMessage();
+            _root.ShowCantInteractText();
             return;
         }
 
@@ -102,6 +104,8 @@ public class Player : MonoBehaviour
         _currentItemOnHand.Rigidbody.isKinematic = false;
         _currentItemOnHand = null;
     }
+
+    
     #endregion
     #region >>> SECURE DETECTION
 
@@ -229,7 +233,14 @@ public class Player : MonoBehaviour
         _diaryBook.ResetToFirstPage();
     }
     #endregion
-   
+    #region >>> DIALOG SYSTEM
+    public void TryActivateDialog(DialogComponent dialogComponent)
+    {
+        _root.SetDialog(dialogComponent);
+    }
+
+    #endregion
+
     private void OnTriggerExit(Collider other)
     {
         if(other.TryGetComponent<PlayerRoom> (out PlayerRoom playerRoom))

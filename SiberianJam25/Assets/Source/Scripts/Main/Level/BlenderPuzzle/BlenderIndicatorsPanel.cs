@@ -26,14 +26,14 @@ public class BlenderIndicatorsPanel : MonoBehaviour
 
     private void ActivateFullIndecator()
     {
-        _button.CanInteract = true;
+        _button.SetInteractable(true);
         _fullText.color = _textActiveColor;
         _indicatorLight.gameObject.SetActive(true);
     }
 
     private void DeactivateFullIndicator()
-    {
-        _button.CanInteract = false;
+    {       
+        _button.SetInteractable(false);
         _fullText.color = _textNoActiveColor;
         _indicatorLight.gameObject.SetActive(false);
     }
