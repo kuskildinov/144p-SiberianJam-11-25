@@ -207,12 +207,13 @@ public class Player : MonoBehaviour
     {
         _diaryOpen = true;
         _diaryAnimator.SetBool(DiaryShowAnimParam, true);
-
+        _diaryBook.PlayOpenCloseSound();
         _isActive = false;
     }
 
     private void HideDiary()
     {
+       
         StartCoroutine(HideDiaryRoutine());
     }
 
@@ -220,7 +221,7 @@ public class Player : MonoBehaviour
     {
         _diaryOpen = false;
         _diaryAnimator.SetBool(DiaryShowAnimParam, false);
-
+        _diaryBook.PlayOpenCloseSound();
         _isActive = true;
 
         yield return new WaitForSecondsRealtime(0.7f);

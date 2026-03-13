@@ -13,10 +13,11 @@ public class DiaryBook : MonoBehaviour
     [SerializeField] private float _opendAngle = -160f;
     [Header("Sheets Data")]
     [SerializeField] private List<SheetData> _currentSheetsData;
-    [Header("Navigation Buttons")]
-    [SerializeField] private Button _nextPageButton;
-    [SerializeField] private Button _previousPageButton;
-
+    [Header("Sounds Settings")]
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _openCloseClip;
+    [SerializeField] private List<AudioClip> _pageTurnClips;
+   
     private bool _canTurn;
     private bool _isTurning;
 
@@ -27,18 +28,22 @@ public class DiaryBook : MonoBehaviour
     private float _targetAngle;
 
     public void Initialize()
-    {
-        SubscribeToEvents();
-
+    {      
+        InitializeSheets();
         _firstSheet.SetData(_currentSheetsData[0]);
-
-        CheckNavigationButtons();
     }
 
     private void Update()
     {  
         SheetTurnHandler();
     }  
+
+    private void InitializeSheets()
+    {
+        _firstSheet.Initialize(this);
+        _defaultSheet.Initialize(this);
+        _lastSheet.Initialize(this);
+    }
 
     public void AddSheet(SheetData newData)
     {
@@ -64,30 +69,46 @@ public class DiaryBook : MonoBehaviour
                     {
                         _hideSheet.gameObject.SetActive(false);
                         _hideSheet = null;
-                    }
-                    CheckNavigationButtons();
+                    }                   
                 });
     }
 
     private void TurnSheet(DiarySheet sheet, float targetAngle,Action OnCenter, Action OnComplete)
     {
-        _isTurning = true;
+        if (!_isTurning)
+            PlayPageTurnSound();
+
+        _isTurning = true;     
+
         float t = _turnSpeed * Time.deltaTime;
         _currentAngle = Mathf.MoveTowards(_currentAngle, targetAngle, t);
 
-        _currentAngle = Math.Clamp(_currentAngle, _opendAngle,_closedAngle);
+        _currentAngle = Math.Clamp(_currentAngle, _closedAngle,_opendAngle);
 
         sheet.transform.localRotation = Quaternion.Euler(0, 0, _currentAngle);
 
-        if (Mathf.Abs(_currentAngle - targetAngle) < 0.01f)
+        if (Mathf.Abs(_currentAngle - targetAngle) <= 2f)
         {
             OnComplete?.Invoke();
         }
     }
+    #region >>> SOUNDS
 
+    public void PlayOpenCloseSound()
+    {
+        _audioSource.PlayOneShot(_openCloseClip);
+    }
+
+    private void PlayPageTurnSound()
+    {
+        int index = UnityEngine.Random.Range(0, _pageTurnClips.Count);
+        _audioSource.PlayOneShot(_pageTurnClips[index]);
+    }
+
+    #endregion
     #region >>> NAVIGATION
 
-    private void TryOpenNextPage()
+    public void TryOpenNextPage()
     {
         if (_isTurning)
             return;
@@ -107,7 +128,7 @@ public class DiaryBook : MonoBehaviour
             {
                 _currentPageIndex++;
                 _targetSheet = _lastSheet;
-                _defaultSheet.gameObject.SetActive(false);
+                //_defaultSheet.gameObject.SetActive(false);
                 _hideSheet = _firstSheet;
             }
             else
@@ -138,15 +159,24 @@ public class DiaryBook : MonoBehaviour
         else
         {
             _currentPageIndex++;
-            _targetSheet = _firstSheet;           
-                            
+            _targetSheet = _firstSheet;
         }
 
         _targetAngle = _closedAngle;
+       
+        if(_targetSheet == _defaultSheet)
+        {
+            _targetAngle -= 1f;
+        }
+        else if(_targetSheet == _lastSheet)
+        {
+            _targetAngle -= 2f;
+        }
+
         _canTurn = true;
     }
 
-    private void TryOpenPreviousPage()
+    public void TryOpenPreviousPage()
     {
         if (_isTurning)
             return;
@@ -174,7 +204,7 @@ public class DiaryBook : MonoBehaviour
                 _currentPageIndex--;
                 _targetSheet = _defaultSheet;
                 _defaultSheet.gameObject.SetActive(true);
-                _defaultSheet.SetData(_currentSheetsData[_currentPageIndex]);              
+                _defaultSheet.SetData(_currentSheetsData[_currentPageIndex]);
                 _hideSheet = _lastSheet;
             }
         }
@@ -206,55 +236,10 @@ public class DiaryBook : MonoBehaviour
         _targetAngle = _opendAngle;
         _canTurn = true;
     }
+   
 
-    private void CheckNavigationButtons()
-    {
-        if (_currentPageIndex <= 0)
-        {
-            _previousPageButton.gameObject.SetActive(false);
-        }
-        else
-        {
-            _previousPageButton.gameObject.SetActive(true);
-        }
-
-        if (_currentPageIndex >= _currentSheetsData.Count)
-        {
-            _nextPageButton.gameObject.SetActive(false);
-        }
-        else
-        {
-            _nextPageButton.gameObject.SetActive(true);
-        }
-    }
-
-    #endregion
-    #region >>> EVENTS
-
-    private void SubscribeToEvents()
-    {
-        _nextPageButton.onClick.AddListener(OnNextPageButtonClicked);
-        _previousPageButton.onClick.AddListener(OnPreviousPageButtonClicked);
-    }
-
-    private void UnSubscribeToEvents()
-    {
-        _nextPageButton.onClick.RemoveAllListeners();
-        _previousPageButton.onClick.RemoveAllListeners();
-
-    }
-
-    private void OnNextPageButtonClicked()
-    {
-        TryOpenNextPage();
-    }
-
-    private void OnPreviousPageButtonClicked()
-    {
-        TryOpenPreviousPage();
-    }
-
-    #endregion
+    #endregion   
+   
 
     public void ResetToFirstPage()
     {
@@ -285,15 +270,8 @@ public class DiaryBook : MonoBehaviour
         _firstSheet.gameObject.SetActive(true);
         _defaultSheet.gameObject.SetActive(false);
         _lastSheet.gameObject.SetActive(false);
-
-        // Обновляем состояние кнопок навигации
-        CheckNavigationButtons();
-
+               
         Debug.Log("Сброс до первой страницы выполнен");
     }
 
-    private void OnDestroy()
-    {
-        UnSubscribeToEvents();
-    }
 }
