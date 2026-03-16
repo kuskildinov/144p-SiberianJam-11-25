@@ -12,7 +12,6 @@ public class PlayerRoot : CompositeRoot
     [SerializeField] private PlayerUI _playerUI;
     [SerializeField] private GameObject _cantTakeItemInfo;
     [SerializeField] private GameObject _interactKeyinfo;
-    [SerializeField] private GameObject _pausePanel;
 
     private bool _isPause;
 
@@ -60,7 +59,7 @@ public class PlayerRoot : CompositeRoot
     public void GameOver()
     {
         DeactivatePlayer();
-        _levelRoot.OnGameOver();
+        _levelRoot.OnGameOvered();
     }
 
     public void BackPlayerToStart()
@@ -125,19 +124,21 @@ public class PlayerRoot : CompositeRoot
     private void PauseGame()
     {
         _isPause = true;
-        _pausePanel?.gameObject.SetActive(true);
+        Time.timeScale = 0f;
+
         DeactivatePlayer();
         ToggleMouse(true);
-        Time.timeScale = 0f;
+        _levelRoot.ShowPausePanel();
     }
 
     private void ResumeGame()
     {
         _isPause = false;
-        _pausePanel?.gameObject.SetActive(false);
+        Time.timeScale = 1f;
+
         ActivatePlayer();
         ToggleMouse(false);
-        Time.timeScale = 1f;
+        _levelRoot.HidePausePanel();
     }
 
 }

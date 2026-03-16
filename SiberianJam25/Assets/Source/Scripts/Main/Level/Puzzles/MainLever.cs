@@ -12,11 +12,11 @@ public class MainLever : InteractableObject
     [SerializeField] private AudioClip _switchOffClip;
     [SerializeField] private float _playSoundDeley = 1f;
 
-    private LevelRoot _root;
+    private LevelPuzzlesHandler _puzzleHandler;
     
-    public void Initialize(LevelRoot root)
+    public void Initialize(LevelPuzzlesHandler puzzleHandler)
     {
-        _root = root;
+        _puzzleHandler = puzzleHandler;
         CheckCanInteract();
         DeactivateSparks();
         _animator.SetBool("Activate", false);
@@ -62,7 +62,7 @@ public class MainLever : InteractableObject
         ActivateSparks();
         yield return new WaitForSecondsRealtime(_playSoundDeley);
         PlaySwitchOffSound();
-        _root.OnPuzzleComplited(_index);
+        _puzzleHandler.OnLeverActivated(_index);
         yield return null;
     }
 

@@ -1,10 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class BlenderPuzzle : MonoBehaviour
+public class BlenderPuzzle : LevelPuzzle
 {
     [Header("Mesh variants")]
     [SerializeField] private GameObject _goodMesh;
@@ -19,18 +16,17 @@ public class BlenderPuzzle : MonoBehaviour
     [SerializeField] private int _maxPiecesCount;
     [SerializeField] private AudioSource _blenderSoundSource;
     [SerializeField] private AudioSource _mosterSoundSource;
-    
-    private LevelRoot _levelRoot;
+       
     private bool _isSwitchOn;
     private bool _isMonsterEating;
     private int _currentPiecesCount = 0;
 
     public event Action BlenderSwitchedOn;
     public event Action BlenderFull;
-
-    public void Initialize(LevelRoot levelRoot)
+       
+    public override void Initialize(LevelPuzzlesHandler puzzleHandler)
     {
-        _levelRoot = levelRoot;
+        base.Initialize(puzzleHandler);
 
         _bloodHandler.Initialize(this);
         _indicatorsPanel.Initialize(this);
@@ -114,21 +110,21 @@ public class BlenderPuzzle : MonoBehaviour
     #region >>> EVENTS
     private void SubscribeToEvents()
     {
-        _levelRoot.WorldStateChanged += OnWorldStateChanged;       
+        _puzzleHandler.WorlsStateChanged += OnWorldStateChanged;
         _carete.Interacted += OnPLayerDropBodyPiece;
         _bloodHandler.BloodTroughEnded += OnBloodTroughEnded;
-        _monster.OnLastPointReached += OnMonsterEndWay;
+        _monster.OnLastPointReached += OnMonsterEndWay;        
     }
 
     private void UnsubscribeToEvents()
     {
-        _levelRoot.WorldStateChanged -= OnWorldStateChanged;      
+        _puzzleHandler.WorlsStateChanged -= OnWorldStateChanged;
         _carete.Interacted -= OnPLayerDropBodyPiece;
         _bloodHandler.BloodTroughEnded -= OnBloodTroughEnded;
         _monster.OnLastPointReached -= OnMonsterEndWay;
     }
 
-    private void OnWorldStateChanged(WorldState newState)
+    public void OnWorldStateChanged(WorldState newState)
     {
         if (newState == WorldState.PINK)
         {

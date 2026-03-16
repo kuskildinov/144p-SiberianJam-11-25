@@ -2,28 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopMonster : MonoBehaviour
-{
-    [Header("Mesh variants")]
-    [SerializeField] private GameObject _goodMesh;
-    [SerializeField] private GameObject _badMesh;
+public class ShopMonster : Monster
+{    
     [Header("Queue Settings")]
     [SerializeField] private List<Transform> _queuePoints;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private float _npcMoveDelay = 5f;
     [SerializeField] private Transform _centerPoint;
     [SerializeField] private List<NPC> _npcPrefabs;
-
-    private LevelRoot _levelRoot;
+       
     private bool _isActive = true;
     private Queue<NPC> _currentQueue = new Queue<NPC>();
 
-    public void Initialize(LevelRoot levelRoot)
+    public override void Initialize(LevelMonstersHandler monstersHandler)
     {
-        _levelRoot = levelRoot;
+        base.Initialize(monstersHandler);
 
         InitializeNpc();
-        SubscribeToEvents();
+        Activate();
+    }
+
+    #region >>> ACTIVATION
+    private void Activate()
+    {
         StartCoroutine(ActiveRoutine());
     }
    
@@ -45,21 +46,6 @@ public class ShopMonster : MonoBehaviour
 
         yield break;
     }
-
-    #region >>> VISUAL
-
-    private void ShowGoodMesh()
-    {
-        _goodMesh.gameObject.SetActive(true);
-        _badMesh.gameObject.SetActive(false);
-    }
-
-    private void ShowBadMesh()
-    {
-        _goodMesh.gameObject.SetActive(false);
-        _badMesh.gameObject.SetActive(true);
-    }
-
     #endregion
     #region >>> QUEUE SETTINGS
 
@@ -113,32 +99,4 @@ public class ShopMonster : MonoBehaviour
     }
 
     #endregion
-    #region >>> EVENTS
-    private void SubscribeToEvents()
-    {
-        _levelRoot.WorldStateChanged += OnWorldStateChanged;      
-    }
-
-    private void UnsubscribeToEvents()
-    {
-        _levelRoot.WorldStateChanged -= OnWorldStateChanged;
-    }
-
-    private void OnWorldStateChanged(WorldState newState)
-    {
-        if (newState == WorldState.PINK)
-        {
-            ShowGoodMesh();
-        }
-        else if (newState == WorldState.BAD)
-        {
-            ShowBadMesh();
-        }
-    }
-    #endregion
-
-    private void OnDestroy()
-    {
-        UnsubscribeToEvents();
-    }
 }

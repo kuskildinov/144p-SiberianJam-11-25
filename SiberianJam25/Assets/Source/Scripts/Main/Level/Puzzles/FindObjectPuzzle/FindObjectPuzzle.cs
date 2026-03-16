@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FindObjectPuzzle : MonoBehaviour
+public class FindObjectPuzzle : LevelPuzzle
 {
-    [SerializeField] private List<KeyLock> _locks;
-    [SerializeField] private float rotationDuration = 1f;
-    [SerializeField] private Animator _doorAnimator;
+    private const string OpenGateAnimatorParam = "Open";
+    private const float OpenDoorDeley = 2f;
 
-    public void Initialize()
+    [SerializeField] private List<KeyLock> _locks;
+    [SerializeField] private float _keyRotationDuration = 1f;
+    [SerializeField] private Animator _doorAnimator;
+       
+    public override void Initialize(LevelPuzzlesHandler puzzleHandler)
     {
+        base.Initialize(puzzleHandler);
+
         InitializeLocks();
     }
 
@@ -61,10 +66,10 @@ public class FindObjectPuzzle : MonoBehaviour
         Quaternion targetRotation = startRotation * Quaternion.Euler(0, 0, 90);
         float elapsedTime = 0f;
 
-        while (elapsedTime < rotationDuration)
+        while (elapsedTime < _keyRotationDuration)
         {
             elapsedTime += Time.deltaTime;
-            float t = elapsedTime / rotationDuration;
+            float t = elapsedTime / _keyRotationDuration;
             key.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
             yield return null;
         }
@@ -74,8 +79,8 @@ public class FindObjectPuzzle : MonoBehaviour
 
     private IEnumerator OpenDoorRoutine()
     {
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(OpenDoorDeley);
 
-        _doorAnimator.SetTrigger("Open");
+        _doorAnimator.SetTrigger(OpenGateAnimatorParam);
     }
 }

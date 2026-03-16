@@ -16,18 +16,18 @@ public class MainTower : MonoBehaviour
     [SerializeField] private BlackFadePanel _fadePanel;
     [SerializeField] private GameObject _playerUI;
 
-    private LevelRoot _root;
+    private LevelPuzzlesHandler _puzzleHandler;
 
-    public void Initialize(LevelRoot root)
+    public void Initialize(LevelPuzzlesHandler puzzleHandler)
     {
-        _root = root;
+        _puzzleHandler = puzzleHandler;
 
         InitializeCam();
 
         _doorIndicators.Initialize(this);
     }
 
-    #region >>> INDICATORS CAM
+    #region >>> CAMERA
 
     private void InitializeCam()
     {
