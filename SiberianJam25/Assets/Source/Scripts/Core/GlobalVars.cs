@@ -16,6 +16,7 @@ public static class GlobalVars
     public static bool PuzzleOneReady = false;
     public static bool PuzzleTwoReady = false;
     public static bool PuzzleTreeReady = false;
+    public static bool PuzzleFourReady = false;
     [Header("Настройки головоломок")]
     public static string CodePanelCode = "4221";    
     [Header("Настройки главной башни")]

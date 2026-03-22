@@ -11,6 +11,8 @@ public class BlackFadePanel : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private Image _image;
 
+    private Coroutine _fadeCoroutine;
+
     public void Show()
     {
         _image.gameObject.SetActive(true);
@@ -23,17 +25,32 @@ public class BlackFadePanel : MonoBehaviour
 
     public void PlayFadeOnAnimation()
     {
-        StartCoroutine(FadeRoutine(FadeOnParam));
+        if(_fadeCoroutine != null)
+        {
+            _fadeCoroutine = null;
+            return;
+        }
+        _fadeCoroutine = StartCoroutine(FadeRoutine(FadeOnParam));
     }
     
     public void PlayFadeOffAnimation()
     {
-        StartCoroutine(FadeRoutine(FadeOffParam));
+        if (_fadeCoroutine != null)
+        {
+            _fadeCoroutine = null;
+            return;
+        }
+        _fadeCoroutine = StartCoroutine(FadeRoutine(FadeOffParam));
     }
 
     public void PlayOnAndOffAnimation()
     {
-        StartCoroutine(OnOffFadeRoutine());
+        if (_fadeCoroutine != null)
+        {
+            _fadeCoroutine = null;
+            return;
+        }
+        _fadeCoroutine = StartCoroutine(OnOffFadeRoutine());
     }
 
     private IEnumerator FadeRoutine(string param)

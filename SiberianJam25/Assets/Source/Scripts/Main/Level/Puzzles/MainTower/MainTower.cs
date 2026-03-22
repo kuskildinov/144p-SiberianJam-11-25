@@ -24,7 +24,7 @@ public class MainTower : MonoBehaviour
 
         InitializeCam();
 
-        _doorIndicators.Initialize(this);
+        _doorIndicators.Initialize();
     }
 
     #region >>> CAMERA

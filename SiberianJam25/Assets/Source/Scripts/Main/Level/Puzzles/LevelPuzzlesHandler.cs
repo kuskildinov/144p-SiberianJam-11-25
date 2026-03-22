@@ -50,8 +50,14 @@ public class LevelPuzzlesHandler : MonoBehaviour
                     GlobalVars.PuzzleTreeReady = true;
                     break;
                 }
+            case 3:
+                {
+                    GlobalVars.PuzzleFourReady = true;
+                    break;
+                }
         }
-        
+
+        _mainTower.OnPuzzleComplited(index);
         if (CheckAllPuzzlesReady())
         {
             _mainTower.OpenGate();
@@ -61,7 +67,7 @@ public class LevelPuzzlesHandler : MonoBehaviour
 
     private bool CheckAllPuzzlesReady()
     {
-        return (GlobalVars.PuzzleOneReady && GlobalVars.PuzzleTwoReady && GlobalVars.PuzzleTreeReady);
+        return (GlobalVars.PuzzleOneReady && GlobalVars.PuzzleTwoReady && GlobalVars.PuzzleTreeReady && GlobalVars.PuzzleFourReady);
     }
 
     #endregion

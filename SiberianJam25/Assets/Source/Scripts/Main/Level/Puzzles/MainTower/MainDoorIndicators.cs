@@ -5,16 +5,13 @@ public class MainDoorIndicators : MonoBehaviour
     [SerializeField] private MeshRenderer _lightOne;
     [SerializeField] private MeshRenderer _lightTwo;
     [SerializeField] private MeshRenderer _lighTree;
+    [SerializeField] private MeshRenderer _lighFour;
     [Header("Colors")]
     [SerializeField] private Material _greenColorMaterial;
     [SerializeField] private Material _redColorMaterial;  
-
-    private MainTower _tower;
-    
-    public void Initialize(MainTower tower)
-    {
-        _tower = tower;
-
+   
+    public void Initialize()
+    {       
        UpdateLights();
     } 
 
@@ -34,5 +31,10 @@ public class MainDoorIndicators : MonoBehaviour
             _lighTree.material = _greenColorMaterial;
         else
             _lighTree.material = _redColorMaterial;
+
+        if (GlobalVars.PuzzleFourReady)
+            _lighFour.material = _greenColorMaterial;
+        else
+            _lighFour.material = _redColorMaterial;
     }       
 }
