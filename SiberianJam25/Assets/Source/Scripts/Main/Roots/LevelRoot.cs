@@ -8,6 +8,8 @@ public class LevelRoot : CompositeRoot
     [SerializeField] private PlayerRoot _playerRoot;
     [Header("World State")]
     [SerializeField] private WorldStateSwitcher _worldStateSwitcher;
+    [Header("NPC")]
+    [SerializeField] private LevelNpcHandler _npcHandler;
     [Header("Puzzles")]
     [SerializeField] private LevelPuzzlesHandler _puzzlesHandler;    
     [Header("Monsters")]
@@ -34,15 +36,16 @@ public class LevelRoot : CompositeRoot
         _levelUI.ShowBlackFadeOff();
 
         _currentWorldState = WorldState.PINK;
-        _levelUI?.Initialize(this);      
-              
-        _playerRoom?.Initialize(this);
 
+        _levelUI?.Initialize(this); 
+        _npcHandler.Initialize(this);
         _levelMonstersHandler.Initialize(this);
         _puzzlesHandler.Initialize(this);
         _worldStateSwitcher.Initialize(this);
         _postProcessHandler.Initialize(this);
         _skyBoxHandler.Initialize(this);
+
+        _playerRoom?.Initialize(this);
     }
 
     private void Update()
@@ -121,8 +124,6 @@ public class LevelRoot : CompositeRoot
     }
 
     #endregion
-
-   
 }
 
 public enum WorldState
