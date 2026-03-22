@@ -10,7 +10,7 @@ public class PlayerInteractions : MonoBehaviour
     private Camera _camera => _player.Camera;
     private InteractableObject _currentInteractableObject;
 
-    public void initialize(Player player)
+    public void Initialize(Player player)
     {
         _player = player;      
     }
@@ -36,25 +36,20 @@ public class PlayerInteractions : MonoBehaviour
             out hit, _interactDistance))
         {           
             if(hit.collider.gameObject.TryGetComponent<InteractableObject>(out InteractableObject interactableObject))
-            {
+            {               
                 _currentInteractableObject = interactableObject;
-                if (_currentInteractableObject.CanInteract)
-                    _player.ShowInteractionInfo();
-                else
-                    _player.HideInteractionInfo();
+                if (_currentInteractableObject.CheckCanInteract(_player))
+                {
+                    _player.TryShowInteractionInfo(_currentInteractableObject.InteractionInfo);
+                }               
             }          
             else
             {
-                _currentInteractableObject = null;
-                _player.HideInteractionInfo();
+                _currentInteractableObject = null;             
             }
         }
-        else
-        {
-            _player.HideInteractionInfo();
-        }
-
-        if(_currentInteractableObject != null && _currentInteractableObject.CanInteract)
+       
+        if(_currentInteractableObject != null && _currentInteractableObject.CheckCanInteract(_player))
         {           
             if (Input.GetKeyDown(GlobalVars.InteractionKeyPrimary) || Input.GetKeyDown(GlobalVars.InteractionKeySecondary))
             {               

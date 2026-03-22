@@ -9,10 +9,9 @@ public class PlayerRoot : CompositeRoot
     [Header("Restart Settings")]
     [SerializeField] private Transform _restartPoint;
     [Header("UI")]
-    [SerializeField] private PlayerUI _playerUi;
+    [SerializeField] private PlayerUI _playerUI;
     [SerializeField] private GameObject _cantTakeItemInfo;
     [SerializeField] private GameObject _interactKeyinfo;
-    [SerializeField] private GameObject _pausePanel;
 
     private bool _isPause;
 
@@ -60,7 +59,7 @@ public class PlayerRoot : CompositeRoot
     public void GameOver()
     {
         DeactivatePlayer();
-        _levelRoot.OnGameOver();
+        _levelRoot.OnGameOvered();
     }
 
     public void BackPlayerToStart()
@@ -78,38 +77,36 @@ public class PlayerRoot : CompositeRoot
     public void OnGlassesOff() => _levelRoot.TryShowBadWorld();
 
     #endregion
+    #region >>> INTERACTION
 
-    #region >>> UI
-
-    public void ShowCantTakeItemMessage()
-    {
-        StartCoroutine(ShowMessageRoutine());
-    }
-
-    public void ShowInteractionInfo()
-    {
-        _interactKeyinfo?.gameObject.SetActive(true);
-    }
-
-    public void HideInteractionInfo()
-    {
-        _interactKeyinfo?.gameObject.SetActive(false);
-    }
-
-    private IEnumerator ShowMessageRoutine()
-    {
-        _cantTakeItemInfo.gameObject.SetActive(true);
-        yield return new WaitForSecondsRealtime(2f);
-        _cantTakeItemInfo.gameObject.SetActive(false);
-    }
 
     #endregion
+    #region >>> UI
 
+    public void TryShowInteractionInfo(string infoText)
+    {
+        _playerUI.TryShowInteractionInfo(infoText);
+    }
+
+    public void ShowCantInteractText()
+    {
+        _playerUI.ShowCantInteractText();
+    }
+   
+    #endregion
     #region >>> DIALOGS
 
     public void SetDialog(DialogComponent dialogComponent)
     {
-        _playerUi.SetDialogPhrase(dialogComponent);
+        _playerUI.SetDialogPhrase(dialogComponent);
+    }
+
+    #endregion
+    #region >>> PLAYER TIPS
+
+    public void ShowPlayerTipsByType(PlayerTipsType type)
+    {
+        _playerUI.ShowTipByType(type);
     }
 
     #endregion
@@ -127,19 +124,21 @@ public class PlayerRoot : CompositeRoot
     private void PauseGame()
     {
         _isPause = true;
-        _pausePanel?.gameObject.SetActive(true);
+        Time.timeScale = 0f;
+
         DeactivatePlayer();
         ToggleMouse(true);
-        Time.timeScale = 0f;
+        _levelRoot.ShowPausePanel();
     }
 
     private void ResumeGame()
     {
         _isPause = false;
-        _pausePanel?.gameObject.SetActive(false);
+        Time.timeScale = 1f;
+
         ActivatePlayer();
         ToggleMouse(false);
-        Time.timeScale = 1f;
+        _levelRoot.HidePausePanel();
     }
 
 }

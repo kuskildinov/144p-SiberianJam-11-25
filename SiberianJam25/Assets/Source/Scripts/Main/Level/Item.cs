@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : InteractableObject
@@ -7,7 +5,15 @@ public class Item : InteractableObject
     [SerializeField] private int _index;
     [SerializeField] private Collider _collider;
 
+    private Rigidbody _rigidbody;
+
     public int Index => _index;
+    public Rigidbody Rigidbody => _rigidbody;
+
+    private void Start()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+    }
 
     public override void TryInteract(Player player = null)
     {
