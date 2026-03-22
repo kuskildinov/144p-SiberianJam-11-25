@@ -182,7 +182,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void TrySwitchGlasses()
+    public void TrySwitchGlasses()
     {
         _canSwitchGlass = false;
         _glassSwitcher.TrySwitchGlasses();

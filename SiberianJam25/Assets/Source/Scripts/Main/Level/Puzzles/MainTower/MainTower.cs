@@ -12,6 +12,11 @@ public class MainTower : MonoBehaviour
     [SerializeField] private List<TowerRay> _rays;
     [Header("Gate")]
     [SerializeField] private Animator _gate;
+    [Header("Elevator")]
+    [SerializeField] private Elevator _bottomElevator;
+    [SerializeField] private Elevator _topElevator;
+    [Header("Teleport Player")]
+    [SerializeField] private Transform _teleportPoint;
     [Header("UI")]
     [SerializeField] private BlackFadePanel _fadePanel;
     [SerializeField] private GameObject _playerUI;
@@ -25,6 +30,8 @@ public class MainTower : MonoBehaviour
         InitializeCam();
 
         _doorIndicators.Initialize();
+        _bottomElevator.Initialize(this);
+        _topElevator.Initialize(this);
     }
 
     #region >>> CAMERA
@@ -45,7 +52,7 @@ public class MainTower : MonoBehaviour
         _vCam.gameObject.SetActive(false);
     }
     #endregion
-
+    #region >>> GATE
     public void OnPuzzleComplited(int index)
     {
         StartCoroutine(OnPuzzleComplitedRoutine(index));       
@@ -87,4 +94,33 @@ public class MainTower : MonoBehaviour
         yield return new WaitForSecondsRealtime(4f);
         _gate.SetTrigger("Open");
     }
+    #endregion
+    #region ELEVATOR
+
+    public void StartElevatorMovment()
+    {
+        StartCoroutine(ElevatorMovmentRoutione());
+    }
+
+    private void TeleportPlayer()
+    {
+        StartCoroutine(TeleportPlayerRoutine(_teleportPoint.position));
+    }
+
+    private IEnumerator ElevatorMovmentRoutione()
+    {
+        yield return new WaitForSecondsRealtime(5f);
+        TeleportPlayer();
+        yield return new WaitForSecondsRealtime(5f);
+        _topElevator.OpenDoors();
+    }
+
+    private IEnumerator TeleportPlayerRoutine(Vector3 newPosition)
+    {
+        yield return new WaitForSecondsRealtime(5f);
+        _puzzleHandler.TrySwitchGlasses();
+        yield return new WaitForSecondsRealtime(2f);
+        _puzzleHandler.TeleportPlayer(newPosition);
+    }
+    #endregion
 }

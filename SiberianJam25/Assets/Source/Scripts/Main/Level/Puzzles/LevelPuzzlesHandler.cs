@@ -109,6 +109,12 @@ public class LevelPuzzlesHandler : MonoBehaviour
     }
 
     #endregion
+    #region >>> PLAYER
+    public void TeleportPlayer(Vector3 newPos) => _root.TeleportPlayer(newPos);
+
+    public void TrySwitchGlasses() => _root.TrySwitchGlasses();
+
+    #endregion
 
     private void OnDestroy()
     {

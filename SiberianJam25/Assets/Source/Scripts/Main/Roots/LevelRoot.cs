@@ -124,6 +124,17 @@ public class LevelRoot : CompositeRoot
     }
 
     #endregion
+    #region >>> PLAYER
+    public void TeleportPlayer(Vector3 newPos)
+    {
+        _playerRoot.TeleportPlayer(newPos);
+    }
+
+    public void TrySwitchGlasses()
+    {
+        _playerRoot.TrySwitchGlasses();
+    }
+    #endregion
 }
 
 public enum WorldState
