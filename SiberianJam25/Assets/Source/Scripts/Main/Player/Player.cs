@@ -241,6 +241,15 @@ public class Player : MonoBehaviour
 
     #endregion
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.TryGetComponent<PlayerTipsTrigger>(out PlayerTipsTrigger tipsTrigger))
+        {
+            _root.ShowPlayerTipsByType(tipsTrigger.Type);
+            tipsTrigger.gameObject.SetActive(false);
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if(other.TryGetComponent<PlayerRoom> (out PlayerRoom playerRoom))
