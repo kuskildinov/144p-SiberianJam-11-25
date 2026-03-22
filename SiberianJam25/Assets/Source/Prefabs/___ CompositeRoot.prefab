@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9100711574462732677}
   - component: {fileID: 2300568735924496624}
   m_Layer: 0
-  m_Name: EnviernmentSwitcher
+  m_Name: WorldStateSwitcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,6 +130,7 @@ Transform:
   - {fileID: 8494939360303714184}
   - {fileID: 5336595455431321382}
   - {fileID: 3505172755398137253}
+  - {fileID: 2140447215457385773}
   m_Father: {fileID: 4642157161159716981}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6257868032233054225
@@ -144,15 +145,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 785f8eb162edf3d4c91a56f25d49da1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _worldStateSwitcher: {fileID: 0}
   _playerRoot: {fileID: 8214076368196776871}
-  _playerRoom: {fileID: 0}
+  _worldStateSwitcher: {fileID: 2300568735924496624}
   _puzzlesHandler: {fileID: 3402596915535530759}
   _levelMonstersHandler: {fileID: 6782658934028321463}
   _levelUI: {fileID: 0}
   _postProcessHandler: {fileID: 6760036650637131295}
-  _pinkkybox: {fileID: 0}
-  _badSkybox: {fileID: 0}
+  _skyBoxHandler: {fileID: 1488957450166459832}
+  _playerRoom: {fileID: 0}
   _finalCutScene: {fileID: 0}
 --- !u!1 &5526854587465363482
 GameObject:
@@ -252,6 +252,52 @@ MonoBehaviour:
   _order:
   - {fileID: 8214076368196776871}
   - {fileID: 6257868032233054225}
+--- !u!1 &7850667064489072089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2140447215457385773}
+  - component: {fileID: 1488957450166459832}
+  m_Layer: 0
+  m_Name: SkyBoxHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2140447215457385773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7850667064489072089}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5449946832883042972}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1488957450166459832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7850667064489072089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 387f231b10916e74499d5bf5879650e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pinkkybox: {fileID: 2100000, guid: 3e5399bd195de7649b874f58c1b9f8a3, type: 2}
+  _badSkybox: {fileID: 2100000, guid: e391f00234292cc4f935308c11cf0e54, type: 2}
 --- !u!1 &8361126924983402511
 GameObject:
   m_ObjectHideFlags: 0

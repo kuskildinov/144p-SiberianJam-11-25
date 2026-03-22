@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class LevelRoot : CompositeRoot
 {
-    [SerializeField] private WorldStateSwitcher _worldStateSwitcher;
     [SerializeField] private PlayerRoot _playerRoot;
-    [SerializeField] private PlayerRoom _playerRoom;
+    [Header("World State")]
+    [SerializeField] private WorldStateSwitcher _worldStateSwitcher;
     [Header("Puzzles")]
     [SerializeField] private LevelPuzzlesHandler _puzzlesHandler;    
     [Header("Monsters")]
@@ -16,10 +16,10 @@ public class LevelRoot : CompositeRoot
     [SerializeField] private LevelUI _levelUI;
     [Header("PostProcess")]
     [SerializeField] private LevelPostProcessHandler _postProcessHandler;
-    [Header("SkyBox Settings")]
-    [SerializeField] private Material _pinkkybox;
-    [SerializeField] private Material _badSkybox;
-    [Header("Final")]
+    [Header("SkyBox")]
+    [SerializeField] private SkyBoxHandler _skyBoxHandler;
+    [Header("other")]
+    [SerializeField] private PlayerRoom _playerRoom;
     [SerializeField] private GameObject _finalCutScene; 
 
     private WorldState _currentWorldState;
@@ -40,7 +40,9 @@ public class LevelRoot : CompositeRoot
 
         _levelMonstersHandler.Initialize(this);
         _puzzlesHandler.Initialize(this);
+        _worldStateSwitcher.Initialize(this);
         _postProcessHandler.Initialize(this);
+        _skyBoxHandler.Initialize(this);
     }
 
     private void Update()
@@ -72,36 +74,15 @@ public class LevelRoot : CompositeRoot
     #region >>> WORLD SWITCHER
     public void TryShowPinkWorld()
     {
-        _currentWorldState = WorldState.PINK;
-        _worldStateSwitcher.ShowPinkWorld();
-       
+        _currentWorldState = WorldState.PINK;      
         WorldStateChanged?.Invoke(_currentWorldState);
     }
 
     public void TryShowBadWorld()
     {
-        _currentWorldState = WorldState.BAD;
-        _worldStateSwitcher.ShowBadWorld();
-       
-        TryChangeSkyBox();
-
+        _currentWorldState = WorldState.BAD;      
         WorldStateChanged?.Invoke(_currentWorldState);
-    }    
-
-    private void TryChangeSkyBox()
-    {
-        if (_pinkkybox == null || _badSkybox == null)
-            return;
-
-        if (_currentWorldState == WorldState.PINK)
-        {
-            RenderSettings.skybox = _pinkkybox;
-        }
-        else
-        {
-            RenderSettings.skybox = _badSkybox;
-        }
-    }
+    }       
 
     #endregion   
     #region >>> WIN LOSE
