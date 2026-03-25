@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 public class PlayerRoot : CompositeRoot
@@ -65,16 +63,26 @@ public class PlayerRoot : CompositeRoot
     public void BackPlayerToStart()
     {
         ActivatePlayer();
-        
-        _player.CharacterController.enabled = false;
-        _player.gameObject.transform.localPosition = _restartPoint.position;
-        _player.CharacterController.enabled = true;      
+
+        TeleportPlayer(_restartPoint.position);
     }
 
-    #region GLASSES
+    public void TeleportPlayer(Vector3 newPosition)
+    {
+        _player.CharacterController.enabled = false;
+        _player.gameObject.transform.localPosition = newPosition;
+        _player.CharacterController.enabled = true;
+    }
+
+    #region >>> GLASSES
     public void OnGlassesOn() => _levelRoot.TryShowPinkWorld();
 
     public void OnGlassesOff() => _levelRoot.TryShowBadWorld();
+
+    public void TrySwitchGlasses()
+    {
+        _player.TrySwitchGlasses();
+    }
 
     #endregion
     #region >>> INTERACTION

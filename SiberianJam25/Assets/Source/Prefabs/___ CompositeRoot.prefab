@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 5336595455431321382}
   - component: {fileID: 3402596915535530759}
   m_Layer: 0
-  m_Name: LevelPuzzlesHandler
+  m_Name: PuzzlesHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,6 +127,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9100711574462732677}
+  - {fileID: 4826321158994572087}
   - {fileID: 8494939360303714184}
   - {fileID: 5336595455431321382}
   - {fileID: 3505172755398137253}
@@ -147,6 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerRoot: {fileID: 8214076368196776871}
   _worldStateSwitcher: {fileID: 2300568735924496624}
+  _npcHandler: {fileID: 231991913844788037}
   _puzzlesHandler: {fileID: 3402596915535530759}
   _levelMonstersHandler: {fileID: 6782658934028321463}
   _levelUI: {fileID: 0}
@@ -348,6 +350,50 @@ MonoBehaviour:
   _playerUI: {fileID: 0}
   _cantTakeItemInfo: {fileID: 0}
   _interactKeyinfo: {fileID: 0}
+--- !u!1 &8520547358827611002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4826321158994572087}
+  - component: {fileID: 231991913844788037}
+  m_Layer: 0
+  m_Name: NpcHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4826321158994572087
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8520547358827611002}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5449946832883042972}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &231991913844788037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8520547358827611002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 005846efa38f7e74c969f1fdc3f6436d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8679893323460743145
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +405,7 @@ GameObject:
   - component: {fileID: 8494939360303714184}
   - component: {fileID: 6782658934028321463}
   m_Layer: 0
-  m_Name: LevelMonstersHandler
+  m_Name: MonstersHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

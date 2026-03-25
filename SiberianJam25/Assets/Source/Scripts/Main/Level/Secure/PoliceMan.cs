@@ -6,6 +6,9 @@ public class PoliceMan : NPC
     [SerializeField] private float _detectionRange = 8f;
     [SerializeField] private float _detectionAngle = 50f;
     [SerializeField] private Transform _headPoint;
+    [Header("Signs")]
+    [SerializeField] private GameObject _num;
+    [SerializeField] private GameObject _symbol;
 
     private bool _playerDetected = false;
     private Transform _playerTransform;
@@ -18,6 +21,7 @@ public class PoliceMan : NPC
         CheckPlayerDetection();
     }
 
+    #region >>> PLAYER DETECTION
     private void CheckPlayerDetection()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, _detectionRange);
@@ -78,5 +82,35 @@ public class PoliceMan : NPC
     private void LookAtPlayer(Transform player)
     {
         transform.LookAt(player);
+    }
+    #endregion
+    #region >>> SIGNS SETTINGS
+
+    private void ShowSymbol()
+    {
+        _num.gameObject.SetActive(false);
+        _symbol.gameObject.SetActive(true);
+    }
+
+    private void ShowNum()
+    {
+        _num.gameObject.SetActive(true);
+        _symbol.gameObject.SetActive(false);
+    }
+
+
+    #endregion
+
+    protected override void OnWorldStateChanged(WorldState newState)
+    {
+        if(newState == WorldState.PINK)
+        {
+            ShowSymbol();
+        }
+        else if(newState == WorldState.BAD)
+        {
+            ShowNum();
+        }
+
     }
 }

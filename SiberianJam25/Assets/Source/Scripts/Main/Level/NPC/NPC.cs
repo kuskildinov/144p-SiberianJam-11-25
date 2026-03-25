@@ -18,6 +18,7 @@ public class NPC : InteractableObject
     [Header("Waypoints")]
     [SerializeField] private List<Transform> _waypoints = new List<Transform>();
 
+    private LevelNpcHandler _npcHandler;
     private enum NPCState { Moving, Waiting, Idle }
     private NPCState _currentState = NPCState.Idle;
     private int _currentWaypointIndex = 0;
@@ -30,13 +31,17 @@ public class NPC : InteractableObject
     public bool IsMoving => _currentState == NPCState.Moving;
 
     public event Action OnLastPointReached;
-
-    private void Start()
+    
+    public void Initialize(LevelNpcHandler npcHandler)
     {
-        if(_playOnAwake)
+        _npcHandler = npcHandler;
+
+        if (_playOnAwake)
             Activate();
 
         _defaultRotation = transform.rotation;
+
+        SubscribeToEvents();
     }
 
     public void Activate()
@@ -272,4 +277,27 @@ public class NPC : InteractableObject
         transform.rotation = _defaultRotation;
     }
     #endregion
+    #region >>> EVENTS
+
+    private void SubscribeToEvents()
+    {
+        _npcHandler.WorldStateChanged += OnWorldStateChanged;
+    }
+
+    private void UnsubscribeToEvents()
+    {
+        _npcHandler.WorldStateChanged -= OnWorldStateChanged;
+    }
+
+    protected virtual void OnWorldStateChanged(WorldState newState)
+    {
+       
+    }
+
+    #endregion
+
+    private void OnDestroy()
+    {
+        UnsubscribeToEvents();
+    }
 }
