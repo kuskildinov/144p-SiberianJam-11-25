@@ -91,10 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainTower: {fileID: 0}
-  _levers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _levers: []
   _puzzles: []
 --- !u!1 &1992546101328659224
 GameObject:

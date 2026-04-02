@@ -20,6 +20,7 @@ public class PlayerRoot : CompositeRoot
     {
         _player.Initialize(this);
 
+        ToggleMouse(false);
         //ActivatePlayer();
     }
 
@@ -51,7 +52,8 @@ public class PlayerRoot : CompositeRoot
 
         ToggleMouse(true);
 
-        _interactKeyinfo.gameObject.SetActive(false);
+        if(_interactKeyinfo != null)
+            _interactKeyinfo.gameObject.SetActive(false);
     }
 
     public void GameOver()
@@ -109,6 +111,11 @@ public class PlayerRoot : CompositeRoot
         _playerUI.SetDialogPhrase(dialogComponent);
     }
 
+    public void SetDialog(DialogComponent dialogComponent, int index)
+    {
+        _playerUI.SetDialogPhrase(dialogComponent, index);
+    }
+
     #endregion
     #region >>> PLAYER TIPS
 
@@ -148,5 +155,4 @@ public class PlayerRoot : CompositeRoot
         ToggleMouse(false);
         _levelRoot.HidePausePanel();
     }
-
 }

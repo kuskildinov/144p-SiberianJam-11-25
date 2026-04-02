@@ -73,6 +73,16 @@ public class LevelRoot : CompositeRoot
     {
         _levelUI.HidePausePanel();
     }
+
+    public void TryShowDialog(DialogComponent dialogComponent)
+    {
+        _playerRoot.SetDialog(dialogComponent);
+    }
+
+    public void TryShowDialog(DialogComponent dialogComponent, int index)
+    {
+        _playerRoot.SetDialog(dialogComponent, index);
+    }
     #endregion
     #region >>> WORLD SWITCHER
     public void TryShowPinkWorld()

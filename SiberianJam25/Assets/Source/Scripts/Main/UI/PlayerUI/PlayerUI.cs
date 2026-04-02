@@ -28,19 +28,60 @@ public class PlayerUI : MonoBehaviour
             StopCoroutine(_dialogCoroutine);
         }
 
-        _dialogCoroutine = StartCoroutine(ShowDialogRoutine(dialogComponent));
+        _dialogCoroutine = StartCoroutine(ShowRandomDialogRoutine(dialogComponent));
     }   
 
-    private IEnumerator ShowDialogRoutine(DialogComponent dialogComponent)
+    public void SetDialogPhrase(DialogComponent dialogComponent, int dialogIndex)
     {
-        string name = dialogComponent.CharacterName;
+        if (_dialogCoroutine != null)
+        {
+            StopCoroutine(_dialogCoroutine);
+        }
+
+        _dialogCoroutine = StartCoroutine(ShowDialogRoutine(dialogComponent, dialogIndex));
+    }
+
+    private IEnumerator ShowRandomDialogRoutine(DialogComponent dialogComponent)
+    {
+        string name = "";
+
+        if (GlobalVars.CurrentLang == Lang.RU)
+            name = dialogComponent.CharacterNameRus;
+        else if(GlobalVars.CurrentLang == Lang.EN)
+            name = dialogComponent.CharacterNameEn;
+
         DialogPhrase currentPhrase = dialogComponent.Phrases[Random.Range(0, dialogComponent.Phrases.Count)];
-        string dialogText = currentPhrase.PhraseTextRus;
+        string dialogText = "";
+
+        if (GlobalVars.CurrentLang == Lang.RU)
+            dialogText = currentPhrase.PhraseTextRus;
+        else if (GlobalVars.CurrentLang == Lang.EN)
+            dialogText = currentPhrase.PhraseTextEn;
 
         _dialogPanel.ShowPhrase(dialogText, name);
-
         yield return new WaitForSecondsRealtime(dialogComponent.DialogTime);
+        _dialogPanel.Hide();
+    }
 
+    private IEnumerator ShowDialogRoutine(DialogComponent dialogComponent, int dialogIndex)
+    {
+        string name = "";
+
+        if (GlobalVars.CurrentLang == Lang.RU)
+            name = dialogComponent.CharacterNameRus;
+        else if (GlobalVars.CurrentLang == Lang.EN)
+            name = dialogComponent.CharacterNameEn;
+
+        DialogPhrase currentPhrase = dialogComponent.Phrases[dialogIndex];
+        string dialogText = "";
+
+        if (GlobalVars.CurrentLang == Lang.RU)
+            dialogText = currentPhrase.PhraseTextRus;
+        else if (GlobalVars.CurrentLang == Lang.EN)
+            dialogText = currentPhrase.PhraseTextEn;
+
+        _dialogPanel.ShowPhrase(dialogText, name);
+        yield return new WaitForSecondsRealtime(dialogComponent.DialogTime);
         _dialogPanel.Hide();
     }
     #endregion

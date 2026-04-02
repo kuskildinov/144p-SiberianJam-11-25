@@ -2,6 +2,8 @@ using UnityEngine;
 
 public static class GlobalVars
 {
+    [Header("язык")]
+    public static Lang CurrentLang = Lang.RU;
     [Header("Ќастройки управлени€")]
     public static KeyCode RunKey = KeyCode.LeftShift;
     public static KeyCode JumpKey = KeyCode.Space;
@@ -25,3 +27,10 @@ public static class GlobalVars
     public static int PlayerCamPriority = 10;
     public static int MainTowerIndicatorsCamPriority = 11;
 }
+
+public enum Lang
+{
+    RU,
+    EN,
+}
+

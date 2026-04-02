@@ -4,8 +4,7 @@ using UnityEngine;
 public class PlayerGlassSwitcher : MonoBehaviour
 {     
     private const string BlinkAnimationTriggerParam = "Blink";
-
-    [SerializeField] private GameObject _glassFade;
+        
     [SerializeField] private Animator _eyeBlinkAnimator;
     [SerializeField] private GameObject _glasses;
 

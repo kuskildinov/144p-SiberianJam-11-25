@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class DialogComponent : MonoBehaviour
 {
-    public string CharacterName;
+    public string CharacterNameRus;
+    public string CharacterNameEn;
     public List<DialogPhrase> Phrases;
-    public float DialogTime = 5f;
+    public float DialogTime = 5f;   
 }
 
 [Serializable]
