@@ -21,6 +21,7 @@ public class SecureCam : MonoBehaviour
     [SerializeField] private bool _showDetectionVisuals = true;
     [SerializeField] private Material _spotlightConeMaterial;
     [SerializeField] private float _visualsUpdateInterval = 0.1f;
+    [SerializeField] private float _detectionConeRange = 8f;
 
     private int _currentIndex = 0;
     private bool _movingForward = true;
@@ -211,7 +212,7 @@ public class SecureCam : MonoBehaviour
         _spotlightCone.transform.rotation = _eye.rotation;
 
         // Создаем меш конуса
-        Mesh coneMesh = CreateConeMesh(20, _detectionRange, _spotlightAngle);
+        Mesh coneMesh = CreateConeMesh(20, _detectionConeRange, _spotlightAngle);
 
         var meshFilter = _spotlightCone.AddComponent<MeshFilter>();
         meshFilter.mesh = coneMesh;
