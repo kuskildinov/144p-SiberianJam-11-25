@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -16,8 +15,8 @@ public class PlayerRoom : MonoBehaviour
     [SerializeField] private Material _exterierPinkMaterial;
     [SerializeField] private Material _exterierBadMaterial;
     [Header("Enviernments")]
-    [SerializeField] private List<GameObject> _pinkEnviernments;
-    [SerializeField] private List<GameObject> _badEnviernments;
+    [SerializeField] private GameObject _pinkEnviernments;
+    [SerializeField] private GameObject _badEnviernments;
     [Space]
     [Header("Friend")]
     [SerializeField] private FriendOnRoom _friend;
@@ -27,6 +26,9 @@ public class PlayerRoom : MonoBehaviour
     [Header("Door settings")]
     [SerializeField] private Door _door;    
     [SerializeField] private float _timeBeforeKniking = 20f;
+    [Space]
+    [Header("Player Tips")]
+    [SerializeField] private PlayerTipsTrigger _glassesTrigger;
     [Space]
     [Header("Outside Scene")]
     [SerializeField] private GameObject _outsideScene;
@@ -42,18 +44,6 @@ public class PlayerRoom : MonoBehaviour
         SubscribeToEvents();
 
         StartCoroutine(StartCutSceneRoutine());
-    }
-
-    private void Update()
-    {
-        if(_needCheckGlassWearing && Input.GetKeyDown(KeyCode.Q))
-        {
-            _outsideScene.gameObject.SetActive(false);
-            _needCheckGlassWearing = false;
-            _window.SetInteractable(true);
-
-            PlayPolicemansPhrases();
-        }
     }
 
     #region >>> VISUAL
@@ -74,36 +64,28 @@ public class PlayerRoom : MonoBehaviour
 
             ShowBadEnviernment();
         }
+
+        if (newState == WorldState.BAD && _needCheckGlassWearing)
+        {
+            _outsideScene.gameObject.SetActive(false);
+            _needCheckGlassWearing = false;
+            _window.SetInteractable(true);
+
+            PlayPolicemansPhrases();
+        }
     }
 
     private void ShowPinkEnviernment()
     {
-        foreach (GameObject obj in _pinkEnviernments)
-        {
-            obj.gameObject.SetActive(true);
-        }
-
-        foreach (GameObject obj in _badEnviernments)
-        {
-            obj.gameObject.SetActive(false);
-        }
-
+        _pinkEnviernments.gameObject.SetActive(true);
+        _badEnviernments.gameObject.SetActive(false);
     }
 
     private void ShowBadEnviernment()
     {
-        foreach (GameObject obj in _pinkEnviernments)
-        {
-            obj.gameObject.SetActive(false);
-        }
-
-        foreach (GameObject obj in _badEnviernments)
-        {
-            obj.gameObject.SetActive(true);
-        }
+        _pinkEnviernments.gameObject.SetActive(false);
+        _badEnviernments.gameObject.SetActive(true);
     }
-
-
     #endregion
     #region >>> DOOR
 
@@ -137,6 +119,10 @@ public class PlayerRoom : MonoBehaviour
     public void OnFriendLeftRoom()
     {
         _door.Close();
+
+        _needCheckGlassWearing = true;
+        _glassesTrigger.gameObject.SetActive(true);
+        _outsideScene.gameObject.SetActive(true);
     }
 
     #endregion
@@ -171,24 +157,7 @@ public class PlayerRoom : MonoBehaviour
         _door.PlayPolicmanKnockingSound();
     }  
 
-    #endregion
-    #region >>> UI
-
-    public void ShowSwitchOffGlassesInfo()
-    {
-        _outsideScene.gameObject.SetActive(true);
-        StartCoroutine(ShowSwitchOffGlassesRoutine());
-    }
-
-    private IEnumerator ShowSwitchOffGlassesRoutine()
-    {
-        yield return new WaitForSecondsRealtime(5f);
-        _root.ShowSwitchOffInfoPanel();
-        _needCheckGlassWearing = true;
-      
-    }
-
-    #endregion
+    #endregion    
     #region >>> EVENTS
 
     private void SubscribeToEvents()
