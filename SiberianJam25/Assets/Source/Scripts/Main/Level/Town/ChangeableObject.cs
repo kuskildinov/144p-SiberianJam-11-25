@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Building : MonoBehaviour
+public class ChangeableObject : MonoBehaviour
 {
     [SerializeField] private MeshRenderer _renderer;
     [Header("Materials")]
